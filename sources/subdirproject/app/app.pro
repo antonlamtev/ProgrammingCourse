@@ -7,14 +7,16 @@ SOURCES += \
     queens.c \
     matrix.c \
     exchange.c \
-    equation.c \
-    main.c
+    main.c \
+    quotient.c \
+    main_menu.c
 
 HEADERS += \
     queens.h \
     matrix.h \
     exchange.h \
-    equation.h
+    quotient.h \
+    main_menu.h
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib/release/ -llib

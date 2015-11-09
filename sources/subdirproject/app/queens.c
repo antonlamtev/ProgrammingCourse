@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "queens_out.h"
 #include "queens_result.h"
-#include "check_for_beating.h"
+#include "queens_check_for_beating.h"
 #include "queens_in.h"
 
 void queens(void)

@@ -6,7 +6,7 @@ int level_of_null(int **P, int n, int number_of_column)
         if (P[i][j] == 0)
         {
             result = j;
-            break; //на всякий случай
+            break;
         }
     return result;
 }

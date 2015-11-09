@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "math_for_equation.h"
+#include "quotient_math.h"
 
 
-void equation(void)
+void quotient(void)
 {
     int M, N;
     puts("Введите 2 числа");

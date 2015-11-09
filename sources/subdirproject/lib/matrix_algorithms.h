@@ -1,8 +1,8 @@
-#ifndef ALGORITHMS_FOR_MATRIX_H
-#define ALGORITHMS_FOR_MATRIX_H
+#ifndef MATRIX_ALGORITHMS_H
+#define MATRIX_ALGORITHMS_H
 
 int level_of_null(int **, int, int);
 void swap(int *, int *);
 void buble_sort_of_lines(int **, int);
 
-#endif // ALGORITHMS_FOR_MATRIX_H
+#endif // MATRIX_ALGORITHMS_H

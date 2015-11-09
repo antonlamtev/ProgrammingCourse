@@ -1,4 +1,4 @@
-#include "check_for_beating.h"
+#include "queens_check_for_beating.h"
 
 int queens_result(int x1, int y1, int x2, int y2, int x3, int y3)
 {

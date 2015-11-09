@@ -1,6 +1,6 @@
-#ifndef EQUATION_H
-#define EQUATION_H
+#ifndef QUOTIENT_H
+#define QUOTIENT_H
 
-void equation(void);
+void quotient(void);
 
-#endif // EQUATION_H
+#endif // QUOTIENT_H

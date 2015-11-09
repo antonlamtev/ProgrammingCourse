@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "change.h"
+#include "exchange_out.h"
 
 void exchange(void)
 {
@@ -12,10 +12,5 @@ void exchange(void)
     }
     while (number >= 100);
 
-    /*Мы используем меньшее число монет в том случае, когда
-      пятирублёвых будет больше, чем двухрублёвых, а двухрублёвых - больше,
-      чем рублёвых, насколько это возможно*/
-
-    printf("пятирублёвых монет : %i , двухрублёвых монет : %i , рублёвых монет : %i\n",
-           change_by_fives(number), change_by_twos(number), change_by_ones(number));
+    exchange_out(number);
 }
