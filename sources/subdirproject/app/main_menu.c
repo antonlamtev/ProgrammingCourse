@@ -15,7 +15,7 @@ void main_menu(void)
                "5)Симметрирование строк\n6)Тесты\n7)Завершить работу\n");
         scanf("%c", &key);
     }
-    while(key < '1' || key > '6' );
+    while(key < '1' || key > '7' );
 
     switch(key)
     {
