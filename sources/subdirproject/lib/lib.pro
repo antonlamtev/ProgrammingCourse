@@ -18,7 +18,8 @@ SOURCES += \
     queens_check_for_beating.c \
     exchange_change.c \
     exchange_out.c \
-    quotient_math.c
+    quotient_math.c \
+    help_further_help.c
 
 HEADERS += \
     queens_result.h \
@@ -28,7 +29,8 @@ HEADERS += \
     matrix_algorithms.h \
     queens_check_for_beating.h \
     exchange_out.h \
-    quotient_math.h
+    quotient_math.h \
+    help_further_help.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

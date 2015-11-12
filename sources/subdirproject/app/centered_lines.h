@@ -1,15 +1,6 @@
 #ifndef CENTERED_LINES_H
 #define CENTERED_LINES_H
 
-
-class centered_lines
-{
-public:
-    centered_lines();
-
-signals:
-
-public slots:
-};
+void centered_lines(void);
 
 #endif // CENTERED_LINES_H

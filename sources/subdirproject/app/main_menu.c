@@ -4,6 +4,7 @@
 #include "queens.h"
 #include "quotient.h"
 #include "matrix.h"
+#include "centered_lines.h"
 
 void main_menu(void)
 {
@@ -15,7 +16,7 @@ void main_menu(void)
                "5)Симметрирование строк\n6)Тесты\n7)Завершить работу\n");
         scanf("%c", &key);
     }
-    while(key < '1' || key > '7' );
+    while(key < '1' || key > '8' );
 
     switch(key)
     {
@@ -32,7 +33,7 @@ void main_menu(void)
             matrix();
             break;
         case '5':
-            puts("Не готово!");
+            centered_lines();
             break;
         case '6':
             puts("Не готово!");

@@ -1,7 +1,6 @@
-#include "centered_lines.h"
+#include <stdio.h>
 
-centered_lines::centered_lines()
+void centered_lines(void)
 {
-
+    puts("Еще не готово");
 }
-
