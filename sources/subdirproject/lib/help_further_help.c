@@ -1,11 +1,11 @@
 #include <stdio.h>
 
 #define put_equally puts("================================================================================");
-#define put_exch puts("Параметр --exchange:\n--exchange                 запуск программы Размен в автоматическом режиме\n --exchange number         запуск программы Размен с аргументом number (number - натуральное число)");
-#define put_quens puts("Параметр --queens:\n--queens                   запуск программы Ферзи в автоматическом режиме\n--queens x1 y1 x2 y2 x3 y3 запуск программы Ферзи с аргументами x1, y1, x2, y2, x3, y3 (натуральные числа)");
-#define put_matr puts("Параметр --matrix:\n--matrix                   запуск программы Матрица в автоматическом режиме\n--matrix input output      запуск программы Матрица с входными данными из файла <input> и с выводом в файл <output>");
-#define put_quot puts("Параметр --quotient:\n--quotient                 запуск программы Деление уголком в автоматическом режиме");
-#define put_str puts("Параметр --centered_lines:\n--centered_lines           запуск программы Симметрирование строк в автоматическом режиме");
+#define put_exch puts("Параметр --exchange:\n--exchange                        запуск программы Размен в автоматическом режиме\n --exchange number                запуск программы Размен с аргументом number (number - натуральное число)");
+#define put_quens puts("Параметр --queens:\n--queens                          запуск программы Ферзи в автоматическом режиме\n--queens x1 y1 x2 y2 x3 y3        запуск программы Ферзи с аргументами x1, y1, x2, y2, x3, y3 (натуральные числа)");
+#define put_matr puts("Параметр --matrix:\n--matrix                          запуск программы Матрица в автоматическом режиме\n--matrix <input> <output>         запуск программы Матрица с входными данными из файла input и с выводом в файл output");
+#define put_quot puts("Параметр --quotient:\n--quotient                        запуск программы Деление уголком в автоматическом режиме");
+#define put_str puts("Параметр --centered_lines:\n--centered_lines                  запуск программы Симметрирование строк в автоматическом режиме\n--centered_lines <input> <output> запуск программы Симметрирование строк с входными данными из файла input и с выводом в файл output");
 
 void help_exchange(void)
 {

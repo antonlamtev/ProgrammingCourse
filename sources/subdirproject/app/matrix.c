@@ -6,8 +6,8 @@
 void matrix(void)
 {
     FILE *in, *out;
-    in = fopen("in.txt", "r");
-    out = fopen("out.txt", "w");
+    in = fopen("matrix.in", "r");
+    out = fopen("matrix.out", "w");
     int **P;
     int n, i, j;
     fscanf(in, "%i", &n);

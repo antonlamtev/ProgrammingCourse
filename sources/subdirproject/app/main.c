@@ -12,6 +12,7 @@
 #include "quotient.h"
 #include "matrix_algorithms.h"
 #include "centered_lines.h"
+#include "centered_lines_algorithms.h"
 
 #define put_error puts("Неправильный ввод параметров!!!");
 
@@ -87,7 +88,7 @@ int main(int argc, char *argv[])
             if (argc == 2)
             {
                 matrix();
-                puts("Прграмма выполнена!!!");
+                puts("Программа выполнена!!!");
             }
             if (argc == 4)
             {
@@ -127,6 +128,36 @@ int main(int argc, char *argv[])
                 put_error;
                 help(3);
             }
+        }
+        else if (!strcmp(argv[1], "--centered_lines"))
+        {
+            if (argc == 2)
+                centered_lines();
+            else if (argc = 4)
+            {
+                FILE *in, *out;
+                in = fopen(argv[2], "r");
+                char *str;
+                const int maximum_length_of_line = 256;
+                str = (char *) calloc(maximum_length_of_line, sizeof(char));
+                int max_length_of_line = 0;
+                int number_of_lines;
+                max_length_of_line = calculate_max_length(str, in, &number_of_lines);
+                free(str);
+                close(in);
+
+                char *initial_line = (char *) calloc (max_length_of_line, sizeof(char));
+                char *final_line = (char *) calloc (max_length_of_line, sizeof(char));
+                in = fopen(argv[2], "r");
+                out = fopen(argv[3], "w");
+                symmetrize_text(final_line, initial_line, in, out, max_length_of_line, number_of_lines);
+                free(initial_line);
+                free(final_line);
+                close(in);
+                close(out);
+            }
+            else if (argc == 3 || argc > 4)
+                help(5);
         }
     }
     else
