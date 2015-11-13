@@ -30,10 +30,10 @@ void main_menu(void)
             quotient();
             break;
         case '4':
-            matrix();
+            matrix("matrix.in", "matrix.out");
             break;
         case '5':
-            centered_lines();
+            centered_lines("lines.in", "lines.out");
             break;
         case '6':
             puts("Не готово!");

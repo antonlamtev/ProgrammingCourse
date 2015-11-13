@@ -5,10 +5,10 @@
 
 
 
-void centered_lines(void)
+void centered_lines(char *input_file_name, char *output_file_name)
 {
     FILE *in, *out;
-    in = fopen("lines.in", "r");
+    in = fopen(input_file_name, "r");
     char *str;
     const int maximum_length_of_line = 256;
     str = (char *) calloc(maximum_length_of_line, sizeof(char));
@@ -20,8 +20,8 @@ void centered_lines(void)
 
     char *initial_line = (char *) calloc (max_length_of_line, sizeof(char));
     char *final_line = (char *) calloc (max_length_of_line, sizeof(char));
-    in = fopen("lines.in", "r");
-    out = fopen("lines.out", "w");
+    in = fopen(input_file_name, "r");
+    out = fopen(output_file_name, "w");
     symmetrize_text(final_line, initial_line, in, out, max_length_of_line, number_of_lines);
     free(initial_line);
     free(final_line);

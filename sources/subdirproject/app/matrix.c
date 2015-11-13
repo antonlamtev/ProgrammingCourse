@@ -3,11 +3,11 @@
 #include "matrix_algorithms.h"
 
 
-void matrix(void)
+void matrix(char *input_file_name, char *output_file_name)
 {
     FILE *in, *out;
-    in = fopen("matrix.in", "r");
-    out = fopen("matrix.out", "w");
+    in = fopen(input_file_name, "r");
+    out = fopen(output_file_name, "w");
     int **P;
     int n, i, j;
     fscanf(in, "%i", &n);

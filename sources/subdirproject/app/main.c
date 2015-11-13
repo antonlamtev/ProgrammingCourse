@@ -87,41 +87,13 @@ int main(int argc, char *argv[])
         {
             if (argc == 2)
             {
-                matrix();
+                matrix("matrix.in", "matrix.out");
                 puts("Программа выполнена!!!");
             }
             if (argc == 4)
             {
-
-                FILE *in, *out;
-                in = fopen(argv[2], "r");
-                out = fopen(argv[3], "w");
-                int **P;
-                int n, i, j;
-                fscanf(in, "%i", &n);
-
-                P = (int **) malloc(n * sizeof(int*));
-                for (i = 0; i < n; ++i)
-                    P[i] = (int *) malloc(n * sizeof(int));
-
-                for (i = 0; i < n; ++i)
-                    for (j = 0; j < n; ++j)
-                        fscanf(in, "%i\n", &P[i][j]);
-
-                buble_sort_of_lines(P, n);
-
-                for (i = 0; i < n; ++i)
-                {
-                    for (j = 0; j < n; ++j)
-                        fprintf(out, "%i ", P[i][j]);
-                    fprintf(out, "\n");
-                }
-
-                for (i = 0; i < n; ++i)
-                    free(P[i]);
-                free(P);
-                fclose(in);
-                fclose(out);
+                matrix(argv[2], argv[3]);
+                puts("Программа выполнена!!!");
             }
             else if (argc > 4 || argc == 3)
             {
@@ -132,29 +104,14 @@ int main(int argc, char *argv[])
         else if (!strcmp(argv[1], "--centered_lines"))
         {
             if (argc == 2)
-                centered_lines();
-            else if (argc = 4)
             {
-                FILE *in, *out;
-                in = fopen(argv[2], "r");
-                char *str;
-                const int maximum_length_of_line = 256;
-                str = (char *) calloc(maximum_length_of_line, sizeof(char));
-                int max_length_of_line = 0;
-                int number_of_lines;
-                max_length_of_line = calculate_max_length(str, in, &number_of_lines);
-                free(str);
-                close(in);
-
-                char *initial_line = (char *) calloc (max_length_of_line, sizeof(char));
-                char *final_line = (char *) calloc (max_length_of_line, sizeof(char));
-                in = fopen(argv[2], "r");
-                out = fopen(argv[3], "w");
-                symmetrize_text(final_line, initial_line, in, out, max_length_of_line, number_of_lines);
-                free(initial_line);
-                free(final_line);
-                close(in);
-                close(out);
+                centered_lines("lines.in", "lines.out");
+                puts("Программа выполнена!!!");
+            }
+            else if (argc == 4)
+            {
+                centered_lines(argv[2], argv[3]);
+                puts("Программа выполнена!!!");
             }
             else if (argc == 3 || argc > 4)
                 help(5);
@@ -182,6 +139,5 @@ int main(int argc, char *argv[])
                 break;
         }
     }
-    //main_menu();
     return 0;
 }
