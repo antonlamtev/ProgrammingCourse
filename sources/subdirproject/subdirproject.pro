@@ -4,4 +4,5 @@ app.depends = lib
 
 SUBDIRS += \
     app \
-    lib
+    lib \
+    qt_tests

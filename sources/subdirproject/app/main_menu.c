@@ -13,10 +13,10 @@ void main_menu(void)
     {
         system("clear");
         printf("Выберите программу!\n1)Размен\n2)Ферзи\n3)Деление уголком\n4)Матрица\n"
-               "5)Симметрирование строк\n6)Тесты\n7)Завершить работу\n");
+               "5)Симметрирование строк\n6)Завершить работу\n");
         scanf("%c", &key);
     }
-    while(key < '1' || key > '8' );
+    while(key < '1' || key > '6' );
 
     switch(key)
     {
@@ -36,9 +36,6 @@ void main_menu(void)
             centered_lines("lines.in", "lines.out");
             break;
         case '6':
-            puts("Не готово!");
-            break;
-        case '7':
             exit(0);
             break;
     }

@@ -122,6 +122,11 @@ int main(int argc, char *argv[])
             else if (argc == 3 || argc > 4)
                 help(5);
         }
+        else
+        {
+            puts("Неправильный параметр командной строки!!!");
+            help(0);
+        }
     }
     else
     {
