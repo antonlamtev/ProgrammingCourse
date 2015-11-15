@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <math.h>
-#include "quotient_math.h"
 #include "quotient_process.h"
 
 void quotient(void)

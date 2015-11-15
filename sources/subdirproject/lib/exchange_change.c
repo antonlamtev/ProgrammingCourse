@@ -1,17 +1,13 @@
-const int two = 2, five = 5, one = 1;
+const int two = 2, five = 5, one = 1, three = 3;
 
-int change_by_fives(int amount)
+void change_by_coins(int amount, int *fives, int *twos, int *ones)
 {
-    return amount / five;
+    *fives = amount / five;
+    *twos = (amount - (*fives * five)) / two;
+    int result;
+    if (amount % five == three)
+        result = one;
+    else
+        result = 0;
+    *ones = result;
 }
-
-int change_by_twos(int amount)
-{
-    return (amount - change_by_fives(amount) * five) / two;
-}
-
-int change_by_ones(int amount)
-{
-    return (amount - change_by_fives(amount) * five - change_by_twos(amount) * two);
-}
-

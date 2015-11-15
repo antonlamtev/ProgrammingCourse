@@ -4,7 +4,7 @@
 #include "main_menu.h"
 #include "help.h"
 #include "exchange.h"
-#include "exchange_out.h"
+#include "exchange_change.h"
 #include "queens.h"
 #include "queens_out.h"
 #include "queens_result.h"
@@ -42,7 +42,10 @@ int main(int argc, char *argv[])
                     help(5);
             }
             else if (argc > 3)
+            {
+                put_error;
                 help(0);
+            }
         }
         else if (!strcmp(argv[1], "--exchange"))
         {
@@ -51,7 +54,10 @@ int main(int argc, char *argv[])
             else if (argc == 3)
             {
                 int num = atoi(argv[2]);
-                exchange_out(num);
+                int fives, twos, ones;
+
+                change_by_coins(num, &fives, &twos, &ones);
+                printf("Пятирублёвых монет: %i\nДвухрублёвых монет: %i\nРублёвых монет: %i\n", fives, twos, ones);
             }
             else
             {
@@ -87,7 +93,10 @@ int main(int argc, char *argv[])
                 quotient_out(M, N);
             }
             else
+            {
+                put_error;
                 help(4);
+            }
         }
         else if (!strcmp(argv[1], "--matrix"))
         {
@@ -120,7 +129,10 @@ int main(int argc, char *argv[])
                 puts("Программа выполнена!!!");
             }
             else if (argc == 3 || argc > 4)
+            {
+                put_error;
                 help(5);
+            }
         }
         else
         {

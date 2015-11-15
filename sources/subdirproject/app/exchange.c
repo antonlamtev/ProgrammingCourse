@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "exchange_out.h"
+#include "exchange_change.h"
 
 void exchange(void)
 {
-    int number;
+    int number, fives, twos, ones;
 
     do
     {
@@ -12,5 +12,7 @@ void exchange(void)
     }
     while (number >= 100);
 
-    exchange_out(number);
+    change_by_coins(number, &fives, &twos, &ones);
+
+    printf("Пятирублёвых монет: %i\nДвухрублёвых монет: %i\nРублёвых монет: %i\n", fives, twos, ones);
 }
