@@ -3,8 +3,8 @@
 #define put_equally puts("================================================================================");
 #define put_exch puts("Параметр --exchange:\n--exchange                        запуск программы Размен в автоматическом режиме\n --exchange number                запуск программы Размен с аргументом number (number - натуральное число)");
 #define put_quens puts("Параметр --queens:\n--queens                          запуск программы Ферзи в автоматическом режиме\n--queens x1 y1 x2 y2 x3 y3        запуск программы Ферзи с аргументами x1, y1, x2, y2, x3, y3 (натуральные числа)");
+#define put_quot puts("Параметр --quotient:\n--quotient                        запуск программы Деление уголком в автоматическом режиме\n--quotient dividend divider       запуск программы Деление уголком, где dividend - делимое, а divider - делитель");
 #define put_matr puts("Параметр --matrix:\n--matrix                          запуск программы Матрица в автоматическом режиме\n--matrix <input> <output>         запуск программы Матрица с входными данными из файла input и с выводом в файл output");
-#define put_quot puts("Параметр --quotient:\n--quotient                        запуск программы Деление уголком в автоматическом режиме");
 #define put_str puts("Параметр --centered_lines:\n--centered_lines                  запуск программы Симметрирование строк в автоматическом режиме\n--centered_lines <input> <output> запуск программы Симметрирование строк с входными данными из файла input и с выводом в файл output");
 
 void help_exchange(void)
@@ -46,9 +46,9 @@ void help_help(void)
     put_equally;
     puts("Информация о параметрах командной строки\n"
          "Параметр --interactive:\n"
-         "--interactive              запуск приложения в интерактивном режиме");
+         "--interactive                     запуск приложения в интерактивном режиме");
     puts("Параметр --help:\n"
-         "--help                     помощь");
+         "--help                            помощь");
     put_exch;
     put_quens;
     put_quot;

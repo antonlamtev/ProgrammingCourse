@@ -8,8 +8,8 @@ int calculate_max_length(char *str, FILE *input, int *number_of_lines)
     while (!feof(input))
     {
         fgets(str, maximum_length_of_line, input);
-        if (strlen(str) > max_length_of_line)
-            max_length_of_line = strlen(str);
+        if (strlen(str) > max_length_of_line) //тут компилятор выдает странное предупреждение. по мне, так
+            max_length_of_line = strlen(str); //вполне нормально сравнивать число со знаком и без
         ++count;
     }
     *number_of_lines = count;

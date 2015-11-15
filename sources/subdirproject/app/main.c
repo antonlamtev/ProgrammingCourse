@@ -10,6 +10,7 @@
 #include "queens_result.h"
 #include "matrix.h"
 #include "quotient.h"
+#include "quotient_process.h"
 #include "matrix_algorithms.h"
 #include "centered_lines.h"
 #include "centered_lines_algorithms.h"
@@ -80,6 +81,11 @@ int main(int argc, char *argv[])
         {
             if (argc == 2)
                 quotient();
+            else if (argc == 4)
+            {
+                int M = atoi(argv[2]), N = atoi(argv[3]);
+                quotient_out(M, N);
+            }
             else
                 help(4);
         }

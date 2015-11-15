@@ -20,7 +20,8 @@ SOURCES += \
     exchange_out.c \
     quotient_math.c \
     help_further_help.c \
-    centered_lines_algorithms.c
+    centered_lines_algorithms.c \
+    quotient_process.c
 
 HEADERS += \
     queens_result.h \
@@ -32,7 +33,8 @@ HEADERS += \
     exchange_out.h \
     quotient_math.h \
     help_further_help.h \
-    centered_lines_algorithms.h
+    centered_lines_algorithms.h \
+    quotient_process.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

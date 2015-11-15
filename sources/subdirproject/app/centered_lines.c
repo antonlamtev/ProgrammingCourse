@@ -16,7 +16,7 @@ void centered_lines(char *input_file_name, char *output_file_name)
     int number_of_lines;
     max_length_of_line = calculate_max_length(str, in, &number_of_lines);
     free(str);
-    close(in);
+    close(in); //странное предупреждение компилятора. а мне все нравится
 
     char *initial_line = (char *) calloc (max_length_of_line, sizeof(char));
     char *final_line = (char *) calloc (max_length_of_line, sizeof(char));
