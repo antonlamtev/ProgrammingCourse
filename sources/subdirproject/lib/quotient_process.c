@@ -8,10 +8,15 @@ void print_n_symbols(int n, char symbol)
         printf("%c", symbol);
 }
 
+/// Слишком длинная функция, даже читать не буду :)
+/// Про такие говорят, "работает и ладно", или хуже
+///
+/// Но если вы уверены, что ее нельзя разбить на поменьше,
+/// то ладно...
 void quotient_out(int M, int N)
 {
     int dividend, residue, result, i, product;
-
+    /// M  и N не понятно что...
     result = M / N;
     dividend = M / power(10, numlen(result) - 1);
     residue = M % power(10, numlen(result) - 1);
