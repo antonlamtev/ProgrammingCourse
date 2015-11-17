@@ -3,6 +3,7 @@
 
 void exchange(void)
 {
+    /// Не думали сделать структуру для монеток?
     int number, fives, twos, ones;
 
     do
