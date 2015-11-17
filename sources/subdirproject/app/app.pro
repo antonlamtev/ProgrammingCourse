@@ -11,7 +11,7 @@ SOURCES += \
     quotient.c \
     main_menu.c \
     help.c \
-    centered_lines.c
+    lines_symmetrization.c
 
 HEADERS += \
     queens.h \
@@ -20,7 +20,7 @@ HEADERS += \
     quotient.h \
     main_menu.h \
     help.h \
-    centered_lines.h
+    lines_symmetrization.h
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib/release/ -llib

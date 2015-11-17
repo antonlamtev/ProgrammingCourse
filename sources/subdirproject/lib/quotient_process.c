@@ -13,15 +13,14 @@ void print_n_symbols(int n, char symbol)
 ///
 /// Но если вы уверены, что ее нельзя разбить на поменьше,
 /// то ладно...
-void quotient_out(int M, int N)
+// :)
+void quotient_out(int first_number, int second_number)
 {
     int dividend, residue, result, i, product;
-    /// M  и N не понятно что...
-    result = M / N;
-    dividend = M / power(10, numlen(result) - 1);
-    residue = M % power(10, numlen(result) - 1);
+    result = first_number / second_number;
+    dividend = first_number / power(10, numlen(result) - 1);
+    residue = first_number % power(10, numlen(result) - 1);
     int indent = dividend;
-
     int  crutch = 1; //нужен для правильного числа черточек в случаях, когда разность равна 0 :)
     for (i = 1; i <= numlen(result); ++i)
     {
@@ -30,10 +29,10 @@ void quotient_out(int M, int N)
             printf("%i", dividend);
             if (residue != 0)
                 printf("%i", residue);
-            printf("|%i\n", N);
+            printf("|%i\n", second_number);
         }
 
-        product = N * n_th_dig_of_num(i, result);
+        product = second_number * n_th_dig_of_num(i, result);
         print_n_symbols(numlen(indent) - numlen(product), ' ');
         printf("%i", product);
 
@@ -42,7 +41,7 @@ void quotient_out(int M, int N)
 
         if (i == 1)
         {
-            print_n_symbols(numlen(M) - numlen(dividend) + 1, ' ');
+            print_n_symbols(numlen(first_number) - numlen(dividend) + 1, ' ');
 
             printf("%i\n", result);
         }

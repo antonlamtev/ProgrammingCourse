@@ -12,8 +12,8 @@
 #include "quotient.h"
 #include "quotient_process.h"
 #include "matrix_algorithms.h"
-#include "centered_lines.h"
-#include "centered_lines_algorithms.h"
+#include "lines_symmetrization.h"
+#include "lines_symmetrization_algorithms.h"
 
 #define put_error puts("Неправильный ввод параметров!!!");
 
@@ -27,24 +27,24 @@ int main(int argc, char *argv[])
         else if (!strcmp(argv[1], "--help"))
         {
             if (argc == 2)
-                help(0);
+                help();
             else if (argc == 3)
             {
                 if (!strcmp(argv[2], "--exchange"))
-                    help(1);
+                    help_exchange();
                 else if (!strcmp(argv[2], "--queens"))
-                    help(2);
+                    help_queens();
                 else if (!strcmp(argv[2], "--matrix"))
-                    help(3);
+                    help_matrix();
                 else if (!strcmp(argv[2], "--quotient"))
-                    help(4);
-                else if (!strcmp(argv[2], "--centered_lines"))
-                    help(5);
+                    help_quotient();
+                else if (!strcmp(argv[2], "--lines_symmetrization"))
+                    help_lines_symmetrization();
             }
             else if (argc > 3)
             {
                 put_error;
-                help(0);
+                help();
             }
         }
         else if (!strcmp(argv[1], "--exchange"))
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
             else
             {
                 put_error;
-                help(1);
+                help_exchange();
             }
         }
         else if (!strcmp(argv[1], "--queens"))
@@ -80,10 +80,7 @@ int main(int argc, char *argv[])
             else
             {
                 put_error;
-                /// Сразу
-                /// help_queens();
-                /// и так везде поменять, функция help с числовым параметром только путает
-                help(2);
+                help_queens();
             }
         }
         else if (!strcmp(argv[1], "--quotient"))
@@ -98,7 +95,7 @@ int main(int argc, char *argv[])
             else
             {
                 put_error;
-                help(4);
+                help_quotient();
             }
         }
         else if (!strcmp(argv[1], "--matrix"))
@@ -116,31 +113,31 @@ int main(int argc, char *argv[])
             else if (argc > 4 || argc == 3)
             {
                 put_error;
-                help(3);
+                help_matrix();
             }
         }
-        else if (!strcmp(argv[1], "--centered_lines"))
+        else if (!strcmp(argv[1], "--lines_symmetrization"))
         {
             if (argc == 2)
             {
-                centered_lines("lines.in", "lines.out");
+                lines_symmetrization("lines.in", "lines.out");
                 puts("Программа выполнена!!!");
             }
             else if (argc == 4)
             {
-                centered_lines(argv[2], argv[3]);
+                lines_symmetrization(argv[2], argv[3]);
                 puts("Программа выполнена!!!");
             }
             else if (argc == 3 || argc > 4)
             {
                 put_error;
-                help(5);
+                help_lines_symmetrization();
             }
         }
         else
         {
             puts("Неправильный параметр командной строки!!!");
-            help(0);
+            help();
         }
     }
     else
@@ -158,7 +155,7 @@ int main(int argc, char *argv[])
         switch (key)
         {
             case '1':
-                help(0);
+                help();
                 break;
             case '2':
                 exit(0);

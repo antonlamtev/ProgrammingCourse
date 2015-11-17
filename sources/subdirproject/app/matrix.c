@@ -34,4 +34,5 @@ void matrix(char *input_file_name, char *output_file_name)
     free(P);
     fclose(in);
     fclose(out);
+    puts("Программа успешно выполнена!");
 }

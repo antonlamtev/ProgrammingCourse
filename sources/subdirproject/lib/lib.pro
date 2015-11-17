@@ -18,9 +18,8 @@ SOURCES += \
     queens_check_for_beating.c \
     exchange_change.c \
     quotient_math.c \
-    help_further_help.c \
-    centered_lines_algorithms.c \
-    quotient_process.c
+    quotient_process.c \
+    lines_symmetrization_algorithms.c
 
 HEADERS += \
     queens_result.h \
@@ -31,8 +30,9 @@ HEADERS += \
     queens_check_for_beating.h \
     quotient_math.h \
     help_further_help.h \
-    centered_lines_algorithms.h \
-    quotient_process.h
+    quotient_process.h \
+    lines_symmetrization_algorithms.h \
+    queens_enum.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

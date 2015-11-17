@@ -3,10 +3,12 @@
 
 void quotient(void)
 {
+    //В задании переменные называются именно так заглавными буквами
     /// вроде бы у вас везде переменые строчными буквами
-    int M, N;
+    //int M, N;
+    int m, n;
     puts("Введите 2 числа");
-    scanf("%i%i", &M, &N);
+    scanf("%i%i", &m, &n);
     puts("");
-    quotient_out(M, N);
+    quotient_out(m, n);
 }

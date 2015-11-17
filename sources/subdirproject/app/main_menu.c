@@ -4,7 +4,7 @@
 #include "queens.h"
 #include "quotient.h"
 #include "matrix.h"
-#include "centered_lines.h"
+#include "lines_symmetrization.h"
 
 void main_menu(void)
 {
@@ -33,7 +33,7 @@ void main_menu(void)
             matrix("matrix.in", "matrix.out");
             break;
         case '5':
-            centered_lines("lines.in", "lines.out");
+            lines_symmetrization("lines.in", "lines.out");
             break;
         case '6':
             exit(0);

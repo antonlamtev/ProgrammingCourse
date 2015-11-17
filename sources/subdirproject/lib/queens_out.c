@@ -1,9 +1,8 @@
 #include <stdio.h>
+#include "queens_enum.h"
 
 void queens_out(int a)
 {
-    enum who_beat {no_one = 0, everyone, OneTwo_OneThree, OneTwo_TwoThree, OneTwo,
-                   OneThree_TwoThree, OneThree, TwoThree};
     switch (a)
     {
         case no_one:
