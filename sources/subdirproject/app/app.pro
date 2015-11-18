@@ -9,18 +9,18 @@ SOURCES += \
     exchange.c \
     main.c \
     quotient.c \
-    main_menu.c \
     help.c \
-    lines_symmetrization.c
+    lines_symmetrization.c \
+    menu.c
 
 HEADERS += \
     queens.h \
     matrix.h \
     exchange.h \
     quotient.h \
-    main_menu.h \
     help.h \
-    lines_symmetrization.h
+    lines_symmetrization.h \
+    menu.h
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib/release/ -llib

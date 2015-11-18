@@ -3,17 +3,16 @@
 #include "queens_result.h"
 #include "queens_check_for_beating.h"
 #include "queens_in.h"
+#include "queens_operands_declaration.h"
 
 void queens(void)
 {
-    /// Давайте сделаем структуру для координат фигур
-    int x1, x2, x3, y1,y2, y3;
-
+    struct coordinate x, y;
     // Считать координаты шахматной доски координатами матрицы 8х8 от 1 до 8 !!!
 
-    input_with_check(&x1, &y1, 1);
-    input_with_check(&x2, &y2, 2);
-    input_with_check(&x3, &y3, 3);
+    input_with_check(&x.first, &y.first, 1);
+    input_with_check(&x.second, &y.second, 2);
+    input_with_check(&x.third, &y.third, 3);
 
-    queens_out(queens_result(x1, y1, x2, y2, x3, y3));
+    queens_out(queens_result(x, y));
 }

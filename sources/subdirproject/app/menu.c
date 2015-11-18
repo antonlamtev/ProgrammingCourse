@@ -5,6 +5,7 @@
 #include "quotient.h"
 #include "matrix.h"
 #include "lines_symmetrization.h"
+#include "help.h"
 
 void main_menu(void)
 {
@@ -36,6 +37,29 @@ void main_menu(void)
             lines_symmetrization("lines.in", "lines.out");
             break;
         case '6':
+            exit(0);
+            break;
+    }
+}
+
+void further_menu(void)
+{
+    char key;
+    do
+    {
+        system("clear");
+        puts("Вы запустили прогамму без параметров!!!");
+        puts("Выберите вариант продолжения");
+        puts("1)Получить информацию о пользовании\n2)Завершить программу");
+        scanf("%c", &key);
+    }
+    while (key < '1' || key > '2');
+    switch (key)
+    {
+        case '1':
+            help();
+            break;
+        case '2':
             exit(0);
             break;
     }

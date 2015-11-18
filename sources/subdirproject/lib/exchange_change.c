@@ -1,9 +1,13 @@
-void change_by_coins(int amount, int *fives, int *twos, int *ones)
+#include "exchange_structures_declaration.h"
+
+struct purse change_by_coins(int amount)
 {
-    *fives = amount / 5;
-    *twos = (amount - (*fives * 5)) / 2;
+    struct purse coins;
+    coins.fives = amount / 5;
+    coins.twos = (amount - (coins.fives * 5)) / 2;
     if (amount % 5 == 3)
-        *ones = 1;
+        coins.ones = 1;
     else
-        *ones = 0;
+        coins.ones = 0;
+    return coins;
 }

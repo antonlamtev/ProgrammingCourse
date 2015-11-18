@@ -1,15 +1,14 @@
 #include "queens_check_for_beating.h"
-#include "queens_enum.h"
+#include "queens_operands_declaration.h"
 
-/// Давайте заведем структуры для координат
-int queens_result(int x1, int y1, int x2, int y2, int x3, int y3)
+int queens_result(struct coordinate x, struct coordinate y)
 {
     int result = no_one;
-    if (check_for_beating(x1, y1, x2, y2))
+    if (check_for_beating(x.first, y.first, x.second, y.second))
     {
-        if (check_for_beating(x1, y1, x3, y3))
+        if (check_for_beating(x.first, y.first, x.third, y.third))
         {
-            if (check_for_beating(x3, y3, x2, y2))
+            if (check_for_beating(x.third, y.third, x.second, y.second))
             {
                 result = everyone;
             }
@@ -20,7 +19,7 @@ int queens_result(int x1, int y1, int x2, int y2, int x3, int y3)
         }
         else
         {
-            if (check_for_beating(x3, y3, x2, y2))
+            if (check_for_beating(x.third, y.third, x.second, y.second))
             {
                 result = OneTwo_TwoThree;
             }
@@ -30,9 +29,9 @@ int queens_result(int x1, int y1, int x2, int y2, int x3, int y3)
             }
         }
     }
-    else if (check_for_beating(x1, y1, x3, y3))
+    else if (check_for_beating(x.first, y.first, x.third, y.third))
     {
-        if (check_for_beating(x3, y3, x2, y2))
+        if (check_for_beating(x.third, y.third, x.second, y.second))
         {
             result = OneThree_TwoThree;
         }
@@ -41,7 +40,7 @@ int queens_result(int x1, int y1, int x2, int y2, int x3, int y3)
             result = OneThree;
         }
     }
-    else if (check_for_beating(x3, y3, x2, y2))
+    else if (check_for_beating(x.third, y.third, x.second, y.second))
     {
         result = TwoThree;
     }

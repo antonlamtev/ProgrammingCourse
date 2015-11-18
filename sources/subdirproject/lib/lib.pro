@@ -32,7 +32,8 @@ HEADERS += \
     help_further_help.h \
     quotient_process.h \
     lines_symmetrization_algorithms.h \
-    queens_enum.h
+    exchange_structures_declaration.h \
+    queens_operands_declaration.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

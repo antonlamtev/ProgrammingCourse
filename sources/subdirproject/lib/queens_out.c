@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "queens_enum.h"
+#include "queens_operands_declaration.h"
 
 void queens_out(int a)
 {

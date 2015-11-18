@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "main_menu.h"
+#include "menu.h"
 #include "help.h"
 #include "exchange.h"
 #include "exchange_change.h"
+#include "exchange_structures_declaration.h"
 #include "queens.h"
 #include "queens_out.h"
 #include "queens_result.h"
+#include "queens_operands_declaration.h"
 #include "matrix.h"
 #include "quotient.h"
 #include "quotient_process.h"
@@ -54,10 +56,9 @@ int main(int argc, char *argv[])
             else if (argc == 3)
             {
                 int num = atoi(argv[2]);
-                int fives, twos, ones;
-
-                change_by_coins(num, &fives, &twos, &ones);
-                printf("Пятирублёвых монет: %i\nДвухрублёвых монет: %i\nРублёвых монет: %i\n", fives, twos, ones);
+                struct purse coins;
+                coins = change_by_coins(num);
+                printf("Пятирублёвых монет: %i\nДвухрублёвых монет: %i\nРублёвых монет: %i\n", coins.fives, coins.twos, coins.ones);
             }
             else
             {
@@ -71,11 +72,16 @@ int main(int argc, char *argv[])
                 queens();
             else if (argc == 8)
             {
-                int x1 = atoi(argv[2]), y1 = atoi(argv[3]),
-                    x2 = atoi(argv[4]), y2 = atoi(argv[5]),
-                    x3 = atoi(argv[6]), y3 = atoi(argv[7]);
+                struct coordinate x;
+                struct coordinate y;
+                x.first = atoi(argv[2]);
+                y.first = atoi(argv[3]);
+                x.second = atoi(argv[4]);
+                y.second = atoi(argv[5]);
+                x.third = atoi(argv[6]);
+                y.third = atoi(argv[7]);
 
-                queens_out(queens_result(x1, y1, x2, y2, x3, y3));
+                queens_out(queens_result(x, y));
             }
             else
             {
@@ -103,12 +109,10 @@ int main(int argc, char *argv[])
             if (argc == 2)
             {
                 matrix("matrix.in", "matrix.out");
-                puts("Программа выполнена!!!");
             }
             if (argc == 4)
             {
                 matrix(argv[2], argv[3]);
-                puts("Программа выполнена!!!");
             }
             else if (argc > 4 || argc == 3)
             {
@@ -121,12 +125,10 @@ int main(int argc, char *argv[])
             if (argc == 2)
             {
                 lines_symmetrization("lines.in", "lines.out");
-                puts("Программа выполнена!!!");
             }
             else if (argc == 4)
             {
                 lines_symmetrization(argv[2], argv[3]);
-                puts("Программа выполнена!!!");
             }
             else if (argc == 3 || argc > 4)
             {
@@ -136,31 +138,13 @@ int main(int argc, char *argv[])
         }
         else
         {
-            puts("Неправильный параметр командной строки!!!");
+            put_error;
             help();
         }
     }
     else
     {
-        char key;
-        do
-        {
-            system("clear");
-            puts("Вы запустили прогамму без параметров!!!");
-            puts("Выберите вариант продолжения");
-            puts("1)Получить информацию о пользовании\n2)Завершить программу");
-            scanf("%c", &key);
-        }
-        while (key < '1' || key > '2');
-        switch (key)
-        {
-            case '1':
-                help();
-                break;
-            case '2':
-                exit(0);
-                break;
-        }
+        further_menu();
     }
     return 0;
 }
