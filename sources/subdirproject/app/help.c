@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "help_further_help.h"
 
 #define put_equally puts("================================================================================");
 #define put_exch puts("Параметр --exchange:\n--exchange                        запуск программы Размен в автоматическом режиме\n --exchange number                запуск программы Размен с аргументом number (number - натуральное число)");
