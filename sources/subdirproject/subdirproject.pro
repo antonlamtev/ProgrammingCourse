@@ -1,6 +1,7 @@
 TEMPLATE = subdirs
 
 app.depends = lib
+qt_test.depends = lib
 
 SUBDIRS += \
     app \

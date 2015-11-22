@@ -3,4 +3,5 @@
 
 struct purse change_by_coins(int);
 
+
 #endif // EXCHANGE_CHANGE_H
