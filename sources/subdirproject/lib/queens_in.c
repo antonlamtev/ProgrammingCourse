@@ -1,11 +1,11 @@
 #include <stdio.h>
 
-void input_with_check(int *a, int *b, int n)
+void input_with_check(int *x, int *y, int number)
 {
     do
     {
-        printf("Введите координаты %i-го ферзя\n", n);
-        scanf("%i%i", a, b);
+        printf("Введите координаты %i-го ферзя\n", number);
+        scanf("%i%i", x, y);
     }
-    while (*a < 1 || *a > 8 || *b < 1 || *b > 8);
+    while (*x < 1 || *x > 8 || *y < 1 || *y > 8);
 }

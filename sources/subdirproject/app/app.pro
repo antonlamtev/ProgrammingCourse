@@ -14,13 +14,8 @@ SOURCES += \
     menu.c
 
 HEADERS += \
-    queens.h \
-    matrix.h \
-    exchange.h \
-    quotient.h \
-    help.h \
-    lines_symmetrization.h \
-    menu.h
+    ../main.h \
+    main.h
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib/release/ -llib

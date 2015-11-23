@@ -1,20 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "menu.h"
-#include "help.h"
-#include "exchange.h"
+#include "main.h"
 #include "exchange_change.h"
 #include "exchange_structures_declaration.h"
-#include "queens.h"
 #include "queens_out.h"
 #include "queens_result.h"
 #include "queens_operands_declaration.h"
-#include "matrix.h"
-#include "quotient.h"
 #include "quotient_process.h"
 #include "matrix_algorithms.h"
-#include "lines_symmetrization.h"
 #include "lines_symmetrization_algorithms.h"
 
 #define put_error puts("Неправильный ввод параметров!!!");
@@ -96,7 +90,7 @@ int main(int argc, char *argv[])
             else if (argc == 4)
             {
                 int M = atoi(argv[2]), N = atoi(argv[3]);
-                quotient_out(M, N);
+                quotient_out(stdout, M, N);
             }
             else
             {

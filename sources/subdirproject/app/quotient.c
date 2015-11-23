@@ -10,5 +10,5 @@ void quotient(void)
     puts("Введите 2 числа");
     scanf("%i%i", &m, &n);
     puts("");
-    quotient_out(m, n);
+    quotient_out(stdout, m, n);
 }

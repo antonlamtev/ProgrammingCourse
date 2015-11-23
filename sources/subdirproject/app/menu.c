@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "exchange.h"
-#include "queens.h"
-#include "quotient.h"
-#include "matrix.h"
-#include "lines_symmetrization.h"
-#include "help.h"
+#include "main.h"
 
 void main_menu(void)
 {

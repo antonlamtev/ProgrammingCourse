@@ -1,11 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "quotient_math.h"
 
-void print_n_symbols(int n, char symbol)
+void print_n_symbols(FILE *stream, int n, char symbol)
 {
     int i;
     for (i = 0; i < n; ++i)
-        printf("%c", symbol);
+        fprintf(stream, "%c", symbol);
 }
 
 /// Слишком длинная функция, даже читать не буду :)
@@ -14,7 +15,7 @@ void print_n_symbols(int n, char symbol)
 /// Но если вы уверены, что ее нельзя разбить на поменьше,
 /// то ладно...
 // :)
-void quotient_out(int first_number, int second_number)
+void quotient_out(FILE *stream, int first_number, int second_number)
 {
     int dividend, residue, result, i, product;
     result = first_number / second_number;
@@ -26,48 +27,48 @@ void quotient_out(int first_number, int second_number)
     {
         if (i == 1)
         {
-            printf("%i", dividend);
+            fprintf(stream, "%i", dividend);
             if (residue != 0)
-                printf("%i", residue);
-            printf("|%i\n", second_number);
+                fprintf(stream, "%i", residue);
+            fprintf(stream, "|%i\n", second_number);
         }
 
         product = second_number * n_th_dig_of_num(i, result);
-        print_n_symbols(numlen(indent) - numlen(product), ' ');
-        printf("%i", product);
+        print_n_symbols(stream, numlen(indent) - numlen(product), ' ');
+        fprintf(stream, "%i", product);
 
         if (i != 1)
-            printf("\n");
+            fprintf(stream, "\n");
 
         if (i == 1)
         {
-            print_n_symbols(numlen(first_number) - numlen(dividend) + 1, ' ');
+            print_n_symbols(stream, numlen(first_number) - numlen(dividend) + 1, ' ');
 
-            printf("%i\n", result);
+            fprintf(stream, "%i\n", result);
         }
 
         int num_of_additional_spaces;
 
         if (i != 1)
-            print_n_symbols(num_of_additional_spaces, ' ');
+            print_n_symbols(stream, num_of_additional_spaces, ' ');
 
         if (crutch == 0)
-            print_n_symbols(numlen(dividend) + 1, '-');
+            print_n_symbols(stream, numlen(dividend) + 1, '-');
         else
-            print_n_symbols(numlen(dividend), '-');
+            print_n_symbols(stream, numlen(dividend), '-');
 
-        printf("\n");
+        fprintf(stream, "\n");
 
-        print_n_symbols(numlen(indent) - numlen(dividend - product), ' ');
+        print_n_symbols(stream, numlen(indent) - numlen(dividend - product), ' ');
 
         num_of_additional_spaces = numlen(indent) - numlen(dividend - product);
 
-        printf("%i", dividend - product);
+        fprintf(stream, "%i", dividend - product);
         if (i == numlen(result))
-            printf("\n");
+            fprintf(stream, "\n");
 
         if (i != numlen(result))
-            printf("%i\n", n_th_dig_of_num(i, residue));
+            fprintf(stream, "%i\n", n_th_dig_of_num(i, residue));
 
         crutch = dividend - product;
         dividend = (dividend - product) * 10 + n_th_dig_of_num(i, residue);

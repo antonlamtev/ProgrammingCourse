@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "queens_operands_declaration.h"
 
-void queens_out(int a)
+void queens_out(int result)
 {
-    switch (a)
+    switch (result)
     {
         case no_one:
             puts("Никто никого не бьет");
