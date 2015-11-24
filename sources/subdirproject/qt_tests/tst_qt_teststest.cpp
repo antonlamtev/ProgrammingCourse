@@ -8,8 +8,9 @@
 #include "queens_check_for_beating.h"
 #include "quotient_process.h"
 #include "lines_symmetrization_algorithms.h"
+#include "matrix_algorithms.h"
 
-//int compare_files(char *file_name_1, char *file_name_2);
+int compare_files(char *file_name_1, char *file_name_2);
 
 //если полностью не объявить функции в этом файле, то выскакивают undefined reference.
 //и это несмотря на то, что подключены библиотеки
@@ -17,12 +18,16 @@
 //struct purse change_by_coins(int amount);
 //int queens_result(struct coordinate x, struct coordinate y);
 //int check_for_beating(int x1, int y1, int x2, int y2);
-//int determine_file_proportions(char *input_file_name, int *number_of_lines, int *max_length_of_line);
+int determine_file_proportions(char *input_file_name, int *number_of_lines, int *max_length_of_line);
 //void quotient_out(FILE *stream, int first_number, int second_number);
 //void print_n_symbols(FILE *stream, int n, char symbol);
 //int n_th_dig_of_num(int n, int num);
 //int power(int a, int b);
 //int numlen(int num);
+int level_of_null(int **P, int n, int number_of_column);
+void swap(int *a, int *b);
+void buble_sort_of_lines(int **P, int n);
+void symmetrize_line(char *final_line, char *initial_line, int max_length_of_line);
 
 class Qt_testsTest : public QObject
 {
@@ -35,8 +40,8 @@ private Q_SLOTS:
 //    void exchange_test();
 //    void queens_test();
 //    void quotient_test();
-//    void matrix_test();
-//    void lines_simmetrization_test();
+    void matrix_test();
+    void lines_simmetrization_test();
 };
 
 Qt_testsTest::Qt_testsTest()
@@ -82,52 +87,114 @@ Qt_testsTest::Qt_testsTest()
 
 //void Qt_testsTest::quotient_test()
 //{
-//    FILE *actual = fopen("actual", "w");
+//    FILE *actual = fopen("quotient_actual", "w");
 //    quotient_out(actual, 1234567, 89);
 //    fclose(actual);
-//    QCOMPARE(compare_files("actual", "expected"), 1);
+//    QCOMPARE(compare_files("quotient_actual", "quotient_expected"), 1);
 //}
 
-//int compare_files(char *file_name_1, char *file_name_2)
-//{
-//    int flag = 1;
-//    int number_of_lines_1, number_of_lines_2;
-//    int max_length_of_line_1, max_length_of_line_2;
-//    determine_file_proportions(file_name_1, &number_of_lines_1, &max_length_of_line_1);
-//    determine_file_proportions(file_name_2, &number_of_lines_2, &max_length_of_line_2);
-//    FILE *actual, *expected;
-//    actual = fopen(file_name_1, "r");
-//    expected = fopen(file_name_2, "r");
+void Qt_testsTest::matrix_test()
+{
+    FILE *in, *out;
+    in = fopen("matrix.in", "r");
+    out = fopen("matrix_actual", "w");
+    int **P;
+    int n, i, j;
+    fscanf(in, "%i", &n);
 
-//    char *str1, *str2;
-//    str1 = (char *) calloc(max_length_of_line_1, sizeof(char));
-//    str2 = (char *) calloc(max_length_of_line_2, sizeof(char));
-//    if (number_of_lines_1 == number_of_lines_2)
-//    {
-//        int i;
-//        for (i = 0; i <= number_of_lines_1; ++i)
-//        {
-//            fgets(str1, max_length_of_line_1, actual);
-//            fgets(str2, max_length_of_line_2, expected);
-//            //puts(str1);
-//            //puts(str2);
-//            if (strcmp(str1, str2))
-//            {
-//                flag = 0;
-//                break;
-//            }
-//        }
-//        free(str1);
-//        free(str2);
-//    }
-//    else
-//    {
-//        flag = 0;
-//    }
-//    fclose(actual);
-//    fclose(expected);
-//    return flag;
-//}
+    P = (int **) malloc(n * sizeof(int*));
+    for (i = 0; i < n; ++i)
+        P[i] = (int *) malloc(n * sizeof(int));
+
+    for (i = 0; i < n; ++i)
+        for (j = 0; j < n; ++j)
+            fscanf(in, "%i\n", &P[i][j]);
+
+    buble_sort_of_lines(P, n);
+
+    for (i = 0; i < n; ++i)
+    {
+        for (j = 0; j < n; ++j)
+            fprintf(out, "%i ", P[i][j]);
+        fprintf(out, "\n");
+    }
+
+    for (i = 0; i < n; ++i)
+        free(P[i]);
+    free(P);
+    fclose(in);
+    fclose(out);
+    int flag = compare_files("matrix_actual", "matrix_expected");
+    QCOMPARE(flag, 1);
+}
+
+void Qt_testsTest::lines_simmetrization_test()
+{
+    FILE *in, *out;
+    int number_of_lines, max_length_of_line;
+    determine_file_proportions("lines.in", &number_of_lines, &max_length_of_line);
+
+    char *initial_line = (char *) calloc (max_length_of_line, sizeof(char));
+    char *final_line = (char *) calloc (max_length_of_line, sizeof(char));
+    in = fopen("lines.in", "r");
+    out = fopen("lines_actual", "w");
+
+    int i;
+    for (i = 0; i < number_of_lines; ++i)
+    {
+        fgets(initial_line, max_length_of_line, in);
+        symmetrize_line(final_line, initial_line, max_length_of_line);
+        fputs(final_line, out);
+    }
+
+    free(initial_line);
+    free(final_line);
+    fclose(in);
+    fclose(out);
+    int flag = compare_files("lines_actual", "lines_expected");
+    QCOMPARE(flag, 1);
+}
+
+int compare_files(char *file_name_1, char *file_name_2)
+{
+    int flag = 1;
+    int number_of_lines_1, number_of_lines_2;
+    int max_length_of_line_1, max_length_of_line_2;
+    determine_file_proportions(file_name_1, &number_of_lines_1, &max_length_of_line_1);
+    determine_file_proportions(file_name_2, &number_of_lines_2, &max_length_of_line_2);
+    FILE *actual, *expected;
+    actual = fopen(file_name_1, "r");
+    expected = fopen(file_name_2, "r");
+
+    char *str1, *str2;
+    str1 = (char *) calloc(max_length_of_line_1, sizeof(char));
+    str2 = (char *) calloc(max_length_of_line_2, sizeof(char));
+    if (number_of_lines_1 == number_of_lines_2)
+    {
+        int i;
+        for (i = 0; i <= number_of_lines_1; ++i)
+        {
+            fgets(str1, max_length_of_line_1, actual);
+            fgets(str2, max_length_of_line_2, expected);
+            //puts(str1);
+            //puts(str2);
+            if (strcmp(str1, str2))
+            {
+                flag = 0;
+                break;
+            }
+        }
+        free(str1);
+        free(str2);
+    }
+    else
+    {
+        flag = 0;
+    }
+    fclose(actual);
+    fclose(expected);
+    return flag;
+}
 
 //struct purse change_by_coins(int amount)
 //{
@@ -193,27 +260,27 @@ Qt_testsTest::Qt_testsTest()
 //    return result;
 //}
 
-//int determine_file_proportions(char *input_file_name, int *number_of_lines, int *max_length_of_line)
-//{
-//    const int maximum_length_of_line = 256;
-//    FILE *in;
-//    in = fopen(input_file_name, "r");
-//    char *str;
-//    str = (char *) calloc(maximum_length_of_line, sizeof(char));
-//    int count = 0;
-//    *max_length_of_line = 0;
-//    while (!feof(in))
-//    {
-//        fgets(str, maximum_length_of_line, in);
-//        if (strlen(str) > *max_length_of_line) //тут компилятор выдает странное предупреждение. по мне, так
-//            *max_length_of_line = strlen(str); //вполне нормально сравнивать число со знаком и без
-//        ++count;
-//    }
-//    *number_of_lines = count;
-//    free(str);
-//    fclose(in);
-//    return 1;//пока так. потом сделаю нормально
-//}
+int determine_file_proportions(char *input_file_name, int *number_of_lines, int *max_length_of_line)
+{
+    const int maximum_length_of_line = 256;
+    FILE *in;
+    in = fopen(input_file_name, "r");
+    char *str;
+    str = (char *) calloc(maximum_length_of_line, sizeof(char));
+    int count = 0;
+    *max_length_of_line = 0;
+    while (!feof(in))
+    {
+        fgets(str, maximum_length_of_line, in);
+        if (strlen(str) > *max_length_of_line) //тут компилятор выдает странное предупреждение. по мне, так
+            *max_length_of_line = strlen(str); //вполне нормально сравнивать число со знаком и без
+        ++count;
+    }
+    *number_of_lines = count;
+    free(str);
+    fclose(in);
+    return 1;//пока так. потом сделаю нормально
+}
 
 //void print_n_symbols(FILE *stream, int n, char symbol)
 //{
@@ -319,6 +386,48 @@ Qt_testsTest::Qt_testsTest()
 //    return (num / power(10, numlen(num) - n)) % 10;
 //}
 
+int level_of_null(int **P, int n, int number_of_column)
+{
+    int result = 0;
+    int j, i = number_of_column;
+    for (j = 0; j < n; ++j)
+        if (P[i][j] == 0)
+        {
+            result = j;
+            break;
+        }
+    return result;
+}
+
+void swap(int *a, int *b)
+{
+    int t;
+    t = *a;
+    *a = *b;
+    *b = t;
+}
+
+void buble_sort_of_lines(int **P, int n)
+{
+    int i, j, k;
+    //в этом вложенном цикле происходит обмен строк местами
+    for (k = n-1; k >= 0; --k)
+        for (i = 0; i < k; ++i)
+            if (level_of_null(P, n, i) > level_of_null(P, n, i+1))
+                    for (j = 0; j < n; ++j)
+                    {
+                        swap(&P[i][j], &P[i+1][j]); //соответственные элементы соседних строк меняются местами )
+                    }
+}
+
+void symmetrize_line(char *final_line, char *initial_line, int max_length_of_line)
+{
+        int left_indent = (max_length_of_line - strlen(initial_line)) / 2;
+
+        memset(final_line, ' ', left_indent);
+        final_line[left_indent] = '\0';
+        strcat(final_line, initial_line);
+}
 
 QTEST_APPLESS_MAIN(Qt_testsTest)
 
