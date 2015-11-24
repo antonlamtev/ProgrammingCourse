@@ -18,6 +18,8 @@ void main_menu(void);
 void further_menu(void);
 
 void queens(void);
+void input_with_check(int *x, int *y, int number);
+void display_result(int result);
 
 void quotient(void);
 

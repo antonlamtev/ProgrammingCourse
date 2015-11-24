@@ -1,7 +1,17 @@
 #include <stdio.h>
-#include "queens_operands_declaration.h"
+#include "queens.h"
 
-void queens_out(int result)
+void input_with_check(int *x, int *y, int number)
+{
+    do
+    {
+        printf("Введите координаты %i-го ферзя\n", number);
+        scanf("%i%i", x, y);
+    }
+    while (*x < 1 || *x > 8 || *y < 1 || *y > 8);
+}
+
+void display_result(int result)
 {
     switch (result)
     {
@@ -28,6 +38,6 @@ void queens_out(int result)
             break;
         case TwoThree:
             puts("2 и 3 ферзи бьют друг друга");
-            break;       
+            break;
     }
 }

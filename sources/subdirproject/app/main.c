@@ -2,14 +2,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "main.h"
-#include "exchange_change.h"
-#include "exchange_structures_declaration.h"
-#include "queens_out.h"
-#include "queens_result.h"
-#include "queens_operands_declaration.h"
-#include "quotient_process.h"
-#include "matrix_algorithms.h"
-#include "lines_symmetrization_algorithms.h"
+#include "exchange.h"
+#include "queens.h"
+#include "quotient.h"
+#include "matrix.h"
+#include "lines_symmetrization.h"
 
 #define put_error puts("Неправильный ввод параметров!!!");
 
@@ -75,7 +72,7 @@ int main(int argc, char *argv[])
                 x.third = atoi(argv[6]);
                 y.third = atoi(argv[7]);
 
-                queens_out(queens_result(x, y));
+                display_result(queens_result(x, y));
             }
             else
             {

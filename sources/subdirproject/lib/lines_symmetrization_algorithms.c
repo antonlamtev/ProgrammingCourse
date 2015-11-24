@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "lines_symmetrization_algorithms.h"
+#include "lines_symmetrization.h"
 
 int determine_file_proportions(char *input_file_name, int *number_of_lines, int *max_length_of_line)
 {

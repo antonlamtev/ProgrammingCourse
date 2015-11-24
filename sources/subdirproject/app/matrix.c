@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "matrix_algorithms.h"
-
+#include "matrix.h"
 
 void matrix(char *input_file_name, char *output_file_name)
 {
@@ -20,7 +19,7 @@ void matrix(char *input_file_name, char *output_file_name)
         for (j = 0; j < n; ++j)
             fscanf(in, "%i\n", &P[i][j]);
 
-    buble_sort_of_lines(P, n);
+    sort_nulls_to_the_main_diagonal(P, n);
 
     for (i = 0; i < n; ++i)
     {

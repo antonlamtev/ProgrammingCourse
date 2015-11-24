@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "lines_symmetrization_algorithms.h"
+#include "lines_symmetrization.h"
 
 void lines_symmetrization(char *input_file_name, char *output_file_name)
 {

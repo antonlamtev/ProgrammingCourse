@@ -11,7 +11,8 @@ SOURCES += \
     quotient.c \
     help.c \
     lines_symmetrization.c \
-    menu.c
+    menu.c \
+    queens_input_output.c
 
 HEADERS += \
     ../main.h \

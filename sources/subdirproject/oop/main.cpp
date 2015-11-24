@@ -15,6 +15,8 @@ int main()
     table.index_by_key("00000000");
     table.index_by_key("00000001");
     table.index_by_key("0000FFFF");
+    table.index_by_key("00ABCDEF");
+    table.index_by_key("000007E0");
 
     return 0;
 }

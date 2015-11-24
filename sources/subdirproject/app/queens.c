@@ -1,9 +1,6 @@
 #include <stdio.h>
-#include "queens_out.h"
-#include "queens_result.h"
-#include "queens_check_for_beating.h"
-#include "queens_in.h"
-#include "queens_operands_declaration.h"
+#include "main.h"
+#include "queens.h"
 
 void queens(void)
 {
@@ -14,5 +11,5 @@ void queens(void)
     input_with_check(&x.second, &y.second, 2);
     input_with_check(&x.third, &y.third, 3);
 
-    queens_out(queens_result(x, y));
+    display_result(queens_result(x, y));
 }

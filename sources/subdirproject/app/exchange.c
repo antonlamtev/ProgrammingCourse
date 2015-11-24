@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include "exchange_structures_declaration.h"
-#include "exchange_change.h"
+#include "exchange.h"
 
 void exchange(void)
 {

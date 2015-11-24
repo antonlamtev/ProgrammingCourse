@@ -11,7 +11,7 @@ Hash_table::Hash_table()
 
 Hash_table::~Hash_table()
 {
-    cout << "Hash table has beem destroyed" << endl;
+    cout << "Hash table has been destroyed" << endl;
 }
 
 void Hash_table::add(string element, string key_for_new_element)

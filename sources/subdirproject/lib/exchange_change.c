@@ -1,4 +1,4 @@
-#include "exchange_structures_declaration.h"
+#include "exchange.h"
 
 struct purse change_by_coins(int amount)
 {

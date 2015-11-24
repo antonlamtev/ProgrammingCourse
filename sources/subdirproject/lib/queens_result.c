@@ -1,5 +1,4 @@
-#include "queens_check_for_beating.h"
-#include "queens_operands_declaration.h"
+#include "queens.h"
 
 int queens_result(struct coordinate x, struct coordinate y)
 {

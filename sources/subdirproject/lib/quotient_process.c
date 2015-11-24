@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "quotient_math.h"
+#include "quotient.h"
 
 void print_n_symbols(FILE *stream, int n, char symbol)
 {
@@ -9,12 +9,6 @@ void print_n_symbols(FILE *stream, int n, char symbol)
         fprintf(stream, "%c", symbol);
 }
 
-/// Слишком длинная функция, даже читать не буду :)
-/// Про такие говорят, "работает и ладно", или хуже
-///
-/// Но если вы уверены, что ее нельзя разбить на поменьше,
-/// то ладно...
-// :)
 void quotient_out(FILE *stream, int first_number, int second_number)
 {
     int dividend, residue, result, i, product;
@@ -75,4 +69,39 @@ void quotient_out(FILE *stream, int first_number, int second_number)
         indent = indent * 10 + n_th_dig_of_num(i, residue);
 
     }
+}
+
+int numlen(int num)
+{
+    int count;
+
+    if (num)
+    {
+        count = 0;
+        while (num)
+        {
+            ++count;
+            num /= 10;
+        }
+    }
+    else
+    {
+        count = 1;
+    }
+    return count;
+}
+
+int power(int a, int b)
+{
+    int i, result = 1;
+    for (i = 0; i < b; ++i)
+    {
+        result *= a;
+    }
+    return result;
+}
+
+int n_th_dig_of_num(int n, int num)
+{
+    return (num / power(10, numlen(num) - n)) % 10;
 }
