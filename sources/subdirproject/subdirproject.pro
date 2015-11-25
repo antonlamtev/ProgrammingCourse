@@ -1,10 +1,10 @@
 TEMPLATE = subdirs
 
-app.depends = lib
-qt_test.depends = lib
+app_c.depends = lib_c
+qt_test_c.depends = lib_c
 
 SUBDIRS += \
-    app \
-    lib \
-    qt_tests \
+    app_c \
+    lib_c \
+    qt_tests_c \
     oop
