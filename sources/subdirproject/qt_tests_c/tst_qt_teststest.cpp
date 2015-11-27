@@ -22,7 +22,7 @@ private Q_SLOTS:
     void exchange_test();
     void queens_test();
     void quotient_test();
-//    void matrix_test();
+    void matrix_test();
     void lines_simmetrization_test();
 };
 
@@ -82,21 +82,50 @@ void Qt_testsTest::quotient_test()
     free(actual);
 }
 
-//void Qt_testsTest::matrix_test()
-//{
-//    int n, i, j;
+int compare_matrixes(int* m1, int m2[], int size)
+{
+    int flag = 1;
+    int i;
+    for (i = 0; i < size; ++i)
+        if (m1[i] != m2[i])
+        {
+            flag = 0;
+            break;
+        }
+    return flag;
+}
 
-//    int** actual = (int **) malloc(5 * sizeof(int*));
-//    sort_nulls_to_the_main_diagonal(actual, 5);
+void Qt_testsTest::matrix_test()
+{
+    int i, j;
 
-//    for (i = 0; i < n; ++i)
-//        free(P[i]);
-//    free(P);
-//    fclose(in);
-//    fclose(out);
-//    int flag = compare_files("matrix_actual", "matrix_expected");
-//    QCOMPARE(flag, 1);
-//}
+    int** actual = (int**) malloc(5 * sizeof(int*));
+    for (i = 0; i < 5; ++i)
+        actual[i] = (int*) malloc(5*sizeof(int));
+    for (i = 0; i < 5; ++i)
+    {
+        for (j = 0; j < 5; ++j)
+        {
+            actual[i][j] = i * j + 1;
+        }
+    }
+    actual[0][3] = 0; actual[1][1] = 0; actual[2][4] = 0; actual[3][0] = 0; actual[4][2] = 0;
+
+    int* actual_1d = (int*) malloc(25 * sizeof(int));
+    sort_nulls_to_the_main_diagonal(actual, 5);
+    int ind = -1;
+    for (i = 0; i < 5; ++i)
+        for (j = 0; j < 5; ++j)
+            actual_1d[++ind] = actual[i][j];
+
+    for (i = 0; i < 5; ++i)
+        free(actual[i]);
+    free(actual);
+
+    int expected[] = {0, 4, 7, 10, 13, 1, 0, 3, 4, 5, 1, 5, 0, 13, 17, 1, 1, 1, 0, 1 , 1, 3, 5, 7, 0};
+    QCOMPARE(compare_matrixes(actual_1d, expected, 25), 1);
+    free(actual_1d);
+}
 
 void Qt_testsTest::lines_simmetrization_test()
 {

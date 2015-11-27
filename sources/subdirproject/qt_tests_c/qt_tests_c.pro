@@ -8,6 +8,8 @@ QT       += testlib
 
 QT       -= gui
 
+CONFIG +=c++11
+
 TARGET = tst_qt_tests_ctest
 CONFIG   += console
 CONFIG   -= app_bundle
