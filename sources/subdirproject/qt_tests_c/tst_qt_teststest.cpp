@@ -9,8 +9,6 @@
 #include "matrix.h"
 #include "lines_symmetrization.h"
 
-int compare_files(char *file_name_1, char *file_name_2);
-
 class Qt_testsTest : public QObject
 {
     Q_OBJECT
@@ -82,7 +80,7 @@ void Qt_testsTest::quotient_test()
     free(actual);
 }
 
-int compare_matrixes(int* m1, int m2[], int size)
+int compare_arrays(int* m1, int m2[], int size)
 {
     int flag = 1;
     int i;
@@ -123,77 +121,27 @@ void Qt_testsTest::matrix_test()
     free(actual);
 
     int expected[] = {0, 4, 7, 10, 13, 1, 0, 3, 4, 5, 1, 5, 0, 13, 17, 1, 1, 1, 0, 1 , 1, 3, 5, 7, 0};
-    QCOMPARE(compare_matrixes(actual_1d, expected, 25), 1);
+    QCOMPARE(compare_arrays(actual_1d, expected, 25), 1);
     free(actual_1d);
 }
 
 void Qt_testsTest::lines_simmetrization_test()
 {
-    FILE *in, *out;
-    int number_of_lines, max_length_of_line;
-    determine_file_proportions("lines.in", &number_of_lines, &max_length_of_line);
-
-    char *initial_line = (char *) calloc (max_length_of_line, sizeof(char));
-    char *final_line = (char *) calloc (max_length_of_line, sizeof(char));
-    in = fopen("lines.in", "r");
-    out = fopen("lines_actual", "w");
-
+    char str[] = "sdfjl sfvslk ! asdf";
+    char* initial_line = (char*) calloc (20, sizeof(char));
     int i;
-    for (i = 0; i < number_of_lines; ++i)
-    {
-        fgets(initial_line, max_length_of_line, in);
-        symmetrize_line(final_line, initial_line, max_length_of_line);
-        fputs(final_line, out);
-    }
+    for (i = 0; i < (int) strlen(str); ++i)
+        initial_line[i] = str[i];
+    char* actual = (char*) calloc (30, sizeof(char));
+    symmetrize_line(actual, initial_line, 30);
 
+    char expected[] = "     sdfjl sfvslk ! asdf";
+
+    QCOMPARE(strcmp(actual, expected), 0);
+    free(actual);
     free(initial_line);
-    free(final_line);
-    fclose(in);
-    fclose(out);
-    int flag = compare_files("lines_actual", "lines_expected");
-    QCOMPARE(flag, 1);
 }
 
-int compare_files(char *file_name_1, char *file_name_2)
-{
-    int flag = 1;
-    int number_of_lines_1, number_of_lines_2;
-    int max_length_of_line_1, max_length_of_line_2;
-    determine_file_proportions(file_name_1, &number_of_lines_1, &max_length_of_line_1);
-    determine_file_proportions(file_name_2, &number_of_lines_2, &max_length_of_line_2);
-    FILE *actual, *expected;
-    actual = fopen(file_name_1, "r");
-    expected = fopen(file_name_2, "r");
-
-    char *str1, *str2;
-    str1 = (char *) calloc(max_length_of_line_1, sizeof(char));
-    str2 = (char *) calloc(max_length_of_line_2, sizeof(char));
-    if (number_of_lines_1 == number_of_lines_2)
-    {
-        int i;
-        for (i = 0; i <= number_of_lines_1; ++i)
-        {
-            fgets(str1, max_length_of_line_1, actual);
-            fgets(str2, max_length_of_line_2, expected);
-            //puts(str1);
-            //puts(str2);
-            if (strcmp(str1, str2))
-            {
-                flag = 0;
-                break;
-            }
-        }
-        free(str1);
-        free(str2);
-    }
-    else
-    {
-        flag = 0;
-    }
-    fclose(actual);
-    fclose(expected);
-    return flag;
-}
 
 QTEST_APPLESS_MAIN(Qt_testsTest)
 
