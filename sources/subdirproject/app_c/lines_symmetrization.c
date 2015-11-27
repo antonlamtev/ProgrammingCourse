@@ -3,14 +3,15 @@
 #include <string.h>
 #include "lines_symmetrization.h"
 
-void lines_symmetrization(char *input_file_name, char *output_file_name)
+void lines_symmetrization(char* input_file_name, char* output_file_name)
 {
-    FILE *in, *out;
+    FILE* in;
+    FILE* out;
     int number_of_lines, max_length_of_line;
     determine_file_proportions(input_file_name, &number_of_lines, &max_length_of_line);
 
-    char *initial_line = (char *) calloc (max_length_of_line, sizeof(char));
-    char *final_line = (char *) calloc (max_length_of_line, sizeof(char));
+    char* initial_line = (char*) calloc (max_length_of_line, sizeof(char));
+    char* final_line = (char*) calloc (max_length_of_line, sizeof(char));
     in = fopen(input_file_name, "r");
     out = fopen(output_file_name, "w");
 

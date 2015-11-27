@@ -10,8 +10,34 @@
 
 #define put_error puts("Неправильный ввод параметров!!!");
 
+void help_parameters(int argc, char** argv)
+{
+    switch (argc)
+    {
+        case 2:
+            help();
+            break;
+        case 3:
+            if (!strcmp(argv[2], "--exchange"))
+                help_exchange();
+            else if (!strcmp(argv[2], "--queens"))
+                help_queens();
+            else if (!strcmp(argv[2], "--matrix"))
+                help_matrix();
+            else if (!strcmp(argv[2], "--quotient"))
+                help_quotient();
+            else if (!strcmp(argv[2], "--lines_symmetrization"))
+                help_lines_symmetrization();
+            break;
+        default:
+            put_error;
+            help();
+            break;
+    }
+}
+
 /// Хорошо, если работает, но функция длинновата, нужно подумать, как разбить на функции поменьше
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     if (argc > 1)
     {
@@ -19,26 +45,7 @@ int main(int argc, char *argv[])
             main_menu();
         else if (!strcmp(argv[1], "--help"))
         {
-            if (argc == 2)
-                help();
-            else if (argc == 3)
-            {
-                if (!strcmp(argv[2], "--exchange"))
-                    help_exchange();
-                else if (!strcmp(argv[2], "--queens"))
-                    help_queens();
-                else if (!strcmp(argv[2], "--matrix"))
-                    help_matrix();
-                else if (!strcmp(argv[2], "--quotient"))
-                    help_quotient();
-                else if (!strcmp(argv[2], "--lines_symmetrization"))
-                    help_lines_symmetrization();
-            }
-            else if (argc > 3)
-            {
-                put_error;
-                help();
-            }
+            help_parameters(argc, argv);
         }
         else if (!strcmp(argv[1], "--exchange"))
         {
@@ -145,7 +152,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        further_menu();
+        menu_no_parameters();
     }
     return 0;
 }

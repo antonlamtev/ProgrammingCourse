@@ -3,7 +3,7 @@
 #include <string.h>
 #include "lines_symmetrization.h"
 
-void determine_file_proportions(char *input_file_name, int *number_of_lines, int *max_length_of_line)
+void determine_file_proportions(char* input_file_name, int* number_of_lines, int* max_length_of_line)
 {
     const int maximum_length_of_line = 256;
     FILE *in;
@@ -15,8 +15,8 @@ void determine_file_proportions(char *input_file_name, int *number_of_lines, int
     while (!feof(in))
     {
         fgets(str, maximum_length_of_line, in);
-        if ((int) strlen(str) > *max_length_of_line) //тут компилятор выдает странное предупреждение. по мне, так
-            *max_length_of_line = strlen(str); //вполне нормально сравнивать число со знаком и без
+        if ((int) strlen(str) > *max_length_of_line)
+            *max_length_of_line = strlen(str);
         ++count;
     }
     *number_of_lines = count;
@@ -24,7 +24,7 @@ void determine_file_proportions(char *input_file_name, int *number_of_lines, int
     fclose(in);
 }
 
-void symmetrize_line(char *final_line, char *initial_line, int max_length_of_line)
+void symmetrize_line(char* final_line, char* initial_line, int max_length_of_line)
 {
         int left_indent = (max_length_of_line - strlen(initial_line)) / 2;
 

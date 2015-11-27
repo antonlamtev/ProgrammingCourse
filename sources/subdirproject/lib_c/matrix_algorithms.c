@@ -1,4 +1,4 @@
-int level_of_null(int **P, int n, int number_of_column)
+int level_of_null(int** P, int n, int number_of_column)
 {
     int result = 0;
     int j, i = number_of_column;
@@ -11,7 +11,7 @@ int level_of_null(int **P, int n, int number_of_column)
     return result;
 }
 
-void swap(int *a, int *b)
+void swap(int* a, int* b)
 {
     int t;
     t = *a;
@@ -19,7 +19,7 @@ void swap(int *a, int *b)
     *b = t;
 }
 
-void sort_nulls_to_the_main_diagonal(int **P, int n)
+void sort_nulls_to_the_main_diagonal(int** P, int n)
 {
     int i, j, k;
     for (k = n-1; k >= 0; --k)

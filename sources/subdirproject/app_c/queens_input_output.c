@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "queens.h"
 
-void input_with_check(int *x, int *y, int number)
+void input_with_check(int* x, int* y, int number)
 {
     do
     {

@@ -12,9 +12,9 @@ void main_menu(void)
                "5)Симметрирование строк\n6)Завершить работу\n");
         scanf("%c", &key);
     }
-    while(key < '1' || key > '6' );
+    while (key < '1' || key > '6');
 
-    switch(key)
+    switch (key)
     {
         case '1':
             exchange();
@@ -37,7 +37,7 @@ void main_menu(void)
     }
 }
 
-void further_menu(void)
+void menu_no_parameters(void)
 {
     char key;
     do
