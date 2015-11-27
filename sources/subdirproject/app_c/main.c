@@ -86,8 +86,18 @@ int main(int argc, char *argv[])
                 quotient();
             else if (argc == 4)
             {
-                int M = atoi(argv[2]), N = atoi(argv[3]);
-                quotient_out(stdout, M, N);
+                int m = atoi(argv[2]), n = atoi(argv[3]);
+                int count = 0;
+                int index = -1;
+                char* buffer = (char*) calloc(1000, sizeof(char));
+
+                put_result_to_array(buffer, m, n, index, &count);
+                int i;
+                for (i = 0; i <= count; ++i)
+                    printf("%c", buffer[i]);
+
+                puts("");
+                free(buffer);
             }
             else
             {

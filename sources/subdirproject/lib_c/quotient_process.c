@@ -2,14 +2,21 @@
 #include <stdlib.h>
 #include "quotient.h"
 
-void print_n_symbols(FILE *stream, int n, char symbol)
+void put_n_symbols_to_array_with_counter(char* array, int n, char symbol, int *index)
 {
     int i;
     for (i = 0; i < n; ++i)
-        fprintf(stream, "%c", symbol);
+        array[++*index] = symbol;
 }
 
-void quotient_out(FILE *stream, int first_number, int second_number)
+void put_number_char_by_char_to_array_with_counter(char* array, int number, int *index)
+{
+    int i;
+    for (i = 1; i <= numlen(number); ++ i)
+        array[++*index] = n_th_dig_of_num(i, number) + 48;
+}
+
+void put_result_to_array(char* array, int first_number, int second_number, int index, int* count)
 {
     int dividend, residue, result, i, product;
     result = first_number / second_number;
@@ -17,58 +24,66 @@ void quotient_out(FILE *stream, int first_number, int second_number)
     residue = first_number % power(10, numlen(result) - 1);
     int indent = dividend;
     int  crutch = 1; //нужен для правильного числа черточек в случаях, когда разность равна 0 :)
+    index = -1;
     for (i = 1; i <= numlen(result); ++i)
     {
         if (i == 1)
         {
-            fprintf(stream, "%i", dividend);
+            put_number_char_by_char_to_array_with_counter(array, dividend, &index);
             if (residue != 0)
-                fprintf(stream, "%i", residue);
-            fprintf(stream, "|%i\n", second_number);
+                put_number_char_by_char_to_array_with_counter(array, residue, &index);
+            put_n_symbols_to_array_with_counter(array, 1, '|', &index);
+            put_number_char_by_char_to_array_with_counter(array, second_number, &index);
+            put_n_symbols_to_array_with_counter(array, 1, '\n', &index);
         }
 
         product = second_number * n_th_dig_of_num(i, result);
-        print_n_symbols(stream, numlen(indent) - numlen(product), ' ');
-        fprintf(stream, "%i", product);
+        put_n_symbols_to_array_with_counter(array, numlen(indent) - numlen(product), ' ', &index);
+        put_number_char_by_char_to_array_with_counter(array, product, &index);
 
         if (i != 1)
-            fprintf(stream, "\n");
+            put_n_symbols_to_array_with_counter(array, 1, '\n', &index);
 
         if (i == 1)
         {
-            print_n_symbols(stream, numlen(first_number) - numlen(dividend) + 1, ' ');
+            put_n_symbols_to_array_with_counter(array, numlen(first_number) - numlen(dividend) + 1, ' ', &index);
 
-            fprintf(stream, "%i\n", result);
+            put_number_char_by_char_to_array_with_counter(array, result, &index);
+            put_n_symbols_to_array_with_counter(array, 1, '\n', &index);
         }
 
         int num_of_additional_spaces;
 
         if (i != 1)
-            print_n_symbols(stream, num_of_additional_spaces, ' ');
+            put_n_symbols_to_array_with_counter(array, num_of_additional_spaces, ' ', &index);
 
         if (crutch == 0)
-            print_n_symbols(stream, numlen(dividend) + 1, '-');
+            put_n_symbols_to_array_with_counter(array, numlen(dividend) + 1, '-', &index);
         else
-            print_n_symbols(stream, numlen(dividend), '-');
+            put_n_symbols_to_array_with_counter(array, numlen(dividend), '-', &index);
 
-        fprintf(stream, "\n");
-
-        print_n_symbols(stream, numlen(indent) - numlen(dividend - product), ' ');
+        put_n_symbols_to_array_with_counter(array, 1, '\n', &index);
 
         num_of_additional_spaces = numlen(indent) - numlen(dividend - product);
 
-        fprintf(stream, "%i", dividend - product);
+        put_n_symbols_to_array_with_counter(array, num_of_additional_spaces, ' ', &index);
+
+        put_number_char_by_char_to_array_with_counter(array, dividend - product, &index);
         if (i == numlen(result))
-            fprintf(stream, "\n");
+            put_n_symbols_to_array_with_counter(array, 1, '\n', &index);
 
         if (i != numlen(result))
-            fprintf(stream, "%i\n", n_th_dig_of_num(i, residue));
+        {
+            put_number_char_by_char_to_array_with_counter(array, n_th_dig_of_num(i, residue), &index);
+            put_n_symbols_to_array_with_counter(array, 1, '\n', &index);
+        }
 
         crutch = dividend - product;
         dividend = (dividend - product) * 10 + n_th_dig_of_num(i, residue);
         indent = indent * 10 + n_th_dig_of_num(i, residue);
 
     }
+    *count = index;
 }
 
 int numlen(int num)

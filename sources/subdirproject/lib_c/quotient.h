@@ -5,8 +5,9 @@
 extern "C" {
 #endif
 
-void print_n_symbols(FILE *stream, int n, char symbol);
-void quotient_out(FILE *stream, int first_number, int second_number);
+void put_number_char_by_char_to_array_with_counter(char* array, int number, int *index);
+void put_n_symbols_to_array_with_counter(char* array, int n, char symbol, int *index);
+void put_result_to_array(char* array, int first_number, int second_number, int index, int* count);
 int numlen(int num);
 int n_th_dig_of_num(int n, int num);
 int power(int a, int b);
