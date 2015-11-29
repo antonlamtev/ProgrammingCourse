@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "lines_symmetrization.h"
+#include "main.h"
 
 void lines_symmetrization(char* input_file_name, char* output_file_name)
 {
@@ -30,3 +30,19 @@ void lines_symmetrization(char* input_file_name, char* output_file_name)
     puts("Программа успешно выполнена!");
 }
 
+void lines_symmetrization_parameters(int argc, char** argv)
+{
+    switch (argc)
+    {
+        case 2:
+            lines_symmetrization("lines.in", "lines.out");
+            break;
+        case 4:
+            lines_symmetrization(argv[2], argv[3]);
+            break;
+        default:
+            put_error;
+            help_lines_symmetrization();
+            break;
+    }
+}

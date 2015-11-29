@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include "main.h"
 
 #define put_equally puts("================================================================================");
 #define put_exch puts("Параметр --exchange:\n--exchange                        запуск программы Размен в автоматическом режиме\n --exchange number                запуск программы Размен с аргументом number (number - натуральное число)");
@@ -57,4 +59,30 @@ void help(void)
     put_matr;
     put_str;
     put_equally;
+}
+
+void help_parameters(int argc, char** argv)
+{
+    switch (argc)
+    {
+        case 2:
+            help();
+            break;
+        case 3:
+            if (!strcmp(argv[2], "--exchange"))
+                help_exchange();
+            else if (!strcmp(argv[2], "--queens"))
+                help_queens();
+            else if (!strcmp(argv[2], "--matrix"))
+                help_matrix();
+            else if (!strcmp(argv[2], "--quotient"))
+                help_quotient();
+            else if (!strcmp(argv[2], "--lines_symmetrization"))
+                help_lines_symmetrization();
+            break;
+        default:
+            put_error;
+            help();
+            break;
+    }
 }
