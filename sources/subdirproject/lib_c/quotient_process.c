@@ -4,28 +4,26 @@
 
 void put_n_symbols_to_array_with_counter(char* array, int n, char symbol, int *index)
 {
-    int i;
-    for (i = 0; i < n; ++i)
+    for (int i = 0; i < n; ++i)
         array[++*index] = symbol;
 }
 
 void put_number_char_by_char_to_array_with_counter(char* array, int number, int *index)
 {
-    int i;
-    for (i = 1; i <= numlen(number); ++ i)
+    for (int i = 1; i <= numlen(number); ++ i)
         array[++*index] = n_th_dig_of_num(i, number) + 48;
 }
 
 void put_result_to_array(char* array, int first_number, int second_number, int index, int* count)
 {
-    int dividend, residue, result, i, product;
+    int dividend, residue, result, product;
     result = first_number / second_number;
     dividend = first_number / power(10, numlen(result) - 1);
     residue = first_number % power(10, numlen(result) - 1);
     int indent = dividend;
     int  crutch = 1; //нужен для правильного числа черточек в случаях, когда разность равна 0 :)
     index = -1;
-    for (i = 1; i <= numlen(result); ++i)
+    for (int i = 1; i <= numlen(result); ++i)
     {
         if (i == 1)
         {
@@ -108,8 +106,8 @@ int numlen(int num)
 
 int power(int a, int b)
 {
-    int i, result = 1;
-    for (i = 0; i < b; ++i)
+    int result = 1;
+    for (int i = 0; i < b; ++i)
     {
         result *= a;
     }

@@ -3,6 +3,14 @@
 #include "exchange.h"
 #include "main.h"
 
+void exchange_output(int fives, int twos, int ones)
+{
+    printf("Пятирублёвых монет: %i\n"
+           "Двухрублёвых монет: %i\n"
+           "Рублёвых монет: %i\n",
+           fives, twos, ones);
+}
+
 void exchange(void)
 {
     int number;
@@ -16,23 +24,23 @@ void exchange(void)
     while (number >= 100);
 
     coins = change_by_coins(number);
-    printf("Пятирублёвых монет: %i\nДвухрублёвых монет: %i\nРублёвых монет: %i\n", coins.fives, coins.twos, coins.ones);
+    exchange_output(coins.fives, coins.twos, coins.ones);
 }
 
 void exchange_parameters(int argc, char** argv)
 {
-    int num;
-    struct purse coins;
     switch (argc)
     {
         case 2:
             exchange();
             break;
         case 3:
-            num = atoi(argv[2]);
-            coins = change_by_coins(num);
-            printf("Пятирублёвых монет: %i\nДвухрублёвых монет: %i\nРублёвых монет: %i\n", coins.fives, coins.twos, coins.ones);
+        {
+            int num = atoi(argv[2]);
+            struct purse coins = change_by_coins(num);
+            exchange_output(coins.fives, coins.twos, coins.ones);
             break;
+        }
         default:
             put_error;
             help_exchange();

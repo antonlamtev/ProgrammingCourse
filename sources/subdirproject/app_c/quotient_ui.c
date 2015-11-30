@@ -24,11 +24,6 @@ void quotient(void)
 
 void quotient_parameters(int argc, char** argv)
 {
-    int m, n;
-    int count;
-    int index;
-    char* buffer;
-    int i;
     switch (argc)
     {
         case 2:
@@ -36,19 +31,20 @@ void quotient_parameters(int argc, char** argv)
             break;
 
         case 4:
-            m = atoi(argv[2]), n = atoi(argv[3]);
-            count = 0;
-            index = -1;
-            buffer = (char*) calloc(1000, sizeof(char));
+        {
+            int m = atoi(argv[2]), n = atoi(argv[3]);
+            int count = 0;
+            int index = -1;
+            char* buffer = (char*) calloc(1000, sizeof(char));
 
             put_result_to_array(buffer, m, n, index, &count);
-            for (i = 0; i <= count; ++i)
+            for (int i = 0; i <= count; ++i)
                 printf("%c", buffer[i]);
 
             puts("");
             free(buffer);
             break;
-
+        }
         default:
             put_error;
             help_quotient();

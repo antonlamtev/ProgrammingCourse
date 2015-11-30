@@ -17,14 +17,15 @@ void queens(void)
 
 void queens_parameters(int argc, char** argv)
 {
-    struct coordinate x;
-    struct coordinate y;
     switch (argc)
     {
         case 2:
             queens();
             break;
         case 8:
+        {
+            struct coordinate x;
+            struct coordinate y;
             x.first = atoi(argv[2]);
             y.first = atoi(argv[3]);
             x.second = atoi(argv[4]);
@@ -34,6 +35,7 @@ void queens_parameters(int argc, char** argv)
 
             display_result(queens_result(x, y));
             break;
+        }
         default:
             put_error;
             help_queens();

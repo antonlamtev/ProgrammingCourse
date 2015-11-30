@@ -1,17 +1,18 @@
 TEMPLATE = app
-CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
+QMAKE_CFLAGS += -std=c11
+
 SOURCES += \
-    queens.c \
-    matrix.c \
-    exchange.c \
     main.c \
-    quotient.c \
-    help.c \
-    lines_symmetrization.c \
-    menu.c
+    menu.c \
+    exchange_ui.c \
+    help_ui.c \
+    lines_symmetrization_ui.c \
+    matrix_ui.c \
+    queens_ui.c \
+    quotient_ui.c
 
 HEADERS += \
     ../main.h \

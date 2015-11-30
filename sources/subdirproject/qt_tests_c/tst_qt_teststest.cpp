@@ -83,8 +83,7 @@ void Qt_testsTest::quotient_test()
 int compare_arrays(int* m1, int m2[], int size)
 {
     int flag = 1;
-    int i;
-    for (i = 0; i < size; ++i)
+    for (int i = 0; i < size; ++i)
         if (m1[i] != m2[i])
         {
             flag = 0;
@@ -134,12 +133,12 @@ void Qt_testsTest::lines_simmetrization_test()
         initial_line[i] = str[i];
     char* actual = (char*) calloc (30, sizeof(char));
     symmetrize_line(actual, initial_line, 30);
+    free(initial_line);
 
     char expected[] = "     sdfjl sfvslk ! asdf";
 
     QCOMPARE(strcmp(actual, expected), 0);
     free(actual);
-    free(initial_line);
 }
 
 

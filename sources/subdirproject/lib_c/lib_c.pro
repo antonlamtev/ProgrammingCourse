@@ -10,13 +10,15 @@ TARGET = lib_c
 TEMPLATE = lib
 CONFIG += staticlib
 
+QMAKE_CFLAGS += -std=c11
+
 SOURCES += \
-    queens_result.c \
-    matrix_algorithms.c \
     queens_check_for_beating.c \
-    exchange_change.c \
     quotient_process.c \
-    lines_symmetrization_algorithms.c
+    queens_result_for_output.c \
+    matrix_processing.c \
+    lines_symmetrization_processing.c \
+    exchange_of_coins_process.c
 
 HEADERS += \
     exchange.h \

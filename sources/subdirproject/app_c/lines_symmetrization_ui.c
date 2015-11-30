@@ -15,8 +15,7 @@ void lines_symmetrization(char* input_file_name, char* output_file_name)
     in = fopen(input_file_name, "r");
     out = fopen(output_file_name, "w");
 
-    int i;
-    for (i = 0; i < number_of_lines; ++i)
+    for (int i = 0; i < number_of_lines; ++i)
     {
         fgets(initial_line, max_length_of_line, in);
         symmetrize_line(final_line, initial_line, max_length_of_line);
