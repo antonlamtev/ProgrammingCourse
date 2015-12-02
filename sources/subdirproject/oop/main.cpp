@@ -1,23 +1,16 @@
 #include <iostream>
-#include "hash_table.h"
+
+#include "table.h"
 
 using namespace std;
 
 int main()
 {
-    Hash_table table;
-
-    table.add("hello world!", "00000000");
-    table.add("oop is very cool!", "0000FFFF");
-    table.add("Gang of four", "00ABCDEF");
-    table.copy_a_cell(1, "000007E0");
-
-    table.index_by_key("00000000");
-    table.index_by_key("00000001");
-    table.index_by_key("0000FFFF");
-    table.index_by_key("00ABCDEF");
-    table.index_by_key("000007E0");
-
+    Table table;
+    table.put("Gang of four", 128);
+    table.put("oop", 256);
+    table.put("hello world", 512);
+    table.index_by_key(256);
     return 0;
 }
 
