@@ -9,95 +9,70 @@ Table::Table(int table_size)
     index = -1;
     cell = new string[table_size];
     key = new int[table_size];
-    std::cout << "Table has been initialized\n";
+    cout << "Table has been initialized\n";
+    cout << endl;
 }
 
 Table::~Table()
 {
     delete[] cell;
     delete[] key;
-    std::cout << "Table has been destroyed\n";
+    cout << endl;
+    cout << "Table has been destroyed\n";
 }
 
-//void Table::allocate_more_memory(string*& array, int& already_allocated_memory, int additional_memory)
-//{
-//    string* temp = new string[already_allocated_memory];
+void Table::allocate_more_memory(string*& arr, int& already_allocated_size, const int additional_size)
+{
+    string* t = new string[already_allocated_size];
 
-//    for (int i = 0; i < already_allocated_memory; ++i)
-//    {
-//        temp[i] = array[i];
-//    }
+    for (int i = 0; i < already_allocated_size; ++i)
+        t[i] = arr[i];
 
-//    already_allocated_memory += additional_memory;
+    delete[] arr;
 
-//    array = new string[already_allocated_memory];
+    arr = new string[already_allocated_size + additional_size];
 
-//    for (int i = 0; i < already_allocated_memory; ++i)
-//    {
-//        array[i] = temp[i];
-//    }
+    for (int i = 0; i < already_allocated_size; ++i)
+        arr[i] = t[i];
 
-//    delete[] temp;
-//}
+    delete[] t;
 
-//void Table::allocate_more_memory(int* &array, int& already_allocated_memory, int additional_memory)
-//{
-//    int* temp = new int[already_allocated_memory];
+    already_allocated_size += additional_size;
+}
 
-//    for (int i = 0; i < already_allocated_memory; ++i)
-//    {
-//        temp[i] = array[i];
-//    }
+void Table::allocate_more_memory(int*& arr, int& already_allocated_size, const int additional_size)
+{
+    int* t = new int[already_allocated_size];
 
-//    already_allocated_memory += additional_memory;
+    for (int i = 0; i < already_allocated_size; ++i)
+        t[i] = arr[i];
 
-//    array = new int[already_allocated_memory];
+    delete[] arr;
 
-//    for (int i = 0; i < already_allocated_memory; ++i)
-//    {
-//        array[i] = temp[i];
-//    }
+    arr = new int[already_allocated_size + additional_size];
 
-//    delete[] temp;
-//}
+    for (int i = 0; i < already_allocated_size; ++i)
+        arr[i] = t[i];
+
+    delete[] t;
+
+    already_allocated_size += additional_size;
+}
 
 void Table::put(string cell_value, int key_value)
 {
     if (index == current_size - 1)
     {
-//        int size = current_size;
-//        allocate_more_memory(cell, size, 10);
-//        size = current_size;
-//        allocate_more_memory(key, size, 10);
-//        current_size = size;
-
-        string* temp_c = new string[current_size + 10];
-        int* temp_k = new int[current_size + 10];
-
-        for (int i = 0; i < current_size; ++i)
-        {
-            temp_c[i] = cell[i];
-            temp_k[i] = key[i];
-        }
-
-        current_size += 10;
-
-        cell = new string[current_size];
-        key = new int[current_size];
-
-        for (int i = 0; i < current_size; ++i)
-        {
-            cell[i] = temp_c[i];
-            key[i] = temp_k[i];
-        }
-
-        delete[] temp_c;
-        delete[] temp_k;
+        int size = current_size;
+        allocate_more_memory(cell, size, additional_size);
+        size = current_size;
+        allocate_more_memory(key, size, additional_size);
+        current_size = size;
     }
     cell[++index] = cell_value;
     key[index] = key_value;
 
-    std::cout << cell[index] << " <======> " << key[index] << std::endl;
+    cout << cell[index] << " <======> " << key[index] << endl;
 }
 
 void Table::index_by_key(int key_value)
@@ -105,15 +80,14 @@ void Table::index_by_key(int key_value)
     bool flag = true;
     for (int i = 0; i <= index; ++ i)
     {
-        //std::cout <<key[i] << endl;
         if (key[i] == key_value)
         {
-            std::cout << cell[i] << std::endl;
+            cout << cell[i] << " <======> " << key[i] << endl;
             return;
         }
     }
     if (flag)
     {
-        std::cout << "There are not any cells with choosen key\n";
+        cout << "There are not any cells with choosen key\n";
     }
 }
