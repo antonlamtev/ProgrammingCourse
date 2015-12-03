@@ -23,38 +23,29 @@ Table::~Table()
 
 void Table::allocate_more_memory(string*& arr, int& already_allocated_size, const int additional_size)
 {
-    string* t = new string[already_allocated_size];
+    string* t = new string[already_allocated_size + additional_size];
 
     for (int i = 0; i < already_allocated_size; ++i)
         t[i] = arr[i];
 
     delete[] arr;
 
-    arr = new string[already_allocated_size + additional_size];
 
-    for (int i = 0; i < already_allocated_size; ++i)
-        arr[i] = t[i];
-
-    delete[] t;
+    arr = t;
 
     already_allocated_size += additional_size;
 }
 
 void Table::allocate_more_memory(int*& arr, int& already_allocated_size, const int additional_size)
 {
-    int* t = new int[already_allocated_size];
+    int* t = new int[already_allocated_size + additional_size];
 
     for (int i = 0; i < already_allocated_size; ++i)
         t[i] = arr[i];
 
     delete[] arr;
 
-    arr = new int[already_allocated_size + additional_size];
-
-    for (int i = 0; i < already_allocated_size; ++i)
-        arr[i] = t[i];
-
-    delete[] t;
+    arr = t;
 
     already_allocated_size += additional_size;
 }
