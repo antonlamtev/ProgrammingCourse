@@ -1,28 +1,31 @@
-#include <iostream>
-#include <new>
-
 #include "table.h"
 
-/// можно сделать table_size значения по умолчанию
 Table::Table(int table_size)
 {
     current_size = table_size;
     index = -1;
     cell = new string[table_size];
     key = new int[table_size];
-    cout << "Table has been initialized\n";
-    cout << endl;
+}
+
+Table::Table(const Table &object)
+{
+    cell = new string[current_size = object.current_size];
+    key = new int[current_size];
+    for (auto i = 0; i <= (index = object.index); ++i)
+    {
+        cell[i] = object.cell[i];
+        key[i] = object.key[i];
+    }
 }
 
 Table::~Table()
 {
     delete[] cell;
     delete[] key;
-    cout << endl;
-    cout << "Table has been destroyed\n";
 }
 
-void Table::allocate_more_memory(string*& arr, int& already_allocated_size, const int additional_size)
+void Table::allocate_more_memory(string*& arr, int& already_allocated_size)
 {
     string* t = new string[already_allocated_size + additional_size];
 
@@ -37,7 +40,7 @@ void Table::allocate_more_memory(string*& arr, int& already_allocated_size, cons
     already_allocated_size += additional_size;
 }
 
-void Table::allocate_more_memory(int*& arr, int& already_allocated_size, const int additional_size)
+void Table::allocate_more_memory(int*& arr, int& already_allocated_size)
 {
     int* t = new int[already_allocated_size + additional_size];
 
@@ -56,35 +59,26 @@ void Table::put(string cell_value, int key_value)
     if (index == current_size - 1)
     {
         int size = current_size;
-        /// вы же тут не адрес передаете по факту -- size
-        /// и зачем таскать туда-сюда size по методам в одном классе, если можно просто изменить current_size и им пользоваться доступен
-        /// зачем передавать additional_size, если это поле класса будет доступно в методе all_m_
         /// и зачем передавать cell и key, если они тоже будут доступны
-        allocate_more_memory(cell, size, additional_size);
-        size = current_size;
-        allocate_more_memory(key, size, additional_size);
-        current_size = size;
+        // нужно передать, чтобы компилятор поянял, какую функцию использовать, для int или string.
+        allocate_more_memory(cell, size);
+        allocate_more_memory(key, current_size);
     }
     cell[++index] = cell_value;
     key[index] = key_value;
-
-    cout << cell[index] << " <======> " << key[index] << endl;
 }
 
-void Table::index_by_key(int key_value)
+
+///todo обработка исключений!!!
+string Table::index_by_key(int key_value) const
 {
-    /// флаг нигде не используется, и все равно вы скоро реализуете исключения
-    bool flag = true;
-    for (int i = 0; i <= index; ++ i)
+    int i;
+    for (i = 0; i <= index; ++i)
     {
         if (key[i] == key_value)
         {
-            cout << cell[i] << " <======> " << key[i] << endl;
-            return;
+            break;
         }
     }
-    if (flag)
-    {
-        cout << "There are not any cells with choosen key\n";
-    }
+    return cell[i];
 }
