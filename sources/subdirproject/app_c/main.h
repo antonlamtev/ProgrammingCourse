@@ -32,4 +32,3 @@ void quotient(void);
 void quotient_parameters(int argc, char** argv);
 
 #endif // MAIN
-

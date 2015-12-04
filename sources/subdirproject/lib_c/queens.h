@@ -5,23 +5,18 @@
 extern "C" {
 #endif
 
-/// Я надеялась на структуру с координатами, тогда в эту функцию передать две структуры
-int check_for_beating(int x1, int y1, int x2, int y2);
-
-///Координаты -- это x, y -- позиции на шахматном поле
-///а здесь что?
-struct coordinate
+struct queen
 {
-    int first;
-    int second;
-    int third;
+    int x;
+    int y;
 };
+
+int check_for_beating(struct queen q1, struct queen q2);
+
 enum who_beat {no_one = 0, everyone, OneTwo_OneThree, OneTwo_TwoThree, OneTwo,
                OneThree_TwoThree, OneThree, TwoThree};
 
-/// Три королевы же, нужно передать три набора координат,
-/// а это даже выглядит дико
-int queens_result(struct coordinate x, struct coordinate y);
+int queens_result(struct queen q1, struct queen q2, struct queen q3);
 
 #ifdef __cplusplus
 }

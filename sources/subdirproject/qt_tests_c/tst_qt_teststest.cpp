@@ -45,18 +45,17 @@ void Qt_testsTest::exchange_test()
 
 }
 
-/// Можно еще другие варианты протестировать, не только "все-всех"
 void Qt_testsTest::queens_test()
 {
-    struct coordinate x_actual, y_actual;
-    x_actual.first = 1;
-    y_actual.first = 2;
-    x_actual.second = 2;
-    y_actual.second = 3;
-    x_actual.third = 3;
-    y_actual.third = 4;
+    struct queen q1_actual, q2_actual, q3_actual;
+    q1_actual.x = 1;
+    q1_actual.y = 2;
+    q2_actual.x = 2;
+    q2_actual.y = 3;
+    q3_actual.x = 3;
+    q3_actual.y = 4;
 
-    QCOMPARE(queens_result(x_actual, y_actual), (int)everyone);
+    QCOMPARE(queens_result(q1_actual, q2_actual, q3_actual), (int)everyone);
 }
 
 void Qt_testsTest::quotient_test()

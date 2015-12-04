@@ -5,14 +5,21 @@
 
 void queens(void)
 {
-    struct coordinate x, y;
+    struct queen q1, q2, q3;
+    int x, y;
     // Считать координаты шахматной доски координатами матрицы 8х8 от 1 до 8 !!!
 
-    input_with_check(&x.first, &y.first, 1);
-    input_with_check(&x.second, &y.second, 2);
-    input_with_check(&x.third, &y.third, 3);
+    input_with_check(&x, &y, 1);
+    q1.x = x;
+    q1.y = y;
+    input_with_check(&x, &y, 2);
+    q2.x = x;
+    q2.y = y;
+    input_with_check(&x, &y, 3);
+    q3.x = x;
+    q3.y = y;
 
-    display_result(queens_result(x, y));
+    display_result(queens_result(q1, q2, q3));
 }
 
 void queens_parameters(int argc, char** argv)
@@ -24,16 +31,15 @@ void queens_parameters(int argc, char** argv)
             break;
         case 8:
         {
-            struct coordinate x;
-            struct coordinate y;
-            x.first = atoi(argv[2]);
-            y.first = atoi(argv[3]);
-            x.second = atoi(argv[4]);
-            y.second = atoi(argv[5]);
-            x.third = atoi(argv[6]);
-            y.third = atoi(argv[7]);
+            struct queen q1, q2, q3;
+            q1.x = atoi(argv[2]);
+            q1.y = atoi(argv[3]);
+            q2.x = atoi(argv[4]);
+            q2.y= atoi(argv[5]);
+            q3.x = atoi(argv[6]);
+            q3.y = atoi(argv[7]);
 
-            display_result(queens_result(x, y));
+            display_result(queens_result(q1, q2, q3));
             break;
         }
         default:

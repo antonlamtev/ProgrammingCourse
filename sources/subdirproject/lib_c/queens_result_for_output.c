@@ -1,13 +1,13 @@
 #include "queens.h"
 
-int queens_result(struct coordinate x, struct coordinate y)
+int queens_result(struct queen q1, struct queen q2, struct queen q3)
 {
     int result = no_one;
-    if (check_for_beating(x.first, y.first, x.second, y.second))
+    if (check_for_beating(q1, q2))
     {
-        if (check_for_beating(x.first, y.first, x.third, y.third))
+        if (check_for_beating(q1, q3))
         {
-            if (check_for_beating(x.third, y.third, x.second, y.second))
+            if (check_for_beating(q2, q3))
             {
                 result = everyone;
             }
@@ -18,7 +18,7 @@ int queens_result(struct coordinate x, struct coordinate y)
         }
         else
         {
-            if (check_for_beating(x.third, y.third, x.second, y.second))
+            if (check_for_beating(q2, q3))
             {
                 result = OneTwo_TwoThree;
             }
@@ -28,9 +28,9 @@ int queens_result(struct coordinate x, struct coordinate y)
             }
         }
     }
-    else if (check_for_beating(x.first, y.first, x.third, y.third))
+    else if (check_for_beating(q1, q3))
     {
-        if (check_for_beating(x.third, y.third, x.second, y.second))
+        if (check_for_beating(q2, q3))
         {
             result = OneThree_TwoThree;
         }
@@ -39,7 +39,7 @@ int queens_result(struct coordinate x, struct coordinate y)
             result = OneThree;
         }
     }
-    else if (check_for_beating(x.third, y.third, x.second, y.second))
+    else if (check_for_beating(q2, q3))
     {
         result = TwoThree;
     }
