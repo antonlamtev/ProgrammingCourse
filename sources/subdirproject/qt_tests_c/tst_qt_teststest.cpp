@@ -31,17 +31,17 @@ Qt_testsTest::Qt_testsTest()
 
 void Qt_testsTest::exchange_test()
 {
-    struct purse coins1_actual = change_by_coins(28);
+    struct purse coins_actual = change_by_coins(28);
 
-    QCOMPARE(coins1_actual.fives, 5);
-    QCOMPARE(coins1_actual.twos, 1);
-    QCOMPARE(coins1_actual.ones, 1);
+    QCOMPARE(coins_actual.fives, 5);
+    QCOMPARE(coins_actual.twos, 1);
+    QCOMPARE(coins_actual.ones, 1);
 
-    struct purse coins2_actual = change_by_coins(44);
+    coins_actual = change_by_coins(44);
 
-    QCOMPARE(coins2_actual.fives, 8);
-    QCOMPARE(coins2_actual.twos, 2);
-    QCOMPARE(coins2_actual.ones, 0);
+    QCOMPARE(coins_actual.fives, 8);
+    QCOMPARE(coins_actual.twos, 2);
+    QCOMPARE(coins_actual.ones, 0);
 
 }
 
@@ -55,7 +55,17 @@ void Qt_testsTest::queens_test()
     q3_actual.x = 3;
     q3_actual.y = 4;
 
-    QCOMPARE(queens_result(q1_actual, q2_actual, q3_actual), (int)everyone);
+    QCOMPARE(queens_result(q1_actual, q2_actual, q3_actual), (int) everyone);
+
+    q1_actual.x = 1;
+    q1_actual.y = 5;
+    q2_actual.x = 2;
+    q2_actual.y = 6;
+    q3_actual.x = 1;
+    q3_actual.y = 8;
+
+    QCOMPARE(queens_result(q1_actual, q2_actual, q3_actual), (int) OneTwo_OneThree);
+
 }
 
 void Qt_testsTest::quotient_test()
@@ -75,12 +85,13 @@ void Qt_testsTest::quotient_test()
 void Qt_testsTest::matrix_test()
 {
     int** actual = (int**) malloc(5 * sizeof(int*));
-    for (int i = 0; i < 5; ++i){
+    for (int i = 0; i < 5; ++i)
+    {
         actual[i] = (int*) malloc(5 * sizeof(int));
         for (int j = 0; j < 5; ++j)
         {
-            actual[i][j] = i * j + 1;
-        }
+            i[actual][j] = i * j + 1; //по приколу так сделал :) Страуструп сказал, что так можно. А я решил проверить.
+        }                             //Логично, если через оператор разыменовывания записать. Но в голову это не приходило
     }
 
     actual[0][3] = 0; actual[1][1] = 0; actual[2][4] = 0; actual[3][0] = 0; actual[4][2] = 0;
@@ -94,11 +105,13 @@ void Qt_testsTest::matrix_test()
                           {1, 3, 5,  7,  0}};
 
 
-    for (int i = 0; i < 5; ++i){
-        for(int j = 0; j < 5; j++){
+    for (int i = 0; i < 5; ++i)
+    {
+        for(int j = 0; j < 5; j++)
+        {
             QCOMPARE(actual[i][j], expected[i][j]);
         }
-        free(actual[i]);
+        free(actual[i]); //аналогично.
     }
 
     free(actual);
