@@ -111,7 +111,7 @@ void Qt_testsTest::matrix_test()
         {
             QCOMPARE(actual[i][j], expected[i][j]);
         }
-        free(actual[i]); //аналогично.
+        free(actual[i]);
     }
 
     free(actual);

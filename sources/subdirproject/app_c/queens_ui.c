@@ -6,18 +6,12 @@
 void queens(void)
 {
     struct queen q1, q2, q3;
-    int x, y;
+
     // Считать координаты шахматной доски координатами матрицы 8х8 от 1 до 8 !!!
 
-    input_with_check(&x, &y, 1);
-    q1.x = x;
-    q1.y = y;
-    input_with_check(&x, &y, 2);
-    q2.x = x;
-    q2.y = y;
-    input_with_check(&x, &y, 3);
-    q3.x = x;
-    q3.y = y;
+    input_with_check(&q1.x, &q1.y, 1);
+    input_with_check(&q2.x, &q2.y, 2);
+    input_with_check(&q3.x, &q3.y, 3);
 
     display_result(queens_result(q1, q2, q3));
 }
