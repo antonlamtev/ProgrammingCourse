@@ -60,7 +60,7 @@ void Table::put(string cell_value, int key_value)
     {
         int size = current_size;
         /// и зачем передавать cell и key, если они тоже будут доступны
-        // нужно передать, чтобы компилятор поянял, какую функцию использовать, для int или string.
+        // нужно передать, чтобы компилятор поянял, какую функцию использовать, для int или для string.
         allocate_more_memory(cell, size);
         allocate_more_memory(key, current_size);
     }

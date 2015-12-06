@@ -22,6 +22,7 @@ public:
     ~Table();
     void put(string value, int key);
     /// todo перегрузить оператор индексирования operator[]
+    /// обработка исключений!!!
     string index_by_key(int key) const;
 private:
     void allocate_more_memory(string*& arr, int& already_allocated_size);
