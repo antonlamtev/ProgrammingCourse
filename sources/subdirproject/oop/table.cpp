@@ -45,7 +45,7 @@ void Table::allocate_more_memory()
     current_size += ADDITIONAL_SIZE;
 }
 
-void Table::put(string cell_value, int key_value)
+void Table::put(const string cell_value, const int key_value)
 {
     if (index == current_size - 1)
     {
@@ -71,7 +71,7 @@ void Table::flag_false_exception(bool& flag, string& result)
     }
 }
 
-string Table::index_by_key(int key_value)
+string Table::index_by_key(const int key_value)
 {
     string result;
     bool flag = false;
@@ -90,17 +90,17 @@ string Table::index_by_key(int key_value)
     return result;
 }
 
-string Table::operator[](int key_value)
+string Table::operator[](const int key_value)
 {
     return index_by_key(key_value);
 }
 
-int Table::get_current_size()
+int Table::get_current_size() const
 {
     return current_size;
 }
 
-int Table::get_number_of_elements()
+int Table::get_number_of_elements() const
 {
     return index + 1;
 }

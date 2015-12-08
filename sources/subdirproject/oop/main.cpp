@@ -10,13 +10,10 @@ int main()
     table.put("spb", 32);
     table.put("russia", 1024);
 
-    //string str;
     cout << table.get_number_of_elements() << endl;
     cout << table.get_current_size() << endl;
 
     cout << table[228] << endl;
-    cout << table.index_by_key(227) << endl;
-    //cout << str << endl;
     return 0;
 }
 
