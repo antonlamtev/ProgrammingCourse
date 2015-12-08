@@ -25,60 +25,82 @@ Table::~Table()
     delete[] key;
 }
 
-void Table::allocate_more_memory(string*& arr, int& already_allocated_size)
+void Table::allocate_more_memory()
 {
-    string* t = new string[already_allocated_size + additional_size];
+    string* temp_cell = new string[current_size + ADDITIONAL_SIZE];
+    int* temp_key = new int[current_size + ADDITIONAL_SIZE];
 
-    for (int i = 0; i < already_allocated_size; ++i)
-        t[i] = arr[i];
+    for (int i = 0; i < current_size; ++i)
+    {
+        temp_cell[i] = cell[i];
+        temp_key[i] = key[i];
+    }
 
-    delete[] arr;
+    delete[] cell;
+    delete[] key;
 
+    cell = temp_cell;
+    key = temp_key;
 
-    arr = t;
-
-    already_allocated_size += additional_size;
-}
-
-void Table::allocate_more_memory(int*& arr, int& already_allocated_size)
-{
-    int* t = new int[already_allocated_size + additional_size];
-
-    for (int i = 0; i < already_allocated_size; ++i)
-        t[i] = arr[i];
-
-    delete[] arr;
-
-    arr = t;
-
-    already_allocated_size += additional_size;
+    current_size += ADDITIONAL_SIZE;
 }
 
 void Table::put(string cell_value, int key_value)
 {
     if (index == current_size - 1)
     {
-        int size = current_size;
-        /// и зачем передавать cell и key, если они тоже будут доступны
-        // нужно передать, чтобы компилятор поянял, какую функцию использовать, для int или для string.
-        allocate_more_memory(cell, size);
-        allocate_more_memory(key, current_size);
+        allocate_more_memory();
     }
     cell[++index] = cell_value;
     key[index] = key_value;
 }
 
-
-///todo обработка исключений!!!
-string Table::index_by_key(int key_value) const
+void Table::flag_false_exception(bool& flag, string& result)
 {
-    int i;
-    for (i = 0; i <= index; ++i)
+    try
+    {
+        if (!flag)
+        {
+            throw ERROR;
+        }
+    }
+
+    catch (const char* str)
+    {
+        result = str;
+    }
+}
+
+string Table::index_by_key(int key_value)
+{
+    string result;
+    bool flag = false;
+    for (auto i = 0; i <= index; ++i)
     {
         if (key[i] == key_value)
         {
+            flag = true;
+            result = cell[i];
             break;
         }
     }
-    return cell[i];
+
+    flag_false_exception(flag, result);
+
+    return result;
+}
+
+string Table::operator[](int key_value)
+{
+    return index_by_key(key_value);
+}
+
+int Table::get_current_size()
+{
+    return current_size;
+}
+
+int Table::get_number_of_elements()
+{
+    return index + 1;
 }

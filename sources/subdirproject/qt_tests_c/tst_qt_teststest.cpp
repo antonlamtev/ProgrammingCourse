@@ -26,7 +26,6 @@ private Q_SLOTS:
 
 Qt_testsTest::Qt_testsTest()
 {
-
 }
 
 void Qt_testsTest::exchange_test()
