@@ -1,19 +1,13 @@
 #include "table.h"
+#include "table_app.h"
 
 int main()
 {
-    Table table;
-    table.put("sfd", 227);
-    table.put("sgsgad s", 64);
-    table.put("mufcggmu", 128);
-    table.put("ilr", 256);
-    table.put("spb", 32);
-    table.put("russia", 1024);
-
-    cout << table.get_number_of_elements() << endl;
-    cout << table.get_current_size() << endl;
-
-    cout << table[228] << endl;
+    Table_app app;
+    app.menu();
+//    Table table;
+//    table.put("sadfs", 128);
+//    cout << table[128] << endl;
     return 0;
 }
 

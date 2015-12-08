@@ -4,8 +4,10 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    table.cpp
+    table.cpp \
+    table_app.cpp
 
 HEADERS += \
-    table.h
+    table.h \
+    table_app.h
 
