@@ -30,14 +30,14 @@ Qt_testsTest::Qt_testsTest()
 
 void Qt_testsTest::exchange_test()
 {
-    struct purse coins_actual = change_by_coins(28);
+    struct purse coins_actual;
 
+    coins_actual = change_by_coins(28);
     QCOMPARE(coins_actual.fives, 5);
     QCOMPARE(coins_actual.twos, 1);
     QCOMPARE(coins_actual.ones, 1);
 
     coins_actual = change_by_coins(44);
-
     QCOMPARE(coins_actual.fives, 8);
     QCOMPARE(coins_actual.twos, 2);
     QCOMPARE(coins_actual.ones, 0);
@@ -46,37 +46,42 @@ void Qt_testsTest::exchange_test()
 
 void Qt_testsTest::queens_test()
 {
-    struct queen q1_actual, q2_actual, q3_actual;
-    q1_actual.x = 1;
-    q1_actual.y = 2;
-    q2_actual.x = 2;
-    q2_actual.y = 3;
-    q3_actual.x = 3;
-    q3_actual.y = 4;
+    struct queen q1, q2, q3;
 
-    QCOMPARE(queens_result(q1_actual, q2_actual, q3_actual), (int) everyone);
+    q1.x = 1;
+    q1.y = 2;
+    q2.x = 3;
+    q2.y = 4;
+    q3.x = 5;
+    q3.y = 6;
+    QCOMPARE(queens_result(q1, q2, q3), (int) everyone);
 
-    q1_actual.x = 1;
-    q1_actual.y = 5;
-    q2_actual.x = 2;
-    q2_actual.y = 6;
-    q3_actual.x = 1;
-    q3_actual.y = 8;
-
-    QCOMPARE(queens_result(q1_actual, q2_actual, q3_actual), (int) OneTwo_OneThree);
+    q1.x = 1;
+    q1.y = 6;
+    q2.x = 2;
+    q2.y = 6;
+    q3.x = 1;
+    q3.y = 3;
+    QCOMPARE(queens_result(q1, q2, q3), (int) OneTwo_OneThree);
 
 }
 
 void Qt_testsTest::quotient_test()
 {
-    char* actual = (char*) calloc(33, sizeof(char));
-    int index = -1;
-    int count;
-    put_result_to_array(actual, 128, 2, index, &count);
-    actual[31] = '\0';
+    char* actual;
+    const char* expected;
 
-    char expected[] = "128|2\n12  64\n--\n 08\n  8\n --\n  0";
+    actual = (char*) calloc(38, sizeof(char));
+    put_result_to_array(actual, 128, 2);
+    actual[37] = '\0';
+    expected = "128|2\n12  64\n--\n 08\n  8\n --\n  0";
+    QCOMPARE(strcmp(actual, expected), 0);
+    free(actual);
 
+    actual = (char*) calloc(61, sizeof(char));
+    put_result_to_array(actual, 1111, 2);
+    actual[60] = '\0';
+    expected = "1111|2\n10   555\n--\n 11\n 10\n --\n  11\n  10\n  --\n   1";
     QCOMPARE(strcmp(actual, expected), 0);
     free(actual);
 }

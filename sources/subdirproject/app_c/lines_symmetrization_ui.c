@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "lines_symmetrization.h"
 #include "main.h"
 

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+
 #include "main.h"
 
 #define put_equally puts("================================================================================");

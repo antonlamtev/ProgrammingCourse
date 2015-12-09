@@ -8,7 +8,6 @@ class Long_division
 public:
     Long_division();
     ~Long_division();
-
 };
 
 #endif // LONG_DIVISION_H

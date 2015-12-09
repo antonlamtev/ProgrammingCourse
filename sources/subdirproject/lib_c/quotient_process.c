@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "quotient.h"
 
 void put_n_symbols_to_array_with_counter(char* array, int n, char symbol, int *index)
@@ -14,7 +15,7 @@ void put_number_char_by_char_to_array_with_counter(char* array, int number, int 
         array[++*index] = n_th_dig_of_num(i, number) + 48;
 }
 
-void put_result_to_array(char* array, int first_number, int second_number, int index, int* count)
+void put_result_to_array(char* array, int first_number, int second_number)
 {
     int dividend, residue, result, product;
     result = first_number / second_number;
@@ -22,7 +23,7 @@ void put_result_to_array(char* array, int first_number, int second_number, int i
     residue = first_number % power(10, numlen(result) - 1);
     int indent = dividend;
     int  crutch = 1; //нужен для правильного числа черточек в случаях, когда разность равна 0 :)
-    index = -1;
+    int index = -1;
     for (int i = 1; i <= numlen(result); ++i)
     {
         if (i == 1)
@@ -79,7 +80,6 @@ void put_result_to_array(char* array, int first_number, int second_number, int i
         indent = indent * 10 + n_th_dig_of_num(i, residue);
 
     }
-    *count = index;
 }
 
 int numlen(int num)
