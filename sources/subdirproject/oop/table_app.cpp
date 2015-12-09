@@ -27,31 +27,47 @@ void Table_app::menu()
         {
             case 1:
             {
-                string str;
-                int k;
-                cout << "Введите строковое значение\n";
-                getline(cin >> ws, str);
-                cout << "Введите целочисленный ключ\n";
-                cin >> k;
-                cin.ignore();
-                table.put(str,k);
+                put_cell_key();
                 break;
             }
             case 2:
             {
-                int k;
-                cout << "Введите целочисленный ключ\n";
-                cin >> k;
-                cout << table[k];
-                cout << endl;
+                find_cell_by_key();
                 break;
             }
             case 3:
             {
-                Table new_table(table);
+                copy_object();
                 break;
             }
         }
     }
     while (key != EXIT_CODE);
+}
+
+
+void Table_app::put_cell_key()
+{
+    string str;
+    int k;
+    cout << "Введите строковое значение\n";
+    getline(cin >> ws, str);
+    cout << "Введите целочисленный ключ\n";
+    cin >> k;
+    cin.ignore();
+    table.put(str,k);
+}
+
+void Table_app::find_cell_by_key()
+{
+    int k;
+    cout << "Введите целочисленный ключ\n";
+    cin >> k;
+    cout << table[k];
+    cout << endl;
+}
+
+void Table_app::copy_object()
+{
+    Table new_table(table);
 }
