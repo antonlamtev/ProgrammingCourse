@@ -8,7 +8,7 @@ QT       += testlib
 
 QT       -= gui
 
-CONFIG +=c++11
+CONFIG +=c11
 
 TARGET = tst_qt_tests_ctest
 CONFIG   += console

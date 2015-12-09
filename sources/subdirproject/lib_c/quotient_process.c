@@ -67,8 +67,6 @@ void put_result_to_array(char* array, int first_number, int second_number, int i
         put_n_symbols_to_array_with_counter(array, num_of_additional_spaces, ' ', &index);
 
         put_number_char_by_char_to_array_with_counter(array, dividend - product, &index);
-        if (i == numlen(result))
-            put_n_symbols_to_array_with_counter(array, 1, '\n', &index);
 
         if (i != numlen(result))
         {
