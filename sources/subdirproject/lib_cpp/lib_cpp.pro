@@ -15,12 +15,14 @@ QMAKE_CFLAGS += -std=c++11
 SOURCES += \
     exchange.cpp \
     queens.cpp \
-    long_division.cpp
+    long_division.cpp \
+    matrix.cpp
 
 HEADERS += \
     exchange.h \
     queens.h \
-    long_division.h
+    long_division.h \
+    matrix.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

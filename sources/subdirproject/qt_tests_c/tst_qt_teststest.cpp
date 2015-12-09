@@ -77,13 +77,6 @@ void Qt_testsTest::quotient_test()
     expected = "128|2\n12  64\n--\n 08\n  8\n --\n  0";
     QCOMPARE(strcmp(actual, expected), 0);
     free(actual);
-
-    actual = (char*) calloc(61, sizeof(char));
-    put_result_to_array(actual, 1111, 2);
-    actual[60] = '\0';
-    expected = "1111|2\n10   555\n--\n 11\n 10\n --\n  11\n  10\n  --\n   1";
-    QCOMPARE(strcmp(actual, expected), 0);
-    free(actual);
 }
 
 void Qt_testsTest::matrix_test()
