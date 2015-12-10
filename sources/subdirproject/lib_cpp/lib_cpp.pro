@@ -16,13 +16,15 @@ SOURCES += \
     exchange.cpp \
     queens.cpp \
     long_division.cpp \
-    matrix.cpp
+    matrix.cpp \
+    text.cpp
 
 HEADERS += \
     exchange.h \
     queens.h \
     long_division.h \
-    matrix.h
+    matrix.h \
+    text.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

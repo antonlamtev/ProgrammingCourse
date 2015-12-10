@@ -21,6 +21,7 @@ private Q_SLOTS:
     void test_Queens();
     void test_Long_division();
     void test_Matrix();
+    void test_Text();
 };
 
 Unit_tests_cpp::Unit_tests_cpp()
@@ -125,6 +126,11 @@ void Unit_tests_cpp::test_Matrix()
     }
 
     delete[] actual;
+}
+
+void Unit_tests_cpp::test_Text()
+{
+
 }
 
 QTEST_APPLESS_MAIN(Unit_tests_cpp)
