@@ -4,10 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    tableApp.cpp
+    tableApp.cpp \
+    matrixapp.cpp
 
 HEADERS += \
-    tableApp.h
+    tableApp.h \
+    matrixapp.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib_cpp/release/ -llib_cpp
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../lib_cpp/debug/ -llib_cpp

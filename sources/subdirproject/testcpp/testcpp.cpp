@@ -2,6 +2,8 @@
 #include <QtTest>
 #include <iostream>
 #include <new>
+#include <fstream>
+
 
 #include "exchange.h"
 #include "queens.h"

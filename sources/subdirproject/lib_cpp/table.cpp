@@ -12,7 +12,7 @@ Table::Table(const Table &object)
 {
     cell = new string[currentSize = object.currentSize];
     key = new int[currentSize];
-    for (auto i = 0; i <= (index = object.index); ++i)
+    for (int i = 0; i <= (index = object.index); ++i)
     {
         cell[i] = object.cell[i];
         key[i] = object.key[i];

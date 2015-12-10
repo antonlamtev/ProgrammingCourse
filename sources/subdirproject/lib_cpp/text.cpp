@@ -15,6 +15,4 @@ void Text::symmetrizeLine(string& finalLine, string& initialLine, int maxLengthO
         int leftIndent = (maxLengthOfLine - initialLine.size()) / 2;
         finalLine.append(leftIndent, ' ');
         finalLine += initialLine;
-//        memset(finalLine, ' ', leftIndent);
-//        strcat(finalLine, initialLine);
 }
