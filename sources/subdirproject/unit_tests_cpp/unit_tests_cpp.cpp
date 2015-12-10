@@ -93,39 +93,38 @@ void Unit_tests_cpp::test_Long_division()
 
 void Unit_tests_cpp::test_Matrix()
 {
-//    Matrix app;
-//    int** actual;
+    Matrix app;
+    int** actual = new int* [5];
+    for (int i = 0; i < 5; ++i)
+    {
+        actual[i] = new int[5];
+        for (int j = 0; j < 5; ++j)
+        {
+            actual[i][j] = i * j + 1;
+        }
+    }
 
-//    actual = new int* [5];
-//    for (int i = 0; i < 5; ++i)
-//    {
-//        actual[i] = new int[5];
-//        for (int j = 0; j < 5; ++j)
-//        {
-//            actual[i][j] = i * j + 1;
-//    }
+    actual[0][3] = 0; actual[1][1] = 0; actual[2][4] = 0; actual[3][0] = 0; actual[4][2] = 0;
 
-//    actual[0][3] = 0; actual[1][1] = 0; actual[2][4] = 0; actual[3][0] = 0; actual[4][2] = 0;
+    app.sort_nulls_to_the_main_diagonal(actual, 5);
 
-//    app.sort_nulls_to_the_main_diagonal(actual, 5);
-
-//    int expected[5][5] = {{0, 4, 7, 10, 13},
-//                          {1, 0, 3,  4,  5},
-//                          {1, 5, 0, 13, 17},
-//                          {1, 1, 1,  0,  1},
-//                          {1, 3, 5,  7,  0}};
+    int expected[5][5] = {{0, 4, 7, 10, 13},
+                          {1, 0, 3,  4,  5},
+                          {1, 5, 0, 13, 17},
+                          {1, 1, 1,  0,  1},
+                          {1, 3, 5,  7,  0}};
 
 
-//    for (int i = 0; i < 5; ++i)
-//    {
-//        for(int j = 0; j < 5; j++)
-//        {
-//            QCOMPARE(actual[i][j], expected[i][j]);
-//        }
-//        delete[] actual[i];
-//    }
+    for (int i = 0; i < 5; ++i)
+    {
+        for(int j = 0; j < 5; j++)
+        {
+            QCOMPARE(actual[i][j], expected[i][j]);
+        }
+        delete[] actual[i];
+    }
 
-//    delete[] actual;
+    delete[] actual;
 }
 
 QTEST_APPLESS_MAIN(Unit_tests_cpp)
