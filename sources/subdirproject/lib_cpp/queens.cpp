@@ -8,21 +8,21 @@ Queens::~Queens()
 {
 }
 
-int Queens::check_for_beating(const Queen q1, const Queen q2) const
+int Queens::checkForBeating(const Queen q1, const Queen q2) const
 {
     return (q1.x == q2.x || q1.y == q2.y) || (abs(q1.x-q2.x) == abs(q1.y-q2.y));
 }
 
-int Queens::get_result(const Queen q1, const Queen q2, const Queen q3) const
+int Queens::getResult(const Queen q1, const Queen q2, const Queen q3) const
 {
-    int result = no_one;
-    if (check_for_beating(q1, q2))
+    int result = NO_ONE;
+    if (checkForBeating(q1, q2))
     {
-        if (check_for_beating(q1, q3))
+        if (checkForBeating(q1, q3))
         {
-            if (check_for_beating(q2, q3))
+            if (checkForBeating(q2, q3))
             {
-                result = everyone;
+                result = EVERYONE;
             }
             else
             {
@@ -31,7 +31,7 @@ int Queens::get_result(const Queen q1, const Queen q2, const Queen q3) const
         }
         else
         {
-            if (check_for_beating(q2, q3))
+            if (checkForBeating(q2, q3))
             {
                 result = OneTwo_TwoThree;
             }
@@ -41,9 +41,9 @@ int Queens::get_result(const Queen q1, const Queen q2, const Queen q3) const
             }
         }
     }
-    else if (check_for_beating(q1, q3))
+    else if (checkForBeating(q1, q3))
     {
-        if (check_for_beating(q2, q3))
+        if (checkForBeating(q2, q3))
         {
             result = OneThree_TwoThree;
         }
@@ -52,7 +52,7 @@ int Queens::get_result(const Queen q1, const Queen q2, const Queen q3) const
             result = OneThree;
         }
     }
-    else if (check_for_beating(q2, q3))
+    else if (checkForBeating(q2, q3))
     {
         result = TwoThree;
     }

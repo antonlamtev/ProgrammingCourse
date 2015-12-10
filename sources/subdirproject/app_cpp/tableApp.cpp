@@ -1,22 +1,21 @@
-#include "table_app.h"
+#include "tableApp.h"
 #include "table.h"
 
-Table_app::Table_app()
+TableApp::TableApp()
 {
 
 }
 
-Table_app::~Table_app()
+TableApp::~TableApp()
 {
 
 }
 
-void Table_app::menu()
+void TableApp::menu()
 {
     int key;
     do
     {
-        //system("clear");
         cout << "Выберите вариант\n";
         cout <<"1)Положить в таблицу строковое значение и целочисленный ключ\n"
                "2)Найти строку по ключу\n"
@@ -27,17 +26,17 @@ void Table_app::menu()
         {
             case 1:
             {
-                put_cell_key();
+                putCellKey();
                 break;
             }
             case 2:
             {
-                find_cell_by_key();
+                findCellByKey();
                 break;
             }
             case 3:
             {
-                copy_object();
+                copyObject();
                 break;
             }
         }
@@ -46,7 +45,7 @@ void Table_app::menu()
 }
 
 
-void Table_app::put_cell_key()
+void TableApp::putCellKey()
 {
     string str;
     int k;
@@ -58,16 +57,24 @@ void Table_app::put_cell_key()
     table.put(str,k);
 }
 
-void Table_app::find_cell_by_key()
+void TableApp::findCellByKey()
 {
     int k;
     cout << "Введите целочисленный ключ\n";
     cin >> k;
-    cout << table[k];
+    try
+    {
+        cout << table[k];
+    }
+    catch(const char* e)
+    {
+        cout << e;
+    }
+
     cout << endl;
 }
 
-void Table_app::copy_object()
+void TableApp::copyObject()
 {
-    Table new_table(table);
+    Table newTable(table);
 }

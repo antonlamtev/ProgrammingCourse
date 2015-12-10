@@ -13,7 +13,7 @@ class Exchange
 public:
     Exchange();
     ~Exchange();
-    Coins exchange_money(const int money_amount) const;
+    Coins exchangeMoney(const int moneyAmount) const;
 };
 
 #endif // EXCHANGE_H

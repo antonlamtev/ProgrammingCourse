@@ -5,60 +5,61 @@
 
 #include "exchange.h"
 #include "queens.h"
-#include "long_division.h"
+#include "longDivision.h"
 #include "matrix.h"
+#include "text.h"
 
-class Unit_tests_cpp : public QObject
+class TestCpp : public QObject
 {
     Q_OBJECT
 
 public:
-    Unit_tests_cpp();
+    TestCpp();
 
 private Q_SLOTS:
     void testCase1();
-    void test_Exchange();
-    void test_Queens();
-    void test_Long_division();
-    void test_Matrix();
-    void test_Text();
+    void testExchange();
+    void testQueens();
+    void testLongDivision();
+    void testMatrix();
+    void testText();
 };
 
-Unit_tests_cpp::Unit_tests_cpp()
+TestCpp::TestCpp()
 {
 }
 
-void Unit_tests_cpp::testCase1()
+void TestCpp::testCase1()
 {
 }
 
-void Unit_tests_cpp::test_Exchange()
+void TestCpp::testExchange()
 {
     Exchange app;
     Coins coins;
 
-    coins = app.exchange_money(12);
+    coins = app.exchangeMoney(12);
     QCOMPARE(coins.fives, 2);
     QCOMPARE(coins.twos, 1);
     QCOMPARE(coins.ones, 0);
 
-    coins = app.exchange_money(98);
+    coins = app.exchangeMoney(98);
     QCOMPARE(coins.fives, 19);
     QCOMPARE(coins.twos, 1);
     QCOMPARE(coins.ones, 1);
 
-    coins = app.exchange_money(99);
+    coins = app.exchangeMoney(99);
     QCOMPARE(coins.fives, 19);
     QCOMPARE(coins.twos, 2);
     QCOMPARE(coins.ones, 0);
 
-    coins = app.exchange_money(6);
+    coins = app.exchangeMoney(6);
     QCOMPARE(coins.fives, 1);
     QCOMPARE(coins.twos, 0);
     QCOMPARE(coins.ones, 1);
 }
 
-void Unit_tests_cpp::test_Queens()
+void TestCpp::testQueens()
 {
     Queens app;
     Queen q1, q2, q3;
@@ -66,33 +67,33 @@ void Unit_tests_cpp::test_Queens()
     q1 = {1, 2};
     q2 = {3, 4};
     q3 = {5, 6};
-    QCOMPARE(app.get_result(q1, q2, q3), (int) everyone);
+    QCOMPARE(app.getResult(q1, q2, q3), (int) EVERYONE);
 
     q1 = {1, 2};
     q2 = {2, 4};
     q3 = {5, 5};
-    QCOMPARE(app.get_result(q1, q2, q3), (int) no_one);
+    QCOMPARE(app.getResult(q1, q2, q3), (int) NO_ONE);
 
     q1 = {1, 8};
     q2 = {1, 4};
     q3 = {8, 1};
-    QCOMPARE(app.get_result(q1, q2, q3), (int) OneTwo_OneThree);
+    QCOMPARE(app.getResult(q1, q2, q3), (int) OneTwo_OneThree);
 }
 
-void Unit_tests_cpp::test_Long_division()
+void TestCpp::testLongDivision()
 {
-    Long_division app;
+    LongDivision app;
     const char* expected;
     char* actual;
 
     actual = new char[37];
-    app.put_result_to_array(actual, 128, 2);
+    app.putResultToArray(actual, 128, 2);
     expected = "128|2\n12  64\n--\n 08\n  8\n --\n  0";
     QCOMPARE((std::string) actual == (std::string) expected, true);
     delete[] actual;
 }
 
-void Unit_tests_cpp::test_Matrix()
+void TestCpp::testMatrix()
 {
     Matrix app;
     int** actual = new int* [5];
@@ -107,7 +108,7 @@ void Unit_tests_cpp::test_Matrix()
 
     actual[0][3] = 0; actual[1][1] = 0; actual[2][4] = 0; actual[3][0] = 0; actual[4][2] = 0;
 
-    app.sort_nulls_to_the_main_diagonal(actual, 5);
+    app.sortNullsToTheMainDiagonal(actual, 5);
 
     int expected[5][5] = {{0, 4, 7, 10, 13},
                           {1, 0, 3,  4,  5},
@@ -128,11 +129,16 @@ void Unit_tests_cpp::test_Matrix()
     delete[] actual;
 }
 
-void Unit_tests_cpp::test_Text()
+void TestCpp::testText()
 {
-
+    Text app;
+    string finalLine;
+    string initialLine = "hfsdfsg deq";
+    app.symmetrizeLine(finalLine, initialLine, 25);
+    string expected = "       hfsdfsg deq";
+    QCOMPARE(finalLine == expected, 1);
 }
 
-QTEST_APPLESS_MAIN(Unit_tests_cpp)
+QTEST_APPLESS_MAIN(TestCpp)
 
-#include "unit_tests_cpp.moc"
+#include "testcpp.moc"

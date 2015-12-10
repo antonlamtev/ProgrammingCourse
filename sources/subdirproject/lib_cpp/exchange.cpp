@@ -8,11 +8,11 @@ Exchange::~Exchange()
 {
 }
 
-Coins Exchange::exchange_money(const int money_amount) const
+Coins Exchange::exchangeMoney(const int moneyAmount) const
 {
     Coins coins;
-    coins.fives = money_amount / 5;
-    coins.twos = (money_amount - coins.fives * 5) / 2;
-    coins.ones = money_amount - coins.fives * 5 - coins.twos * 2;
+    coins.fives = moneyAmount / 5;
+    coins.twos = (moneyAmount - coins.fives * 5) / 2;
+    coins.ones = moneyAmount - coins.fives * 5 - coins.twos * 2;
     return coins;
 }

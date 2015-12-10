@@ -1,14 +1,16 @@
 #ifndef TEXT_H
 #define TEXT_H
 
+#include <iostream>
+
+using namespace std;
 
 class Text
 {
 public:
     Text();
     ~Text();
-//    void symmetrize_line(char* final_line, char* initial_line, int max_length_of_line);
-//    void determine_file_proportions(char* input_file_name, int* number_of_lines, int* max_length_of_line);
+    void symmetrizeLine(string& finalLine, string& initialLine, int maxLengthOfLine);
 };
 
 #endif // TEXT_H
