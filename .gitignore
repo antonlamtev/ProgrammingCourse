@@ -1,5 +1,4 @@
 build*
-*.pro.user*
 *.aux
 *.log
 *.synctex.gz
