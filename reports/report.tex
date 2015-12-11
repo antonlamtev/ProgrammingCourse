@@ -1,0 +1,278 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+%\usepackage{tikz-uml}               % uml диаграммы
+
+% Генератор текста
+\usepackage{blindtext}
+
+%------------------------------------------------------------------------------
+
+% Подсветка синтаксиса
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{listings}
+ 
+ % Цвета для кода
+\definecolor{string}{HTML}{B40000} % цвет строк в коде
+\definecolor{comment}{HTML}{008000} % цвет комментариев в коде
+\definecolor{keyword}{HTML}{1A00FF} % цвет ключевых слов в коде
+\definecolor{morecomment}{HTML}{8000FF} % цвет include и других элементов в коде
+\definecolor{captiontext}{HTML}{FFFFFF} % цвет текста заголовка в коде
+\definecolor{captionbk}{HTML}{999999} % цвет фона заголовка в коде
+\definecolor{bk}{HTML}{FFFFFF} % цвет фона в коде
+\definecolor{frame}{HTML}{999999} % цвет рамки в коде
+\definecolor{brackets}{HTML}{B40000} % цвет скобок в коде
+ 
+ % Настройки отображения кода
+\lstset{
+language=C, % Язык кода по умолчанию
+morekeywords={*,...}, % если хотите добавить ключевые слова, то добавляйте
+ % Цвета
+keywordstyle=\color{keyword}\ttfamily\bfseries,
+stringstyle=\color{string}\ttfamily,
+commentstyle=\color{comment}\ttfamily\itshape,
+morecomment=[l][\color{morecomment}]{\#}, 
+ % Настройки отображения     
+breaklines=true, % Перенос длинных строк
+basicstyle=\ttfamily\footnotesize, % Шрифт для отображения кода
+backgroundcolor=\color{bk}, % Цвет фона кода
+%frame=lrb,xleftmargin=\fboxsep,xrightmargin=-\fboxsep, % Рамка, подогнанная к заголовку
+frame=tblr
+rulecolor=\color{frame}, % Цвет рамки
+tabsize=3, % Размер табуляции в пробелах
+showstringspaces=false,
+ % Настройка отображения номеров строк. Если не нужно, то удалите весь блок
+numbers=left, % Слева отображаются номера строк
+stepnumber=1, % Каждую строку нумеровать
+numbersep=5pt, % Отступ от кода 
+numberstyle=\small\color{black}, % Стиль написания номеров строк
+ % Для отображения русского языка
+extendedchars=true,
+literate={Ö}{{\"O}}1
+  {Ä}{{\"A}}1
+  {Ü}{{\"U}}1
+  {ß}{{\ss}}1
+  {ü}{{\"u}}1
+  {ä}{{\"a}}1
+  {ö}{{\"o}}1
+  {~}{{\textasciitilde}}1
+  {а}{{\selectfont\char224}}1
+  {б}{{\selectfont\char225}}1
+  {в}{{\selectfont\char226}}1
+  {г}{{\selectfont\char227}}1
+  {д}{{\selectfont\char228}}1
+  {е}{{\selectfont\char229}}1
+  {ё}{{\"e}}1
+  {ж}{{\selectfont\char230}}1
+  {з}{{\selectfont\char231}}1
+  {и}{{\selectfont\char232}}1
+  {й}{{\selectfont\char233}}1
+  {к}{{\selectfont\char234}}1
+  {л}{{\selectfont\char235}}1
+  {м}{{\selectfont\char236}}1
+  {н}{{\selectfont\char237}}1
+  {о}{{\selectfont\char238}}1
+  {п}{{\selectfont\char239}}1
+  {р}{{\selectfont\char240}}1
+  {с}{{\selectfont\char241}}1
+  {т}{{\selectfont\char242}}1
+  {у}{{\selectfont\char243}}1
+  {ф}{{\selectfont\char244}}1
+  {х}{{\selectfont\char245}}1
+  {ц}{{\selectfont\char246}}1
+  {ч}{{\selectfont\char247}}1
+  {ш}{{\selectfont\char248}}1
+  {щ}{{\selectfont\char249}}1
+  {ъ}{{\selectfont\char250}}1
+  {ы}{{\selectfont\char251}}1
+  {ь}{{\selectfont\char252}}1
+  {э}{{\selectfont\char253}}1
+  {ю}{{\selectfont\char254}}1
+  {я}{{\selectfont\char255}}1
+  {А}{{\selectfont\char192}}1
+  {Б}{{\selectfont\char193}}1
+  {В}{{\selectfont\char194}}1
+  {Г}{{\selectfont\char195}}1
+  {Д}{{\selectfont\char196}}1
+  {Е}{{\selectfont\char197}}1
+  {Ё}{{\"E}}1
+  {Ж}{{\selectfont\char198}}1
+  {З}{{\selectfont\char199}}1
+  {И}{{\selectfont\char200}}1
+  {Й}{{\selectfont\char201}}1
+  {К}{{\selectfont\char202}}1
+  {Л}{{\selectfont\char203}}1
+  {М}{{\selectfont\char204}}1
+  {Н}{{\selectfont\char205}}1
+  {О}{{\selectfont\char206}}1
+  {П}{{\selectfont\char207}}1
+  {Р}{{\selectfont\char208}}1
+  {С}{{\selectfont\char209}}1
+  {Т}{{\selectfont\char210}}1
+  {У}{{\selectfont\char211}}1
+  {Ф}{{\selectfont\char212}}1
+  {Х}{{\selectfont\char213}}1
+  {Ц}{{\selectfont\char214}}1
+  {Ч}{{\selectfont\char215}}1
+  {Ш}{{\selectfont\char216}}1
+  {Щ}{{\selectfont\char217}}1
+  {Ъ}{{\selectfont\char218}}1
+  {Ы}{{\selectfont\char219}}1
+  {Ь}{{\selectfont\char220}}1
+  {Э}{{\selectfont\char221}}1
+  {Ю}{{\selectfont\char222}}1
+  {Я}{{\selectfont\char223}}1
+  {і}{{\selectfont\char105}}1
+  {ї}{{\selectfont\char168}}1
+  {є}{{\selectfont\char185}}1
+  {ґ}{{\selectfont\char160}}1
+  {І}{{\selectfont\char73}}1
+  {Ї}{{\selectfont\char136}}1
+  {Є}{{\selectfont\char153}}1
+  {Ґ}{{\selectfont\char128}}1
+  {\{}{{{\color{brackets}\{}}}1 % Цвет скобок {
+  {\}}{{{\color{brackets}\}}}}1 % Цвет скобок }
+}
+ 
+ % Для настройки заголовка кода
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{сaptiontext}}
+\DeclareCaptionFormat{listing}{\parbox{\linewidth}{\colorbox{сaptionbk}{\parbox{\linewidth}{#1#2#3}}\vskip-4pt}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\renewcommand{\lstlistingname}{Код} % Переименование Listings в нужное именование структуры
+
+
+%------------------------------------------------------------------------------
+
+\author{А.~Ю.~Ламтев}
+\title{Программирование}
+\begin{document}
+\maketitle
+\chapter{Основные конструкции языка}
+%############################################################
+\section{Задание 1}
+\subsection{Задание}
+Пользователь задает сумму денег в рублях, меньшую 100 (например, 16). Определить, как выдать эту сумму монетами по 5, 2 и 1 рубль, израсходовав наименьшее количество монет (например, 3 х 5р + 0 х 2р + 1 х 1р).
+\subsection{Теоретические сведения}
+
+%Конструкции языка, библиотечные функции, инструменты использованные при разработке приложения.
+При разработке приложения были задействованы следующие конструкции языка: оператор \textbf{\textit{switch}}, структуры данных \textbf{\textit{struct}} -- и были использованы функции стандартной библиотеки \textbf{\textit{printf()}}, \textbf{\textit{scanf()}} и \textbf{\textit{puts()}}, определённые в заголовочном файле \textbf{\textit{stdio.h}}; \textbf{\textit{atoi()}}, определённая в \textbf{\textit{stdlib.h}}. 
+
+%Сведения о предметной области, которые позволили реализовать алгоритм решения задачи.
+Я решил, что разменять сумму денег монетами номиналом 5, 2 и 1 руб. можно следующим образом. Необходимо, чтобы монет большего номинала было больше, чем монет меньшего номинала, насколько это возможно. Это послужило основой для реализации алгоритма.
+
+\subsection{Проектирование}
+%Какие функции было решено выделить, какие у этих функций контракты, как организовано взаимодействие с пользователем (чтение/запись из консоли, из файла, из параметров командной строки), форматы файлов и др.
+В ходе проектирования было решено выделить пять функций, одна из которых отвечает за логику, а остальные за взаимодействие с пользователем.
+\begin{enumerate}
+\item \textbf{Логика}
+\begin{itemize}
+\item \textbf{\textit{change\_by\_coins()}}
+
+Эта функция вычисляет результат. Она содержит один целочисленный параметр - сумму денег, которую необходимо разменять. Возвращаемое значение имеет структурный тип, который включает 3 целочисленных поля: число монеток в 5 руб, число монеток в 2 руб и число монеток в 1 руб.
+\end{itemize}
+\textbf{\item Взаимодействие с пользователем}
+\begin{itemize}
+\item \textbf{\textit{exchange\_output()}}
+
+Эта функция выводит в консоль результат функции \textbf{\textit{change\_by\_coins()}}. Она содержит один параметр структурного типа, который включает 3 целочисленных поля: число монеток в 5 руб, число монеток в 2 руб и число монеток в 1 руб. Возвращаемое значение имеет тип \textbf{\textit{void}}.
+\end{itemize}
+\begin{itemize}
+\item \textbf{\textit{exchange\_parameters()}}
+
+Эта функция отвечает за взаимодействие с пользователем при чтении данных из параметров командной строки. Она содержит 2 параметра: типа \textbf{\textit{int}} - количество аргументов командной строки и типа \textbf{\textit{char**}} - массив, содержащий эти аргументы. Считывает данные из параметров командной строки. Вызывает функцию \textbf{\textit{exchange\_output()}}, которая в свою очередь выводит в консоль результат. Возвращает пустое значение.
+\end{itemize}
+\begin{itemize}
+\item \textbf{\textit{exchange()}}
+
+Эта функция отвечает за взаимодействие с пользователем в интерактивном режиме. Она не имеет параметров. Выводит в консоль сообщение о том, что нужно ввести число. Осуществляет контролируемый ввод данных. Вызывает функцию \textbf{\textit{exchange\_output()}}, которая уже и выводит в консоль результат. Возвращает пустое значение.
+\end{itemize}
+\end{enumerate}
+\subsection{Описание тестового стенда и методики тестирования}
+%Среда, компилятор, операционная система, др.
+
+\begin{flushleft}
+\textbf{Интегрированная среда разработки:} Qt Creator 3.5.0 (opensource)
+
+\textbf{Компилятор:} GCC 4.9.1 20140922 (Red Hat 4.9.1-10)
+
+\textbf{Операционная система:} Debian GNU/Linux 8 (jessie) 32-бита (version 3.14.1)
+\end{flushleft}
+%Ручное тестирование, автоматическое, статический анализ кода, динамический.
+
+На всех стадиях разработки приложения проходило тестирование, ручное и автоматическое. Последнее осуществлялось посредством модульных тестов \textbf{Qt}, основанных на библиотеке  \textit{\textbf{QTestLib}}.
+
+На финальной стадии был проведён статический анализ с помощью утилиты \textbf{cppcheck}% и динамический анализ с помощью утилиты \textbf{valgrid}.
+\subsection{Тестовый план и результаты тестирования}
+%Описание по шагам хода тестирования, с указанием соответствия или несоответствия ожидаемым результатам.
+\begin{enumerate}
+\item \textbf{Модульное тестирование Qt}
+\begin{description}
+\item[I тест]\textbf{:}
+
+\begin{flushleft}
+\begin{description}
+\item[Входные данные:] 28
+\item[Выходные данные:] 5 2 1
+\item[Результат:] Тест успешно пройден
+\end{description}
+\end{flushleft}
+
+\end{description}
+
+\begin{description}
+\item[II тест]\textbf{:}
+
+\begin{flushleft}
+\begin{description}
+\item[Входные данные:] 44
+\item[Выходные данные:] 8 0 2
+\item[Результат:] Тест успешно пройден
+\end{description}
+\end{flushleft}
+
+\end{description}
+
+\item \textbf{Статический анализ cppcheck}
+
+Утилита \textbf{cppcheck} не выявила ошибок.
+\end{enumerate}
+\subsection{Выводы}
+%Слова от чистого сердца
+В ходе выполнения работы я получил опыт создания многомодульного приложения с отделением логики от взаимодействия с пользователем. Укрепил навыки в создании структурных типов. А также научился тестировать программу с помощью модульных тестов и анализировать с помощью утилиты \textbf{cppcheck}.
+\subsection*{Листинги}
+\lstinputlisting[]
+{../sources/subdirproject/app_c/exchange_ui.c}
+
+\lstinputlisting[]
+{../sources/subdirproject/lib_c/exchange_of_coins_process.c}
+
+%\todo[inline]{Не забыть вставить все исходники}
+%############################################################
+
+\section{Задание 2}
+\subsection{Задание}
+\subsection{Теоретические сведения}
+\subsection{Проектирование}
+\subsection{Описание тестового стенда и методики тестирования}
+\subsection{Тестовый план и результаты тестирования}
+\subsection{Выводы}
+%############################################################
+\chapter{Циклы}
+\section{Задание 1}
+\subsection{Задание}
+\subsection{Теоритические сведения}
+\subsection{Проектирование}
+\subsection{Описание тестового стенда и методики тестирования}
+\subsection{Тестовый план и результаты тестирования}
+\subsection{Выводы}
+
+\end{document}
