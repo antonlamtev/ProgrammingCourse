@@ -4,12 +4,12 @@
 #include "exchange.h"
 #include "main.h"
 
-void exchange_output(int fives, int twos, int ones)
+void exchange_output(struct purse coins)
 {
     printf("Пятирублёвых монет: %i\n"
            "Двухрублёвых монет: %i\n"
            "Рублёвых монет: %i\n",
-           fives, twos, ones);
+           coins.fives, coins.twos, coins.ones);
 }
 
 void exchange(void)
@@ -25,7 +25,7 @@ void exchange(void)
     while (number >= 100);
 
     coins = change_by_coins(number);
-    exchange_output(coins.fives, coins.twos, coins.ones);
+    exchange_output(coins);
 }
 
 void exchange_parameters(int argc, char** argv)
@@ -39,7 +39,7 @@ void exchange_parameters(int argc, char** argv)
         {
             int num = atoi(argv[2]);
             struct purse coins = change_by_coins(num);
-            exchange_output(coins.fives, coins.twos, coins.ones);
+            exchange_output(coins);
             break;
         }
         default:
