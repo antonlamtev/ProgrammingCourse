@@ -12,7 +12,7 @@ Coins Exchange::exchangeMoney(const int moneyAmount) const
 {
     Coins coins;
     coins.fives = moneyAmount / 5;
-    coins.twos = (moneyAmount - coins.fives * 5) / 2;
-    coins.ones = moneyAmount - coins.fives * 5 - coins.twos * 2;
+    coins.twos = (moneyAmount % 5) / 2;
+    coins.ones = (moneyAmount % 5) % 2;
     return coins;
 }
