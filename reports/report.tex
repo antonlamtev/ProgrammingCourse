@@ -156,6 +156,8 @@ literate={Ö}{{\"O}}1
 \title{Программирование}
 \begin{document}
 \maketitle
+\tableofcontents{}
+
 \chapter{Основные конструкции языка}
 %############################################################
 \section{Задание 1. Размен}
@@ -464,7 +466,7 @@ literate={Ö}{{\"O}}1
 \subsection{Теоритические сведения}
 %Конструкции языка, библиотечные функции, инструменты использованные при разработке приложения.
 \hspace{\parindent}
-При разработке приложения были задействованы следующие конструкции языка: оператор выбора switch, операторы ветвления \textbf{if} и \textbf{if-else-if}, оператор цикла с предусловием \textbf{while} и оператор цикла со счётчиком \textbf{for} -- и были использованы функции стандартной библиотеки \textit{scanf} и \textit{puts}, определённые в заголовочном файле \textit{stdio.h}; \textit{atoi}, \textit{calloc}, \textit{free}, определённые в \textit{stdlib.h}.
+При разработке приложения были задействованы следующие конструкции языка: оператор выбора \textbf{switch}, операторы ветвления \textbf{if} и \textbf{if-else-if}, оператор цикла с предусловием \textbf{while} и оператор цикла со счётчиком \textbf{for} -- и были использованы функции стандартной библиотеки \textit{scanf} и \textit{puts}, определённые в заголовочном файле \textit{stdio.h}; \textit{atoi}, \textit{calloc}, \textit{free}, определённые в \textit{stdlib.h}.
 
 %Сведения о предметной области, которые позволили реализовать алгоритм решения задачи.
 \hspace{\parindent}
@@ -607,7 +609,7 @@ literate={Ö}{{\"O}}1
 \subsection{Теоритические сведения}
 %Конструкции языка, библиотечные функции, инструменты использованные при разработке приложения.
 \hspace{\parindent}
-При разработке приложения были задействованы следующие конструкции языка: оператор выбора switch, оператор ветвления \textbf{if}, оператор цикла со счётчиком \textbf{for} -- и были использованы функции стандартной библиотеки \textit{fopen}, \textit{fclose}, \textit{fscanf}, \textit{fprintf} и \textit{puts}, определённые в заголовочном файле \textit{stdio.h}; \textit{atoi}, \textit{malloc}, \textit{free}, определённые в \textit{stdlib.h}.
+При разработке приложения были задействованы следующие конструкции языка: оператор выбора \textbf{switch}, оператор ветвления \textbf{if}, оператор цикла со счётчиком \textbf{for} -- и были использованы функции стандартной библиотеки \textit{fopen}, \textit{fclose}, \textit{fscanf}, \textit{fprintf} и \textit{puts}, определённые в заголовочном файле \textit{stdio.h}; \textit{atoi}, \textit{malloc}, \textit{free}, определённые в \textit{stdlib.h}.
 
 %Сведения о предметной области, которые позволили реализовать алгоритм решения задачи.
 \hspace{\parindent}
@@ -734,5 +736,293 @@ literate={Ö}{{\"O}}1
 \end{itemize}
 
 
+%##################################################################################################################################################
+%
+%##################################################################################################################################################
+\chapter{Строки}
+\section{Задание 1. Отцентровать текст}
+\subsection{Задание}
+\hspace{\parindent}
+Каждую строку заданного текста вывести на экран симметрично относительно его центра.
+\subsection{Теоритические сведения}
+%Конструкции языка, библиотечные функции, инструменты использованные при разработке приложения.
+\hspace{\parindent}
+При разработке приложения были задействованы следующие конструкции языка: оператор выбора \textbf{switch}, оператор ветвления \textbf{if}, оператор цикла со счётчиком \textbf{for}, оператор цикла с предусловием \textbf{while} -- и были использованы функции стандартной библиотеки \textit{fopen}, \textit{fclose}, \textit{fgets}, \textit{fputs} и \textit{puts}, определённые в заголовочном файле \textit{stdio.h}; \textit{atoi}, \textit{calloc}, \textit{free}, определённые в \textit{stdlib.h}; \textit{strlen}, \textit{memset} и \textit{strcat}, определённые в \textit{string.h}.
+
+%Сведения о предметной области, которые позволили реализовать алгоритм решения задачи.
+\hspace{\parindent}
+Мне не раз приходилось центровать текст в текстовых редакторах, поэтому именно этот опыт стал основой для реализации алгоритма решения задачи.
+\subsection{Проектирование}
+%Какие функции было решено выделить, какие у этих функций контракты, как организовано взаимодействие с пользователем (чтение/запись из консоли, из файла, из параметров командной строки), форматы файлов и др.
+\hspace{\parindent}
+В ходе проектирования было решено выделить 5 функций, 2 из которых отвечают за логику, а остальные -- за взаимодействие с пользователем.
+\begin{enumerate}
+\item \textbf{Логика}
+\begin{itemize}
+
+\item \verb-determine_file_proportions-
+
+Эта функция открывает файл, проходит по тексту, лежащему в нем, и определяет число строк и максимальную длину строки в этом тексте, а затем закрывает файл. Она имеет три аргумента: \textit{\textbf{char*}} - имя файла, \textit{\textbf{int*}} - указатель на число строк и \textit{\textbf{int*}} - указатель на максимальную длину строки. Возвращает значение типа \textit{\textbf{void}}.
+\end{itemize}
+
+\begin{itemize}
+\item \verb-symmetrize_line-
+
+Эта функция добавляет в начало строки необходимое число пробелов. Она имеет 3 аргумента: \textit{\textbf{char*}} - строка, в которую помещается результат; \textit{\textbf{char*}} - исходная строка; \textit{\textbf{int}}  - максимальная длина строки в тексте. Возвращает пустое значение.
+\end{itemize}
+
+\textbf{\item Взаимодействие с пользователем}
+
+\begin{itemize}
+\item \verb-help_lines_symmetrization-
+
+Эта функция выводит в консоль информацию о том, как запускать приложение \textbf{Центрирование строк} из параметров командной строки. Она не имеет аргументов и возвращает пустое значение. 
+\end{itemize}
+
+\begin{itemize}
+\item \verb-lines_symmetrization_parameters-
+
+Эта функция отвечает за взаимодействие с пользователем при вводе данных через параметры командной строки. Она содержит 2 параметра: типа \textbf{\textit{int}} - количество аргументов командной строки и типа \textbf{\textit{char**}} - массив, содержащий эти аргументы. Считывает данные из параметров командной строки - названия файлов, из которых осуществляется ввод строк текста, и в которые осуществляется вывод обработанных строк текста. Вызывает функции \textit{determine\_file\_proportions} и \textit{symmetrize\_line}. Возвращаемое значение - \textit{\textbf{void}}.
+\end{itemize}
+
+\begin{itemize}
+\item \verb-lines_symmetrization-
+
+Эта функция отвечает за взаимодействие с пользователем при запуске приложения в интерактивном режиме. Она содержит два аргумента типа \textbf{\textit{char*} }- названия файлов для ввода и вывода.  Динамически выделяет память под строки, в которые будет происходить запись с файла, и в которые будут записываться обработанные строки. Вызывает функции \textit{determine\_file\_proportions} и \textit{symmetrize\_line}. Выводит полученный текст построчно в консоль. Освобождает выделенную память. Возвращаемое значение - \textit{\textbf{void}}.
+\end{itemize}
+
+
+\end{enumerate}
+\subsection{Описание тестового стенда и методики тестирования}
+%Среда, компилятор, операционная система, др.
+
+\begin{flushleft}
+\textbf{Интегрированная среда разработки:} Qt Creator 3.5.0 (opensource)
+
+\textbf{Компилятор:} GCC 4.9.1 20140922 (Red Hat 4.9.1-10)
+
+\textbf{Операционная система:} Debian GNU/Linux 8 (jessie) 32-бита (version 3.14.1)
+\end{flushleft}
+
+%Ручное тестирование, автоматическое, статический анализ кода, динамический.
+%\hspace{\parindent}
+На всех стадиях разработки приложения проходило автоматическое тестирование c помощью модульных тестов \textit{Qt}, основанных на библиотеке  \textit{QTestLib}.
+
+На финальной стадии был проведён статический анализ с помощью утилиты \textit{cppcheck}% и динамический анализ с помощью утилиты \textit{valgrid}.
+\subsection{Тестовый план и результаты тестирования}
+%Описание по шагам хода тестирования, с указанием соответствия или несоответствия ожидаемым результатам.
+\hspace{\parindent}
+\begin{enumerate}
+\item \textbf{Модульные тесты \textit{Qt}}
+
+\begin{description}
+\item[I тест]
+\hspace{\parindent}
+\begin{flushleft}
+\begin{description}
+\item[Входные данные:] \verb-"sdfjl sfvslk ! asdf"- 30
+
+
+\item[Выходные данные:] \verb-"     sdfjl sfvslk ! asdf"-
+
+\item[Результат:] Тест успешно пройден
+\end{description}
+\end{flushleft}
+\end{description}
+
+\item \textbf{Статический анализ \textit{cppcheck}}
+
+Утилита \textit{cppcheck} не выдала никаких предупреждений.
+\end{enumerate}
+\subsection{Выводы}
+\hspace{\parindent}
+В ходе работы я получил опыт в обработке строк, а также укрепил навык работы с файлами.
+\subsection*{Листинги}
+\begin{itemize}
+\item[] \verb-lines_symmetrization.h-
+\lstinputlisting[]
+{../sources/subdirproject/lib_c/lines_symmetrization.h}
+\item[] \verb-lines_symmetrization_processing.c-
+\lstinputlisting[]
+{../sources/subdirproject/lib_c/lines_symmetrization_processing.c}
+\item[] \verb-lines_symmetrization_ui.c-
+\lstinputlisting[]
+{../sources/subdirproject/app_c/lines_symmetrization_ui.c}
+\end{itemize}
+%################################################################################################################
+%
+%################################################################################################################
+
+\chapter{Приложение к главам 1 - 4}
+
+\section{Листинги}
+\begin{itemize}
+\item[] \verb-main.h-
+\lstinputlisting[]
+{../sources/subdirproject/app_c/main.h}
+
+\item[] \verb-help_ui.c-
+\lstinputlisting[]
+{../sources/subdirproject/app_c/help_ui.c}
+
+\item[] \verb-menu.c-
+\lstinputlisting[]
+{../sources/subdirproject/app_c/menu.c}
+
+\item[] \verb-main.c-
+\lstinputlisting[]
+{../sources/subdirproject/lib_c/lines_symmetrization_processing.c}
+
+\item[] \verb-tst_qt_teststest.cpp-
+\lstinputlisting[]
+{../sources/subdirproject/qt_tests_c/tst_qt_teststest.cpp}
+\end{itemize}
+%################################################################################################################
+%
+%################################################################################################################
+
+\chapter{Введение в классы С++}
+\section{Задание 1. Инкапсуляция. Таблица-ключ-значение}
+\subsection{Задание}
+\hspace{\parindent}
+Реализовать класс ТАБЛИЦА КЛЮЧ-ЗНАЧЕНИЕ (хранит строки, каждой из которых соответствует уникальный целый ключ). Требуемые методы: конструктор, деструктор, копирование, индексация по ключу, добавление нового элемента.
+\subsection{Теоритические сведения}
+%Конструкции языка, библиотечные функции, инструменты использованные при разработке приложения.
+\hspace{\parindent}
+При разработке приложения была задействована объектная ориентированность языка C++. 
+
+\subsection{Проектирование}
+%Какие функции было решено выделить, какие у этих функций контракты, как организовано взаимодействие с пользователем (чтение/запись из консоли, из файла, из параметров командной строки), форматы файлов и др.
+\hspace{\parindent}
+В ходе проектирования было решено выделить 2 класса, 1 из которых отвечают за логику, а другой -- за взаимодействие с пользователем.
+\begin{enumerate}
+\item \textbf{Класс с логикой Table}
+\hspace{\parindent}
+
+Были выделены методы: \textit{Table()} - конструктор, \~Table()- деструктор, \textit{Table(const Table\&)} - конструтор копирования, \textit{put(string*, int*)} - добавление нового элемента и \textit{operator[](int)} - перегруженный оператор индексирования для индексирования по ключу.
+Также были выделены вспомогательные методы.
+\textbf{\item Класс взаимодействия с пользователем TableApp}
+\hspace{\parindent}
+
+Были выделены методы \textit{putCellKey()} - интерфейс для добавления нового элемента, \textit{findCellByKey()} - интерфейс для индексирования по ключу, \textit{copyObject()} - интерфейс для копирования объекта.
+
+\end{enumerate}
+\subsection{Описание тестового стенда и методики тестирования}
+%Среда, компилятор, операционная система, др.
+
+\begin{flushleft}
+\textbf{Интегрированная среда разработки:} Qt Creator 3.5.0 (opensource)
+
+\textbf{Компилятор:} GCC 4.9.1 20140922 (Red Hat 4.9.1-10)
+
+\textbf{Операционная система:} Debian GNU/Linux 8 (jessie) 32-бита (version 3.14.1)
+\end{flushleft}
+
+%Ручное тестирование, автоматическое, статический анализ кода, динамический.
+%\hspace{\parindent}
+На всех стадиях разработки приложения проходило автоматическое тестирование c помощью модульных тестов \textit{Qt}, основанных на библиотеке  \textit{QTestLib}.
+
+На финальной стадии был проведён статический анализ с помощью утилиты \textit{cppcheck}% и динамический анализ с помощью утилиты \textit{valgrid}.
+\subsection{Тестовый план и результаты тестирования}
+%Описание по шагам хода тестирования, с указанием соответствия или несоответствия ожидаемым результатам.
+\hspace{\parindent}
+\begin{enumerate}
+\item \textbf{Модульные тесты \textit{Qt}}
+
+Модульными тестами была протестиована работоспособность методов. Все требуемые методы - добавление элемента, копирование объекта, индексирование по ключу, конструктор и деструктор - работают.
+\item \textbf{Статический анализ \textit{cppcheck}}
+
+Утилита \textit{cppcheck} не выдала никаких предупреждений.
+\end{enumerate}
+\subsection{Выводы}
+\hspace{\parindent}
+Я познакомился с языком С++. Познакомился с новой парадигмой программирования - ООП.
+\subsection*{Листинги}
+\begin{itemize}
+\item[] \verb-table.h-
+\lstinputlisting[]
+{../sources/subdirproject/lib_cpp/table.h}
+
+\item[] \verb-table.cpp-
+\lstinputlisting[]
+{../sources/subdirproject/lib_cpp/table.cpp}
+
+\item[] \verb-tableApp.h-
+\lstinputlisting[]
+{../sources/subdirproject/app_cpp/tableApp.h}
+
+\item[] \verb-tableApp.cpp-
+\lstinputlisting[]
+{../sources/subdirproject/app_cpp/tableApp.cpp}
+\end{itemize}
+
+%################################################################################################################
+%
+%################################################################################################################
+
+\chapter{Классы С++}
+\section{Задание 1. Реализовать классы для всех приложений}
+\subsection{Задание}
+\hspace{\parindent}
+Реализовать классы для всех приложений. Поработать с потоками.
+\subsection{Выводы}
+\hspace{\parindent}
+Получил опыт создания классов. Получил опыт в работе с потоками.
+\subsection*{Листинги}
+\begin{itemize}
+
+
+\item[] \verb-exchange.h-
+\lstinputlisting[]
+{../sources/subdirproject/lib_cpp/exchange.h}
+
+\item[] \verb-exchange.cpp-
+\lstinputlisting[]
+{../sources/subdirproject/lib_cpp/exchange.cpp}
+
+\item[] \verb-queens.h-
+\lstinputlisting[]
+{../sources/subdirproject/lib_cpp/queens.h}
+
+\item[] \verb-queens.cpp-
+\lstinputlisting[]
+{../sources/subdirproject/lib_cpp/queens.cpp}
+
+\item[] \verb-longDivision.h-
+\lstinputlisting[]
+{../sources/subdirproject/lib_cpp/longDivision.h}
+
+\item[] \verb-longDivision.cpp-
+\lstinputlisting[]
+{../sources/subdirproject/lib_cpp/longDivision.cpp}
+
+\item[] \verb-matrix.h-
+\lstinputlisting[]
+{../sources/subdirproject/lib_cpp/matrix.h}
+
+\item[] \verb-matrix.cpp-
+\lstinputlisting[]
+{../sources/subdirproject/lib_cpp/matrix.cpp}
+
+\item[] \verb-text.h-
+\lstinputlisting[]
+{../sources/subdirproject/lib_cpp/text.h}
+
+\item[] \verb-text.cpp-
+\lstinputlisting[]
+{../sources/subdirproject/lib_cpp/text.cpp}
+
+\item[] \verb-matrixapp.h-
+\lstinputlisting[]
+{../sources/subdirproject/app_cpp/matrixapp.h}
+
+\item[] \verb-matrixapp.cpp-
+\lstinputlisting[]
+{../sources/subdirproject/app_cpp/matrixapp.cpp}
+
+\item[] \verb-main.cpp-
+\lstinputlisting[]
+{../sources/subdirproject/app_cpp/main.cpp}
+\end{itemize}
 \end{document}
 
