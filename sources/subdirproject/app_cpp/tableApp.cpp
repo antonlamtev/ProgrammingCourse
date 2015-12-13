@@ -54,7 +54,7 @@ void TableApp::putCellKey()
     cout << "Введите целочисленный ключ\n";
     cin >> k;
     cin.ignore();
-    table.put(str,k);
+    table.put(str, k);
 }
 
 void TableApp::findCellByKey()

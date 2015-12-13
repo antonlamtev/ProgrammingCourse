@@ -14,7 +14,7 @@ class Table
     int currentSize;
     void allocateMoreMemory();
     string indexByKey(const int keyValue);
-    const char* ERROR = "ERROR: there are not any cells with typed key";
+    const char* ERROR_CELL_KEY = "ERROR: there are not any cells with typed key";
     const int ADDITIONAL_SIZE = 10;
 
 public:
@@ -23,6 +23,9 @@ public:
     ~Table();
     void put(const string value, const int key);
     string operator[](const int keyValue);
+    //не нужны по заданию, но нужны для удобного тестирования
+    string getLastElement();
+    int getKeyOfLastElement();
 };
 
 #endif // TABLE_H

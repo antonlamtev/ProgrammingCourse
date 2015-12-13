@@ -64,5 +64,15 @@ string Table::operator[](const int keyValue)
             return cell[i];
         }
     }
-    throw ERROR;
+    throw ERROR_CELL_KEY;
+}
+
+string Table::getLastElement()
+{
+    return cell[index];
+}
+
+int Table::getKeyOfLastElement()
+{
+    return key[index];
 }
