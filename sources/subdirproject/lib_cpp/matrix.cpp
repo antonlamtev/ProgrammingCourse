@@ -7,11 +7,11 @@ Matrix::Matrix()
 Matrix::~Matrix()
 {
 }
-int Matrix::levelOfNull(int**& P, const int size, const int numberOfColumn) const
+int Matrix::levelOfNull(int**& P, const int size, const int numberOfLine) const
 {
     int result = 0;
     for (int i = 0; i < size; ++i)
-        if (P[numberOfColumn][i] == 0)
+        if (P[numberOfLine][i] == 0)
         {
             result = i;
             break;

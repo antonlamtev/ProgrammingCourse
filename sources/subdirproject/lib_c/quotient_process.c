@@ -24,6 +24,7 @@ void put_result_to_array(char* array, int first_number, int second_number)
     int indent = dividend;
     int  crutch = 1; //нужен для правильного числа черточек в случаях, когда разность равна 0 :)
     int index = -1;
+    int num_of_additional_spaces;
     for (int i = 1; i <= numlen(result); ++i)
     {
         if (i == 1)
@@ -50,8 +51,6 @@ void put_result_to_array(char* array, int first_number, int second_number)
             put_number_char_by_char_to_array_with_counter(array, result, &index);
             put_n_symbols_to_array_with_counter(array, 1, '\n', &index);
         }
-
-        int num_of_additional_spaces;
 
         if (i != 1)
             put_n_symbols_to_array_with_counter(array, num_of_additional_spaces, ' ', &index);
