@@ -5,7 +5,7 @@
 #include <fstream>
 
 
-#include "exchange.h"
+#include "setOfCoins.h"
 #include "queens.h"
 #include "longDivision.h"
 #include "matrix.h"
@@ -21,7 +21,7 @@ public:
 
 private Q_SLOTS:
     void testCase1();
-    void testExchange();
+    void testSetOfCoins();
     void testQueens();
     void testLongDivision();
     void testMatrix();
@@ -37,30 +37,42 @@ void TestCpp::testCase1()
 {
 }
 
-void TestCpp::testExchange()
+void TestCpp::testSetOfCoins()
 {
-    Exchange exchange;
-    Coins coins;
+    {
+        SetOfCoins set1;
+        try
+        {
+            SetOfCoins set2(0, 1, 2, 12);
+            set1.putAmount(-2); // : -2 рубля 0_o, что же делать?
+            QCOMPARE(set1.exchange() == set2, true);
+        }
+        catch(const char* e) // : все под контролем!
+        {
+            cout << e << endl;
+        }
+    }
 
-    coins = exchange.exchangeMoney(12);
-    QCOMPARE(coins.fives, 2);
-    QCOMPARE(coins.twos, 1);
-    QCOMPARE(coins.ones, 0);
+    {
+    SetOfCoins set1;
+    SetOfCoins set2(1, 1, 19, 98);
+    set1.putAmount(98);
+    QCOMPARE(set1.exchange() == set2, true);
+    }
 
-    coins = exchange.exchangeMoney(98);
-    QCOMPARE(coins.fives, 19);
-    QCOMPARE(coins.twos, 1);
-    QCOMPARE(coins.ones, 1);
+    {
+    SetOfCoins set1;
+    SetOfCoins set2(0, 2, 19, 99);
+    set1.putAmount(99);
+    QCOMPARE(set1.exchange() == set2, true);
+    }
 
-    coins = exchange.exchangeMoney(99);
-    QCOMPARE(coins.fives, 19);
-    QCOMPARE(coins.twos, 2);
-    QCOMPARE(coins.ones, 0);
-
-    coins = exchange.exchangeMoney(6);
-    QCOMPARE(coins.fives, 1);
-    QCOMPARE(coins.twos, 0);
-    QCOMPARE(coins.ones, 1);
+    {
+    SetOfCoins set1;
+    SetOfCoins set2(1, 0, 1, 6);
+    set1.putAmount(6);
+    QCOMPARE(set1.exchange() == set2, true);
+    }
 }
 
 void TestCpp::testQueens()
@@ -148,9 +160,9 @@ void TestCpp::testTable()
     Table table;
     table.put("hello world!", 128);
     table.put("dfsdg", 256);
-    QCOMPARE(table[128] == "hello world!", 1);
-    QCOMPARE(table.getLastElement() == "dfsdg", 1);
-    QCOMPARE(table.getKeyOfLastElement() == 256, 1);
+    QCOMPARE(table[128] == "hello world!", true);
+    QCOMPARE(table.getLastElement() == "dfsdg", true);
+    QCOMPARE(table.getKeyOfLastElement() == 256, true);
 }
 
 QTEST_APPLESS_MAIN(TestCpp)

@@ -14,19 +14,19 @@ QMAKE_CXXFLAGS += -std=c++11
 
 SOURCES += \
     table.cpp \
-    exchange.cpp \
     queens.cpp \
     matrix.cpp \
     text.cpp \
-    longDivision.cpp
+    longDivision.cpp \
+    setOfCoins.cpp
 
 HEADERS += \
     table.h \
-    exchange.h \
     queens.h \
     matrix.h \
     text.h \
-    longDivision.h
+    longDivision.h \
+    setOfCoins.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
