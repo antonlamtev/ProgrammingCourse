@@ -1,10 +1,13 @@
 build*
+realise*
 *.aux
 *.log
 *.synctex.gz
 *.tdo
 *.toc
 Makefile
-*.o
-*.a
+*.[ao]
 *.moc
+*autosave
+*.in
+*.txt
