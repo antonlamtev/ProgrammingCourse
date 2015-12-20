@@ -66,9 +66,9 @@ void TableApp::findCellByKey()
     {
         cout << table[k];
     }
-    catch(const char* e)
+    catch(NonexistentKeyException& e)
     {
-        cout << e;
+        cout << e.getError();
     }
 
     cout << endl;

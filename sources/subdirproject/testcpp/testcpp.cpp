@@ -3,6 +3,7 @@
 #include <iostream>
 #include <new>
 #include <fstream>
+#include <vector>
 
 
 #include "setOfCoins.h"
@@ -43,13 +44,17 @@ void TestCpp::testSetOfCoins()
         SetOfCoins set1;
         try
         {
-            SetOfCoins set2(0, 1, 2, 12);
-            set1.putAmount(-2); // : -2 рубля 0_o, что же делать?
+            set1.putAmount(12);
+            SetOfCoins set2(0, -1, 2, 12);
             QCOMPARE(set1.exchange() == set2, true);
         }
-        catch(const char* e) // : все под контролем!
+        catch (AmountException& e)
         {
-            cout << e << endl;
+            cout << e.getError() << endl;
+        }
+        catch (CoinException& e)
+        {
+            cout << e.getError() << endl;
         }
     }
 
@@ -77,23 +82,15 @@ void TestCpp::testSetOfCoins()
 
 void TestCpp::testQueens()
 {
-    Queens queens;
-    Queen q1, q2, q3;
-
-    q1 = {1, 2};
-    q2 = {3, 4};
-    q3 = {5, 6};
-    QCOMPARE(queens.getResult(q1, q2, q3), (int) EVERYONE);
-
-    q1 = {1, 2};
-    q2 = {2, 4};
-    q3 = {5, 5};
-    QCOMPARE(queens.getResult(q1, q2, q3), (int) NO_ONE);
-
-    q1 = {1, 8};
-    q2 = {1, 4};
-    q3 = {8, 1};
-    QCOMPARE(queens.getResult(q1, q2, q3), (int) OneTwo_OneThree);
+    try
+    {
+        Queen q1(-1, 4), q2(B, 5);
+        QCOMPARE(q1.amIBeat(q2), true);
+    }
+    catch (CoordinatesException& e)
+    {
+        cout << e.getError() << endl;
+    }
 }
 
 void TestCpp::testLongDivision()
@@ -105,7 +102,7 @@ void TestCpp::testLongDivision()
     actual = new char[37];
     longDivision.putResultToArray(actual, 128, 2);
     expected = "128|2\n12  64\n--\n 08\n  8\n --\n  0";
-    QCOMPARE((std::string) actual == (std::string) expected, true);
+    QCOMPARE((string) actual == (string) expected, true);
     delete[] actual;
 }
 

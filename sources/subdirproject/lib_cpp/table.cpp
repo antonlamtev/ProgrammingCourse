@@ -64,7 +64,7 @@ string Table::operator[](const int keyValue)
             return cell[i];
         }
     }
-    throw ERROR_CELL_KEY;
+    throw NonexistentKeyException(ERROR_CELL_KEY);
 }
 
 string Table::getLastElement()

@@ -6,6 +6,19 @@
 
 using namespace std;
 
+class NonexistentKeyException : public exception
+{
+    string error;
+
+public:
+    NonexistentKeyException(const char* error) : error(error){}
+
+    string getError()
+    {
+        return error;
+    }
+};
+
 class Table
 {
     string* cell;

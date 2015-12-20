@@ -1,6 +1,36 @@
 #ifndef SETOFCOINS_H
 #define SETOFCOINS_H
 
+#include <iostream>
+#include <exception>
+
+using namespace std;
+
+class CoinException : public exception
+{
+    string error;
+
+public:
+    CoinException(const char* error) : error(error){}
+
+    string getError() const
+    {
+        return error;
+    }
+};
+
+class AmountException : public exception
+{
+    string error;
+public:
+    AmountException(const char* error) : error(error){}
+
+    string getError() const
+    {
+        return error;
+    }
+};
+
 class SetOfCoins
 {
     int ones;
@@ -8,12 +38,21 @@ class SetOfCoins
     int fives;
     int moneyAmount;
     const char* ERROR_BAD_AMOUNT = "ERROR: value of moneyAmount you put contradicts the condition";
+    const char* ERROR_BAD_COIN = "ERROR: value of coin can not be negative";
+
 public:
-    SetOfCoins(int ones = 0, int twos = 0, int fives = 0, int moneyAmount = 0) : ones(ones), twos(twos), fives(fives), moneyAmount(moneyAmount)
+    SetOfCoins(int ones, int twos, int fives, int moneyAmount) : ones(ones), twos(twos), fives(fives), moneyAmount(moneyAmount)
     {
-        if (this->moneyAmount > 99 || this->moneyAmount < 0)
-            throw ERROR_BAD_AMOUNT;
+        if (moneyAmount > 99 || moneyAmount < 0)
+        {
+            throw AmountException(ERROR_BAD_AMOUNT);
+        }
+        if (ones < 0 || twos < 0 || fives < 0)
+        {
+            throw CoinException(ERROR_BAD_COIN);
+        }
     }
+    SetOfCoins();
     ~SetOfCoins();
     void putAmount(int moneyAmount);
     SetOfCoins& exchange();
