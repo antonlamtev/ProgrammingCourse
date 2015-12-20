@@ -155,10 +155,9 @@ void TestCpp::testMatrix()
 
 void TestCpp::testText()
 {
-    Text text;
     string finalLine;
     string initialLine = "hfsdfsg deq";
-    text.symmetrizeLine(finalLine, initialLine, 25);
+    Text::symmetrizeLine(finalLine, initialLine, 25);
     string expected = "       hfsdfsg deq";
     QCOMPARE(finalLine == expected, 1);
 }
