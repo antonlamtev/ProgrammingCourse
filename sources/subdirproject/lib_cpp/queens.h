@@ -29,7 +29,7 @@ class Queen
 {    
     int letter;
     int numeral;
-    const char* ERROR_BAD_COORDINATES = "ERROR: wrong queens coordinates";
+    const char* ERROR_BAD_COORDINATES = "ERROR: a wrong queens coordinates";
 public:
     Queen(int letter, int numeral): letter(letter), numeral(numeral)
     {
@@ -41,6 +41,14 @@ public:
     Queen();
     ~Queen();
     bool amIBeat(Queen queen) const;
+};
+
+class ThreeQueens
+{
+public:
+    ThreeQueens();
+    ~ThreeQueens();
+    static WhoBeats whoBeats(vector<Queen>& vec);
 };
 
 #endif // QUEENS_H

@@ -37,8 +37,8 @@ class SetOfCoins
     int twos;
     int fives;
     int moneyAmount;
-    const char* ERROR_BAD_AMOUNT = "ERROR: value of moneyAmount you put contradicts the condition";
-    const char* ERROR_BAD_COIN = "ERROR: value of coin can not be negative";
+    const char* ERROR_BAD_AMOUNT = "ERROR: the value of moneyAmount you put contradicts the condition";
+    const char* ERROR_BAD_COIN = "ERROR: the value of coin can not be negative";
 
 public:
     SetOfCoins(int ones, int twos, int fives, int moneyAmount) : ones(ones), twos(twos), fives(fives), moneyAmount(moneyAmount)

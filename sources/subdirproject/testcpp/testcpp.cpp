@@ -91,6 +91,17 @@ void TestCpp::testQueens()
     {
         cout << e.getError() << endl;
     }
+
+    vector<Queen> queens(3);
+
+    Queen q1(A, 4);
+    queens[0] = q1;
+    Queen q2(B, 5);
+    queens[1] = q2;
+    Queen q3(A, 2);
+    queens[2] = q3;
+
+    QCOMPARE(ThreeQueens::whoBeats(queens) == OneTwo_OneThree, true);
 }
 
 void TestCpp::testLongDivision()
