@@ -1,5 +1,17 @@
 #include "setOfCoins.h"
 
+SetOfCoins::SetOfCoins(int ones, int twos, int fives, int moneyAmount) : ones(ones), twos(twos), fives(fives), moneyAmount(moneyAmount)
+{
+    if (moneyAmount > 99 || moneyAmount < 0)
+    {
+        throw AmountException(ERROR_BAD_AMOUNT);
+    }
+    if (ones < 0 || twos < 0 || fives < 0)
+    {
+        throw CoinException(ERROR_BAD_COIN);
+    }
+}
+
 SetOfCoins::SetOfCoins()
 {
 }

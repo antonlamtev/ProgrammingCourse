@@ -1,5 +1,13 @@
 #include "queens.h"
 
+Queen::Queen(int letter, int numeral): letter(letter), numeral(numeral)
+{
+    if (letter < A || letter > H || numeral < 1 || numeral > 8)
+    {
+        throw CoordinatesException(ERROR_BAD_COORDINATES);
+    }
+}
+
 Queen::Queen()
 {
 }

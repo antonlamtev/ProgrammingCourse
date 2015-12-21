@@ -55,7 +55,7 @@ void Table::put(const string cellValue, const int keyValue)
     key[index] = keyValue;
 }
 
-string Table::operator[](const int keyValue)
+string Table::operator[](const int keyValue) const
 {
     for (auto i = 0; i <= index; ++i)
     {
@@ -67,12 +67,12 @@ string Table::operator[](const int keyValue)
     throw NonexistentKeyException(ERROR_CELL_KEY);
 }
 
-string Table::getLastElement()
+string Table::getLastElement() const
 {
     return cell[index];
 }
 
-int Table::getKeyOfLastElement()
+int Table::getKeyOfLastElement() const
 {
     return key[index];
 }

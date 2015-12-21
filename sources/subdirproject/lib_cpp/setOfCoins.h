@@ -41,17 +41,7 @@ class SetOfCoins
     const char* ERROR_BAD_COIN = "ERROR: the value of coin can not be negative";
 
 public:
-    SetOfCoins(int ones, int twos, int fives, int moneyAmount) : ones(ones), twos(twos), fives(fives), moneyAmount(moneyAmount)
-    {
-        if (moneyAmount > 99 || moneyAmount < 0)
-        {
-            throw AmountException(ERROR_BAD_AMOUNT);
-        }
-        if (ones < 0 || twos < 0 || fives < 0)
-        {
-            throw CoinException(ERROR_BAD_COIN);
-        }
-    }
+    SetOfCoins(int ones, int twos, int fives, int moneyAmount);
     SetOfCoins();
     ~SetOfCoins();
     void putAmount(int moneyAmount);

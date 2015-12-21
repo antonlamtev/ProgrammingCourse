@@ -30,14 +30,9 @@ class Queen
     int letter;
     int numeral;
     const char* ERROR_BAD_COORDINATES = "ERROR: a wrong queens coordinates";
+
 public:
-    Queen(int letter, int numeral): letter(letter), numeral(numeral)
-    {
-        if (letter < A || letter > H || numeral < 1 || numeral > 8)
-        {
-            throw CoordinatesException(ERROR_BAD_COORDINATES);
-        }
-    }
+    Queen(int letter, int numeral);
     Queen();
     ~Queen();
     bool amIBeat(Queen queen) const;

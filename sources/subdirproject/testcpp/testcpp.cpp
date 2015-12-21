@@ -119,38 +119,45 @@ void TestCpp::testLongDivision()
 
 void TestCpp::testMatrix()
 {
-    Matrix matrix;
-    int** actual = new int* [5];
-    for (int i = 0; i < 5; ++i)
+    try
     {
-        actual[i] = new int[5];
-        for (int j = 0; j < 5; ++j)
+        Matrix matrix(5);
+        int dimension = matrix.getDimension();
+        for (int i = 0; i < dimension; ++i)
         {
-            actual[i][j] = i * j + 1;
+            for (int j = 0; j < dimension; ++j)
+            {
+                matrix.put(i * j + 1, i, j);
+            }
+            matrix.put(0, i, dimension - i - 1);
+        }
+
+        matrix.sortNullsToTheMainDiagonal();
+
+        int expected[5][5] = {{0, 5, 9, 13, 17},
+                              {1, 0, 7, 10, 13},
+                              {1, 3, 0, 7, 9},
+                              {1, 2, 3, 0, 5},
+                              {1, 1, 1, 1, 0}};
+
+
+        for (int i = 0; i < dimension; ++i)
+        {
+            for(int j = 0; j < dimension; j++)
+            {
+                QCOMPARE(matrix.get(i, j), expected[i][j]);
+            }
         }
     }
-
-    actual[0][3] = 0; actual[1][1] = 0; actual[2][4] = 0; actual[3][0] = 0; actual[4][2] = 0;
-
-    matrix.sortNullsToTheMainDiagonal(actual, 5);
-
-    int expected[5][5] = {{0, 4, 7, 10, 13},
-                          {1, 0, 3,  4,  5},
-                          {1, 5, 0, 13, 17},
-                          {1, 1, 1,  0,  1},
-                          {1, 3, 5,  7,  0}};
-
-
-    for (int i = 0; i < 5; ++i)
+    catch (BadDimensionException& e)
     {
-        for(int j = 0; j < 5; j++)
-        {
-            QCOMPARE(actual[i][j], expected[i][j]);
-        }
-        delete[] actual[i];
+        cout << e.getError() << endl;
+    }
+    catch (WrongAdressException& e)
+    {
+        cout << "ERROR: incorrect pair of coordinates (" << e.getI() << ", " << e.getJ() << ")" << endl;
     }
 
-    delete[] actual;
 }
 
 void TestCpp::testText()
