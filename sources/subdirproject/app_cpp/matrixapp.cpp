@@ -13,32 +13,43 @@ void matrixApp()
     int matrixSize;
     fileInput >> matrixSize;
 
-    Matrix matrix(matrixSize);
-    for (int i = 0; i < matrixSize; ++i)
+    try
     {
-        for (int j = 0; j < matrixSize; ++j)
+        Matrix matrix(matrixSize);
+
+        for (int i = 0; i < matrixSize; ++i)
         {
-            int value;
-            fileInput >> value;
-            matrix.put(value, i, j);
+            for (int j = 0; j < matrixSize; ++j)
+            {
+                int value;
+                fileInput >> value;
+                matrix.put(value, i, j);
+            }
         }
+
+        fileInput.close();
+
+        matrix.sortNullsToTheMainDiagonal();
+
+        ofstream fileOutput;
+        fileOutput.open("matrix.out");
+        for (int i = 0; i < matrixSize; ++i)
+        {
+            for (int j = 0; j < matrixSize; ++j)
+            {
+                fileOutput << matrix.get(i, j) << " ";
+            }
+            fileOutput << endl;
+        }
+
+        fileOutput.close();
     }
-
-    fileInput.close();
-
-    matrix.sortNullsToTheMainDiagonal();
-
-    ofstream fileOutput;
-    fileOutput.open("matrix.out");
-    for (int i = 0; i < matrixSize; ++i)
+    catch (BadDimensionException& e)
     {
-        for (int j = 0; j < matrixSize; ++j)
-        {
-            fileOutput << matrix.get(i, j) << " ";
-        }
-        fileOutput << endl;
+        cout << e.getError() << endl;
     }
-
-    fileOutput.close();
-
+    catch (WrongAdressException& e)
+    {
+        cout << "ERROR: incorrect pair of coordinates (" << e.getI() << ", " << e.getJ() << ")" << endl;
+    }
 }

@@ -29,6 +29,7 @@ void LongDivision::putResultToArray(char*& array, const int firstNumber,const in
     int indent = dividend;
     int  crutch = 1;
     int index = -1;
+    int numberOfAdditionalSpaces;
     for (int i = 1; i <= numlen(result); ++i)
     {
         if (i == 1)
@@ -55,8 +56,6 @@ void LongDivision::putResultToArray(char*& array, const int firstNumber,const in
             putNumberCharByCharToArrayWithIndexation(array, result, index);
             putNSymbolsToArrayWithIndexation(array, 1, '\n', index);
         }
-
-        int numberOfAdditionalSpaces = 0;
 
         if (i != 1)
             putNSymbolsToArrayWithIndexation(array, numberOfAdditionalSpaces, ' ', index);
