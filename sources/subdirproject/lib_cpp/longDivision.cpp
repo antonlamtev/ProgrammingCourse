@@ -56,7 +56,7 @@ void LongDivision::putResultToArray(char*& array, const int firstNumber,const in
             putNSymbolsToArrayWithIndexation(array, 1, '\n', index);
         }
 
-        int numberOfAdditionalSpaces;
+        int numberOfAdditionalSpaces = 0;
 
         if (i != 1)
             putNSymbolsToArrayWithIndexation(array, numberOfAdditionalSpaces, ' ', index);
