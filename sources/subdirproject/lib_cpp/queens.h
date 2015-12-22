@@ -15,13 +15,19 @@ enum CoordinateLetter {A = 1, B, C, D, E, F, G, H};
 
 class CoordinatesException : public exception
 {
-    string error;
+    int letter;
+    int numeral;
 public:
-    CoordinatesException(const char* error) : error(error){}
+    CoordinatesException(int letter, int numeral) : letter(letter), numeral(numeral){}
 
-    string getError() const
+    int getLetter() const
     {
-        return error;
+        return letter;
+    }
+
+    int getNumeral() const
+    {
+        return numeral;
     }
 };
 
@@ -29,21 +35,16 @@ class Queen
 {    
     int letter;
     int numeral;
-    const char* ERROR_BAD_COORDINATES = "ERROR: a wrong queens coordinates";
 
 public:
-    Queen(int letter, int numeral);
-    Queen();
-    ~Queen();
+    Queen(int letter = A, int numeral = 1);
     bool amIBeat(Queen queen) const;
 };
 
 class ThreeQueens
 {
 public:
-    ThreeQueens();
-    ~ThreeQueens();
-    static WhoBeats whoBeats(vector<Queen>& vec);
+    static WhoBeats whoBeats(Queen q1, Queen q2, Queen q3);
 };
 
 #endif // QUEENS_H

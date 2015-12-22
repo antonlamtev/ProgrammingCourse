@@ -4,38 +4,23 @@ Queen::Queen(int letter, int numeral): letter(letter), numeral(numeral)
 {
     if (letter < A || letter > H || numeral < 1 || numeral > 8)
     {
-        throw CoordinatesException(ERROR_BAD_COORDINATES);
+        throw CoordinatesException(letter, numeral);
     }
 }
 
-Queen::Queen()
-{
-}
-
-Queen::~Queen()
-{
-}
 
 bool Queen::amIBeat(Queen queen) const
 {
     return letter == queen.letter || numeral == queen.numeral || abs(letter - queen.letter) == abs(numeral - queen.numeral);
 }
 
-ThreeQueens::ThreeQueens()
+WhoBeats ThreeQueens::whoBeats(Queen q1, Queen q2, Queen q3)
 {
-}
-
-ThreeQueens::~ThreeQueens()
-{
-}
-
-WhoBeats ThreeQueens::whoBeats(vector<Queen>& vec)
-{
-    if (vec[0].amIBeat(vec[1]))
+    if (q1.amIBeat(q2))
     {
-        if (vec[0].amIBeat(vec[2]))
+        if (q1.amIBeat(q3))
         {
-            if (vec[1].amIBeat(vec[2]))
+            if (q2.amIBeat(q3))
             {
                 return EVERYONE;
             }
@@ -44,7 +29,7 @@ WhoBeats ThreeQueens::whoBeats(vector<Queen>& vec)
                 return OneTwo_OneThree;
             }
         }
-        else if (vec[1].amIBeat(vec[2]))
+        else if (q2.amIBeat(q3))
         {
             return OneTwo_TwoThree;
         }
@@ -53,9 +38,9 @@ WhoBeats ThreeQueens::whoBeats(vector<Queen>& vec)
             return OneTwo;
         }
     }
-    else if (vec[0].amIBeat(vec[2]))
+    else if (q1.amIBeat(q3))
     {
-        if (vec[1].amIBeat(vec[2]))
+        if (q2.amIBeat(q3))
         {
             return OneThree_TwoThree;
         }
@@ -64,7 +49,7 @@ WhoBeats ThreeQueens::whoBeats(vector<Queen>& vec)
             return OneThree;
         }
     }
-    else if (vec[1].amIBeat(vec[2]))
+    else if (q2.amIBeat(q3))
     {
         return TwoThree;
     }

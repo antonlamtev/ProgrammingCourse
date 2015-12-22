@@ -6,28 +6,12 @@
 
 using namespace std;
 
-class CoinException : public exception
-{
-    string error;
-
-public:
-    CoinException(const char* error) : error(error){}
-
-    string getError() const
-    {
-        return error;
-    }
-};
-
 class AmountException : public exception
 {
-    string error;
 public:
-    AmountException(const char* error) : error(error){}
-
     string getError() const
     {
-        return error;
+        return "ERROR: the value of moneyAmount you put contradicts the condition";
     }
 };
 
@@ -37,15 +21,15 @@ class SetOfCoins
     int twos;
     int fives;
     int moneyAmount;
-    const char* ERROR_BAD_AMOUNT = "ERROR: the value of moneyAmount you put contradicts the condition";
-    const char* ERROR_BAD_COIN = "ERROR: the value of coin can not be negative";
 
 public:
-    SetOfCoins(int ones, int twos, int fives, int moneyAmount);
-    SetOfCoins();
-    ~SetOfCoins();
-    void putAmount(int moneyAmount);
-    SetOfCoins& exchange();
+    SetOfCoins(int moneyAmount = 0);
+    void throwAmountException(int& moneyAmount) const;
+    void putAmount(int moneyAmount);    
+    void exchange();
+    int getOnes() const;
+    int getTwos() const;
+    int getFives() const;
     bool operator==(SetOfCoins set);
 };
 

@@ -4,18 +4,15 @@
 #include <iostream>
 #include <vector>
 #include <exception>
+
 using namespace std;
 
 class BadDimensionException : public exception
 {
-    string error;
-
 public:
-    BadDimensionException(const char* error) : error(error){}
-
     string getError() const
     {
-        return error;
+        return "ERROR: the value of matrix dimension can't be negative";
     }
 };
 
@@ -42,12 +39,10 @@ class Matrix
 {
     int dimension;
     vector<vector<int>> matrix;
-    int levelOfNull(const int numberOfColumn) const;
-    const char* ERROR_BAD_DIMENSION = "ERROR: the value of matrix dimension can't be negative";
+    int levelOfNull(const int numberOfLine) const;
 
 public:
     Matrix(int dimension);
-    ~Matrix();
     void sortNullsToTheMainDiagonal();
     void put(int value, int i, int j);
     int get(int i, int j) const;

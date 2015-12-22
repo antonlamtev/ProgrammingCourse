@@ -1,42 +1,50 @@
 #include "setOfCoins.h"
 
-SetOfCoins::SetOfCoins(int ones, int twos, int fives, int moneyAmount) : ones(ones), twos(twos), fives(fives), moneyAmount(moneyAmount)
+void SetOfCoins::throwAmountException(int& moneyAmount) const
 {
     if (moneyAmount > 99 || moneyAmount < 0)
     {
-        throw AmountException(ERROR_BAD_AMOUNT);
-    }
-    if (ones < 0 || twos < 0 || fives < 0)
-    {
-        throw CoinException(ERROR_BAD_COIN);
+        throw AmountException();
     }
 }
 
-SetOfCoins::SetOfCoins()
-{
-}
-
-SetOfCoins::~SetOfCoins()
-{
-}
-
-void SetOfCoins::putAmount(int moneyAmount)
-{
-    if (moneyAmount > 99 || moneyAmount < 0)
-    {
-        throw AmountException(ERROR_BAD_AMOUNT);
-    }
-
-    this->moneyAmount = moneyAmount;
-}
-
-SetOfCoins& SetOfCoins::exchange()
+void SetOfCoins::exchange()
 {
     fives = moneyAmount / 5;
     twos = moneyAmount % 5 / 2;
     ones = moneyAmount % 5 % 2;
+}
 
-    return *this;
+SetOfCoins::SetOfCoins(int moneyAmount) : moneyAmount(moneyAmount)
+{
+    throwAmountException(moneyAmount);
+
+    exchange();
+}
+
+
+void SetOfCoins::putAmount(int moneyAmount)
+{
+    throwAmountException(moneyAmount);
+
+    this->moneyAmount = moneyAmount;
+
+    exchange();
+}
+
+int SetOfCoins::getOnes() const
+{
+    return ones;
+}
+
+int SetOfCoins::getTwos() const
+{
+    return twos;
+}
+
+int SetOfCoins::getFives() const
+{
+    return fives;
 }
 
 bool SetOfCoins::operator==(SetOfCoins set)
