@@ -119,9 +119,10 @@ void TestCpp::testLongDivision()
 
 void TestCpp::testMatrix()
 {
+    //QVERIFY_EXCEPTION_THROWN(Matrix matrix(-5), BadDimensionException);
     try
     {
-        Matrix matrix(5);
+        Matrix matrix(-5);
         int dimension = matrix.getDimension();
         for (int i = 0; i < dimension; ++i)
         {

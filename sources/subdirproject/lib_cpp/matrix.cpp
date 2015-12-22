@@ -1,12 +1,12 @@
 #include "matrix.h"
 
-Matrix::Matrix(int dimension) : dimension(dimension), matrix(dimension)
+Matrix::Matrix(int dimension) : dimension(dimension)/*, matrix(dimension)*/
 {
     if (dimension < 0)
     {
         throw BadDimensionException(ERROR_BAD_DIMENSION);
     }
-
+    matrix.resize(dimension);
     for (auto& row : matrix)
     {
         row.resize(dimension);
