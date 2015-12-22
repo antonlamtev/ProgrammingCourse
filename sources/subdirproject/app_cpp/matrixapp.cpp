@@ -13,24 +13,20 @@ void matrixApp()
     int matrixSize;
     fileInput >> matrixSize;
 
-    int** matrix;
-    matrix = new int* [matrixSize];
-    for (int i = 0; i < matrixSize; ++i)
-    {
-        matrix[i] = new int[matrixSize];
-    }
+    Matrix matrix(matrixSize);
     for (int i = 0; i < matrixSize; ++i)
     {
         for (int j = 0; j < matrixSize; ++j)
         {
-            fileInput >> matrix[i][j];
+            int value;
+            fileInput >> value;
+            matrix.put(value, i, j);
         }
     }
 
     fileInput.close();
 
-    Matrix app;
-    app.sortNullsToTheMainDiagonal(matrix, matrixSize);
+    matrix.sortNullsToTheMainDiagonal();
 
     ofstream fileOutput;
     fileOutput.open("matrix.out");
@@ -38,16 +34,11 @@ void matrixApp()
     {
         for (int j = 0; j < matrixSize; ++j)
         {
-            fileOutput << matrix[i][j] << " ";
+            fileOutput << matrix.get(i, j) << " ";
         }
         fileOutput << endl;
     }
 
     fileOutput.close();
 
-    for (int i = 0; i < matrixSize; ++i)
-    {
-        delete[] matrix[i];
-    }
-    delete[] matrix;
 }

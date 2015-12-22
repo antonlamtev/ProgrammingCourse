@@ -1,60 +1,75 @@
 #include "queens.h"
 
-Queens::Queens()
+Queen::Queen(int letter, int numeral): letter(letter), numeral(numeral)
 {
-}
-
-Queens::~Queens()
-{
-}
-
-int Queens::checkForBeating(const Queen q1, const Queen q2) const
-{
-    return (q1.x == q2.x || q1.y == q2.y) || (abs(q1.x-q2.x) == abs(q1.y-q2.y));
-}
-
-int Queens::getResult(const Queen q1, const Queen q2, const Queen q3) const
-{
-    int result = NO_ONE;
-    if (checkForBeating(q1, q2))
+    if (letter < A || letter > H || numeral < 1 || numeral > 8)
     {
-        if (checkForBeating(q1, q3))
+        throw CoordinatesException(ERROR_BAD_COORDINATES);
+    }
+}
+
+Queen::Queen()
+{
+}
+
+Queen::~Queen()
+{
+}
+
+bool Queen::amIBeat(Queen queen) const
+{
+    return letter == queen.letter || numeral == queen.numeral || abs(letter - queen.letter) == abs(numeral - queen.numeral);
+}
+
+ThreeQueens::ThreeQueens()
+{
+}
+
+ThreeQueens::~ThreeQueens()
+{
+}
+
+WhoBeats ThreeQueens::whoBeats(vector<Queen>& vec)
+{
+    if (vec[0].amIBeat(vec[1]))
+    {
+        if (vec[0].amIBeat(vec[2]))
         {
-            if (checkForBeating(q2, q3))
+            if (vec[1].amIBeat(vec[2]))
             {
-                result = EVERYONE;
+                return EVERYONE;
             }
             else
             {
-                result = OneTwo_OneThree;
+                return OneTwo_OneThree;
             }
+        }
+        else if (vec[1].amIBeat(vec[2]))
+        {
+            return OneTwo_TwoThree;
         }
         else
         {
-            if (checkForBeating(q2, q3))
-            {
-                result = OneTwo_TwoThree;
-            }
-            else
-            {
-                result = OneTwo;
-            }
+            return OneTwo;
         }
     }
-    else if (checkForBeating(q1, q3))
+    else if (vec[0].amIBeat(vec[2]))
     {
-        if (checkForBeating(q2, q3))
+        if (vec[1].amIBeat(vec[2]))
         {
-            result = OneThree_TwoThree;
+            return OneThree_TwoThree;
         }
         else
         {
-            result = OneThree;
+            return OneThree;
         }
     }
-    else if (checkForBeating(q2, q3))
+    else if (vec[1].amIBeat(vec[2]))
     {
-        result = TwoThree;
+        return TwoThree;
     }
-    return result;
+    else
+    {
+        return NO_ONE;
+    }
 }

@@ -1,25 +1,49 @@
 #ifndef QUEENS_H
 #define QUEENS_H
 
+#include <iostream>
+#include <exception>
+#include <vector>
 #include <cstdlib>
 
-struct Queen
-{
-    int x;
-    int y;
-};
+using namespace std;
 
-enum Who_beat {NO_ONE = 0, EVERYONE, OneTwo_OneThree, OneTwo_TwoThree, OneTwo,
+enum WhoBeats {NO_ONE = 0, EVERYONE, OneTwo_OneThree, OneTwo_TwoThree, OneTwo,
                OneThree_TwoThree, OneThree, TwoThree};
 
-class Queens
+enum CoordinateLetter {A = 1, B, C, D, E, F, G, H};
+
+class CoordinatesException : public exception
+{
+    string error;
+public:
+    CoordinatesException(const char* error) : error(error){}
+
+    string getError() const
+    {
+        return error;
+    }
+};
+
+class Queen
+{    
+    int letter;
+    int numeral;
+    const char* ERROR_BAD_COORDINATES = "ERROR: a wrong queens coordinates";
+
+public:
+    Queen(int letter, int numeral);
+    Queen();
+    ~Queen();
+    bool amIBeat(Queen queen) const;
+};
+
+class ThreeQueens
 {
 public:
-    Queens();
-    ~Queens();
-    int getResult(const Queen q1, const Queen q2, const Queen q3) const;
-private:
-    int checkForBeating(const Queen q1, const Queen q2) const;
+    ThreeQueens();
+    ~ThreeQueens();
+    static WhoBeats whoBeats(vector<Queen>& vec);
 };
 
 #endif // QUEENS_H

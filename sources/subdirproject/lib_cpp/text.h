@@ -10,7 +10,7 @@ class Text
 public:
     Text();
     ~Text();
-    void symmetrizeLine(string& finalLine, string& initialLine, int maxLengthOfLine);
+    static void symmetrizeLine(string& finalLine, string& initialLine, int maxLengthOfLine);
 };
 
 #endif // TEXT_H
