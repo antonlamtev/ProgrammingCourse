@@ -45,7 +45,7 @@ void Table::allocateMoreMemory()
     currentSize += ADDITIONAL_SIZE;
 }
 
-void Table::put(const string cellValue, const int keyValue)
+void Table::put(const string& cellValue, const int& keyValue)
 {
     if (index == currentSize - 1)
     {
@@ -64,7 +64,7 @@ string Table::operator[](const int keyValue) const
             return cell[i];
         }
     }
-    throw NonexistentKeyException(ERROR_CELL_KEY);
+    throw NonexistentKeyException();
 }
 
 string Table::getLastElement() const

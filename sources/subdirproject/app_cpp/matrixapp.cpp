@@ -52,4 +52,8 @@ void matrixApp()
     {
         cout << "ERROR: incorrect pair of coordinates (" << e.getI() << ", " << e.getJ() << ")" << endl;
     }
+    catch (BadMatrixException& e)
+    {
+        cout << e.getError() << endl;
+    }
 }

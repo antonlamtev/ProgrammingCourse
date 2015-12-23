@@ -21,7 +21,9 @@ private Q_SLOTS:
     void testLongDivision();
     void testMatrix();
     void testText();
-    void testTable();
+    void testTablePut();
+    void testTableIndexationByKey();
+    void testTableException();
 };
 
 TestCpp::TestCpp()
@@ -100,16 +102,13 @@ void TestCpp::testMatrix()
                           {1, 2, 3, 0, 5},
                           {1, 1, 1, 1, 0}};
 
-#include <iostream>
-    using namespace std;
+
     for (int i = 0; i < dimension; ++i)
     {
         for(int j = 0; j < dimension; j++)
         {
-            //QCOMPARE(matrix.get(i, j), expected[i][j]);
-            cout << matrix.get(i, j) << ' ';
+            QCOMPARE(matrix.get(i, j), expected[i][j]);
         }
-        cout << endl;
     }
 
 }
@@ -123,14 +122,26 @@ void TestCpp::testText()
     QCOMPARE(finalLine == expected, 1);
 }
 
-void TestCpp::testTable()
+void TestCpp::testTablePut()
+{
+    Table table;
+    table.put("hello world!", 128);
+    table.put("dfsdg", 256);
+    QCOMPARE(table.getKeyOfLastElement() == 256, true);
+}
+
+void TestCpp::testTableIndexationByKey()
 {
     Table table;
     table.put("hello world!", 128);
     table.put("dfsdg", 256);
     QCOMPARE(table[128] == "hello world!", true);
-    QCOMPARE(table.getLastElement() == "dfsdg", true);
-    QCOMPARE(table.getKeyOfLastElement() == 256, true);
+}
+
+void TestCpp::testTableException()
+{
+    Table table;
+    table.put("hello world!", 128);
     QVERIFY_EXCEPTION_THROWN(table[1], NonexistentKeyException);
 }
 

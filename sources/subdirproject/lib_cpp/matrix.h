@@ -35,11 +35,21 @@ public:
     }
 };
 
+class BadMatrixException : public exception
+{
+public:
+    string getError() const
+    {
+        return "ERROR: matrix contradicts the condition that one null matches one line and one column";
+    }
+};
+
 class Matrix
 {
     int dimension;
     vector<vector<int>> matrix;
     int levelOfNull(const int numberOfLine) const;
+    bool isMatrixIncorrect() const;
 
 public:
     Matrix(int dimension);

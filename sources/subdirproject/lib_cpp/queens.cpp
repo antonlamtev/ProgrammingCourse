@@ -1,6 +1,6 @@
 #include "queens.h"
 
-Queen::Queen(int letter, int numeral): letter(letter), numeral(numeral)
+Queen::Queen(int letter, int numeral) : letter(letter), numeral(numeral)
 {
     if (letter < A || letter > H || numeral < 1 || numeral > 8)
     {
