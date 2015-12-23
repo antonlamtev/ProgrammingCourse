@@ -6,8 +6,6 @@
 class LongDivision
 {
 public:
-    LongDivision();
-    ~LongDivision();
     void putResultToArray(char*& array, const int firstNumber, const int secondNumber) const;
 private:
     void putNumberCharByCharToArrayWithIndexation(char*& array, const int number, int& index) const;

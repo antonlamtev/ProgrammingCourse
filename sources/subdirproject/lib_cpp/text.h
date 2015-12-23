@@ -8,8 +8,6 @@ using namespace std;
 class Text
 {
 public:
-    Text();
-    ~Text();
     static void symmetrizeLine(string& finalLine, string& initialLine, int maxLengthOfLine);
 };
 

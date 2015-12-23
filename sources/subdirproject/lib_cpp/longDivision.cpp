@@ -1,13 +1,5 @@
 #include "longDivision.h"
 
-LongDivision::LongDivision()
-{
-}
-
-LongDivision::~LongDivision()
-{
-}
-
 void LongDivision::putNSymbolsToArrayWithIndexation(char*& array, const int n, const char symbol, int& index) const
 {
     for (int i = 0; i < n; ++i)
